@@ -1,7 +1,8 @@
 import '~/assets/style/index.scss';
+import MainRoutes from '~/routes/routes';
 
 const App = () => {
-  return <div>React &amp; Dart-Sass</div>;
+  return <MainRoutes />;
 };
 
 export default App;

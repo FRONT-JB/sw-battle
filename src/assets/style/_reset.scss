@@ -40,6 +40,7 @@ html, body {
 	font-size: 10px;
 	line-height: 1.5;
 	text-size-adjust: none;
+	color: #fff;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -65,12 +66,13 @@ table {
 }
 
 img {
+	vertical-align: top;
 	max-width: 100%;
 }
 
 a {
 	text-decoration: none;
-	color: #333;
+	color: #fff;
 }
 
 button, input[type='button'], input[type='submit'] {
@@ -78,4 +80,21 @@ button, input[type='button'], input[type='submit'] {
 	border: 0;
 	color: #FFF;
 	cursor: pointer;
+}
+
+#root {
+	min-width: 300px;
+	height: 100vh;
+	background: #101421;
+}
+
+::-webkit-scrollbar{
+	width: 6px;
+	height: 6px;
+}
+
+::-webkit-scrollbar-thumb{
+	height: 17%;
+	background-color: rgba(255,255,255,0.2);
+	border-radius: 10px;    
 }
