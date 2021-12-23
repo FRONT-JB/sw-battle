@@ -1,0 +1,7 @@
+dist
+config
+.yarn
+
+src/resources/plugins/*
+
+**/*.d.ts

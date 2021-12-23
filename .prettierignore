@@ -1,0 +1,8 @@
+build
+dist
+coverage
+
+src/resources/plugins/*
+
+.eslintrc.js
+_reset.scss
