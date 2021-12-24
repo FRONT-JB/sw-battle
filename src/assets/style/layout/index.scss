@@ -11,6 +11,8 @@
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
   margin-top: 20px;
   padding: 20px;
   flex: 1;
@@ -20,14 +22,14 @@
   border: 1px solid #414141;
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
-}
 
-.blind {
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  margin: -1px;
-  width: 1px;
-  height: 1px;
-  font-size: 0;
+  .title {
+    line-height: 1;
+    font-size: 20px;
+    color: #eaeaea;
+    cursor: default;
+    &::selection {
+      background: transparent;
+    }
+  }
 }

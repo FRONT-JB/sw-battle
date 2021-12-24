@@ -16,6 +16,8 @@
       display: inline-block;
       &__link {
         display: block;
+      }
+      &-icons {
         .icon:not(:nth-of-type(1)) {
           margin-left: 10px;
         }
@@ -28,14 +30,15 @@
     justify-content: space-between;
     margin-top: 20px;
   }
+
   .gnb {
     display: flex;
-    &__list {
+    &__item {
       &:not(:first-child) {
         margin-left: 10px;
       }
-      &.admin {
-        justify-self: flex-end;
+      &__link {
+        display: block;
       }
     }
   }

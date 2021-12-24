@@ -41,8 +41,11 @@ html, body {
 	line-height: 1.5;
 	text-size-adjust: none;
 	color: #fff;
+	height:100%;
 }
-
+body {
+	background: #101421;
+}
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 500;
 }
@@ -84,8 +87,8 @@ button, input[type='button'], input[type='submit'] {
 
 #root {
 	min-width: 300px;
-	height: 100vh;
-	background: #101421;
+	height: 100%;
+	
 }
 
 ::-webkit-scrollbar{
