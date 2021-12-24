@@ -1,47 +1,24 @@
 import { MonsterList } from '~/constants/monster';
+import { handleTimeForToday } from '~/utils/time';
 
 const AttackResult = () => {
   return (
     <li className='attack-result__item'>
       <div className='defense-info'>
         <div className='defense-info__monster'>
-          <span
-            style={{
-              display: 'inline-block',
-              verticalAlign: 'top',
-              borderRadius: '20px',
-              overflow: 'hidden',
-              width: '25%',
-            }}
-          >
+          <span className='img-box'>
             <img
               style={{ width: '100%' }}
               src={`https://swarfarm.com/static/herders/images/monsters/${MonsterList.results[0].image_filename}`}
             />
           </span>
-          <span
-            style={{
-              display: 'inline-block',
-              verticalAlign: 'top',
-              borderRadius: '20px',
-              overflow: 'hidden',
-              width: '25%',
-            }}
-          >
+          <span className='img-box'>
             <img
               style={{ width: '100%' }}
               src={`https://swarfarm.com/static/herders/images/monsters/${MonsterList.results[0].image_filename}`}
             />
           </span>
-          <span
-            style={{
-              display: 'inline-block',
-              verticalAlign: 'top',
-              borderRadius: '20px',
-              overflow: 'hidden',
-              width: '25%',
-            }}
-          >
+          <span className='img-box'>
             <img
               style={{ width: '100%' }}
               src={`https://swarfarm.com/static/herders/images/monsters/${MonsterList.results[0].image_filename}`}
@@ -49,9 +26,8 @@ const AttackResult = () => {
           </span>
         </div>
         <div className='defense-info__creator'>
-          <p className='date'>2021.12.24</p>
-          <p className='creator-id'>creator</p>
-          <p className='length'>+ 3</p>
+          <span className='date'>{handleTimeForToday(new Date(1640333278000))}</span>
+          <span className='creator-id'>쿠와앙</span>
         </div>
       </div>
     </li>
