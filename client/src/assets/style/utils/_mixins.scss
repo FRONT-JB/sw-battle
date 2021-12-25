@@ -1,0 +1,18 @@
+$breakpoint-mobile: 500px;
+
+@mixin Mobile {
+  @media (max-width: ($breakpoint-mobile)) {
+    @content;
+  }
+}
+
+@mixin ellipsis($lineCount, $lineHeight, $fontSize: 16) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $lineCount;
+  -webkit-box-orient: vertical;
+  max-height: $lineCount * $lineHeight * $fontSize + px;
+  line-height: $lineHeight;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}

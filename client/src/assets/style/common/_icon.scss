@@ -1,0 +1,78 @@
+i.icon {
+  display: inline-block;
+  vertical-align: top;
+  background: url('../images/img_gnb_sp.png') no-repeat;
+  background-size: 256px 512px;
+  width: 52px;
+  height: 54px;
+
+  &-rune {
+    background: url('../images/img_rune_sp.png') no-repeat;
+    background-size: 256px 256px;
+    &-violent {
+      @extend .icon-rune;
+      background-position: -71px -3px;
+      width: 20px;
+      height: 27px;
+    }
+    &-will {
+      @extend .icon-rune;
+      background-position: -2px -99px;
+      width: 29px;
+      height: 27px;
+    }
+    &-swift {
+      @extend .icon-rune;
+      background-position: -101px -2px;
+      width: 24px;
+      height: 27px;
+    }
+    &-despair {
+      @extend .icon-rune;
+      background-position: -99px -35px;
+      width: 27px;
+      height: 27px;
+    }
+  }
+
+  &-element {
+    background: url('../images/img_elements_fire.png') no-repeat 0 0;
+    background-size: 16px 16px;
+    width: 16px;
+    height: 16px;
+    &-Fire,
+    &-Wind,
+    &-Water,
+    &-Dark,
+    &-Light {
+      @extend .icon-element;
+    }
+    &-Wind {
+      background-image: url('../images/img_elements_wind.png');
+    }
+    &-Water {
+      background-image: url('../images/img_elements_water.png');
+    }
+    &-Dark {
+      background-image: url('../images/img_elements_dark.png');
+    }
+    &-Light {
+      background-image: url('../images/img_elements_light.png');
+    }
+  }
+  &-battle {
+    background-position: -8px -5px;
+  }
+
+  &-defense {
+    background-position: -199px -262px;
+  }
+
+  &-admin {
+    background-position: -196px -453px;
+  }
+
+  &-home {
+    background-position: -198px -384px;
+  }
+}
