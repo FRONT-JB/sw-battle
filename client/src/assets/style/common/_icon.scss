@@ -6,6 +6,39 @@ i.icon {
   width: 52px;
   height: 54px;
 
+  &-battle {
+    background-position: -8px -5px;
+    &--disabled {
+      @extend .icon, .icon-battle;
+      background-image: url('../images/img_gnb_sp_disabled.png');
+    }
+  }
+
+  &-defense {
+    background-position: -199px -262px;
+    &--disabled {
+      @extend .icon, .icon-defense;
+      background-image: url('../images/img_gnb_sp_disabled.png');
+    }
+  }
+
+  &-admin {
+    background-position: -196px -453px;
+    &--disabled {
+      @extend .icon, .icon-admin;
+      background-image: url('../images/img_gnb_sp_disabled.png');
+    }
+  }
+
+  &-home {
+    background-position: -198px -384px;
+    &--disabled {
+      @extend .icon, .icon-home;
+      background-image: url('../images/img_gnb_sp_disabled.png');
+    }
+  }
+
+  // RUNE ICONS
   &-rune {
     background: url('../images/img_rune_sp.png') no-repeat;
     background-size: 256px 256px;
@@ -35,6 +68,7 @@ i.icon {
     }
   }
 
+  // MONSTER ELEMENT ICONS
   &-element {
     background: url('../images/img_elements_fire.png') no-repeat 0 0;
     background-size: 16px 16px;
@@ -59,20 +93,5 @@ i.icon {
     &-Light {
       background-image: url('../images/img_elements_light.png');
     }
-  }
-  &-battle {
-    background-position: -8px -5px;
-  }
-
-  &-defense {
-    background-position: -199px -262px;
-  }
-
-  &-admin {
-    background-position: -196px -453px;
-  }
-
-  &-home {
-    background-position: -198px -384px;
   }
 }

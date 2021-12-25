@@ -4,8 +4,6 @@ import { handleCurrentDate } from '~/utils/time';
 
 const AttackContainer = () => {
   const { data } = useGetMonsterQuery(1);
-
-  console.log(process.env.PROXY);
   return (
     <div className='container'>
       <div className='content-header'>
