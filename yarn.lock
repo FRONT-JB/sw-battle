@@ -1798,6 +1798,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash@npm:^4":
+  version: 4.14.178
+  resolution: "@types/lodash@npm:4.14.178"
+  checksum: a69a04a60bfc5257c3130a554b4efa0c383f0141b7b3db8ab7cf07ad2a46ea085fce66d0242da41da7e5647b133d5dfb2c15add9cbed8d7fef955e4a1e5b3128
+  languageName: node
+  linkType: hard
+
 "@types/mime@npm:^1":
   version: 1.3.2
   resolution: "@types/mime@npm:1.3.2"
@@ -4601,6 +4608,7 @@ __metadata:
     "@types/babel__plugin-transform-runtime": ^7
     "@types/babel__preset-env": ^7
     "@types/eslint": ^8.2.0
+    "@types/lodash": ^4
     "@types/mini-css-extract-plugin": ^2
     "@types/prettier": ^2.4.2
     "@types/react": ^17.0.37
@@ -4624,7 +4632,7 @@ __metadata:
     eslint-plugin-prettier: ^4.0.0
     eslint-plugin-react: ^7.27.1
     html-webpack-plugin: ^5.5.0
-    loadash: ^1.0.0
+    lodash: ^4.17.21
     mini-css-extract-plugin: ^2.4.5
     postcss: ^8.4.4
     postcss-loader: ^6.2.1
@@ -5658,13 +5666,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loadash@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "loadash@npm:1.0.0"
-  checksum: 05a105fa9773a7c15963ea783507daa4d488a7a5b782ba77d84dbfaa40b01eb6a3a6cb1a160e67c4af339c7aa9209f9bfb8ef35eefffe98838930f05752ea550
-  languageName: node
-  linkType: hard
-
 "loader-runner@npm:^4.2.0":
   version: 4.2.0
   resolution: "loader-runner@npm:4.2.0"
@@ -5736,7 +5737,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.20, lodash@npm:^4.17.21":
+"lodash@npm:*, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.20, lodash@npm:^4.17.21":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7

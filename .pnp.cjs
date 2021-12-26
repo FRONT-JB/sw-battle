@@ -47,6 +47,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/babel__plugin-transform-runtime", "npm:7.9.2"],
             ["@types/babel__preset-env", "npm:7.9.2"],
             ["@types/eslint", "npm:8.2.0"],
+            ["@types/lodash", "npm:4.14.178"],
             ["@types/mini-css-extract-plugin", "npm:2.4.0"],
             ["@types/prettier", "npm:2.4.2"],
             ["@types/react", "npm:17.0.37"],
@@ -70,7 +71,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:4.0.0"],
             ["eslint-plugin-react", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:7.27.1"],
             ["html-webpack-plugin", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:5.5.0"],
-            ["loadash", "npm:1.0.0"],
+            ["lodash", "npm:4.17.21"],
             ["mini-css-extract-plugin", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:2.4.5"],
             ["postcss", "npm:8.4.4"],
             ["postcss-loader", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:6.2.1"],
@@ -2969,6 +2970,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@types/keyv", "npm:3.1.3"],
             ["@types/node", "npm:16.11.10"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/lodash", [
+        ["npm:4.14.178", {
+          "packageLocation": "./.yarn/cache/@types-lodash-npm-4.14.178-5433b9ed68-a69a04a60b.zip/node_modules/@types/lodash/",
+          "packageDependencies": [
+            ["@types/lodash", "npm:4.14.178"]
           ],
           "linkType": "HARD",
         }]
@@ -6415,6 +6425,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/babel__plugin-transform-runtime", "npm:7.9.2"],
             ["@types/babel__preset-env", "npm:7.9.2"],
             ["@types/eslint", "npm:8.2.0"],
+            ["@types/lodash", "npm:4.14.178"],
             ["@types/mini-css-extract-plugin", "npm:2.4.0"],
             ["@types/prettier", "npm:2.4.2"],
             ["@types/react", "npm:17.0.37"],
@@ -6438,7 +6449,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:4.0.0"],
             ["eslint-plugin-react", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:7.27.1"],
             ["html-webpack-plugin", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:5.5.0"],
-            ["loadash", "npm:1.0.0"],
+            ["lodash", "npm:4.17.21"],
             ["mini-css-extract-plugin", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:2.4.5"],
             ["postcss", "npm:8.4.4"],
             ["postcss-loader", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:6.2.1"],
@@ -7614,15 +7625,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/lines-and-columns-npm-1.2.4-d6c7cc5799-0c37f9f7fa.zip/node_modules/lines-and-columns/",
           "packageDependencies": [
             ["lines-and-columns", "npm:1.2.4"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["loadash", [
-        ["npm:1.0.0", {
-          "packageLocation": "./.yarn/cache/loadash-npm-1.0.0-a473152f78-05a105fa97.zip/node_modules/loadash/",
-          "packageDependencies": [
-            ["loadash", "npm:1.0.0"]
           ],
           "linkType": "HARD",
         }]
