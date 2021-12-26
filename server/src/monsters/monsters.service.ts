@@ -1,10 +1,13 @@
 import { Injectable } from '@nestjs/common';
+import { findMonster } from '~/api/monster';
 
 @Injectable()
 export class MonstersService {
   private monsters = [];
 
-  findMonsters() {
+  async findMonsters() {
+    const monster = await findMonster();
+    console.log(monster);
     return this.monsters;
   }
 }
