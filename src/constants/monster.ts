@@ -1,3 +1,5 @@
+export const BASE_IMAGE_URL = process.env.BASE_IMAGE_URL;
+
 export const MonsterList = {
   count: 360,
   next: 'https://swarfarm.com/api/v2/monsters/?element=fire&page=2',

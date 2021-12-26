@@ -1,11 +1,9 @@
-import { SelectBox } from '~/components/common';
+import { SearchBox } from '~/components/search';
 
 const AdminContainer = () => {
   return (
     <div className='container'>
-      <SelectBox />
-      <SelectBox />
-      <SelectBox />
+      <SearchBox />
     </div>
   );
 };

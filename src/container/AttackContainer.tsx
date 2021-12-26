@@ -1,9 +1,7 @@
-import { useGetMonsterQuery } from '~/api/monster';
 import { AttackFilter, AttackResult } from '~/components/battle';
 import { handleCurrentDate } from '~/utils/time';
 
 const AttackContainer = () => {
-  const { data } = useGetMonsterQuery(1);
   return (
     <div className='container'>
       <div className='content-header'>

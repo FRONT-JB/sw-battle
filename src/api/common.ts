@@ -1,4 +1,1 @@
-export const BASE_URL =
-  process.env.NODE_ENV === 'production'
-    ? 'https://sw-battle.herokuapp.com'
-    : 'http://localhost:8080';
+export const BASE_URL = process.env.API_BASE_URL;

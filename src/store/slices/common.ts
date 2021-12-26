@@ -1,4 +1,4 @@
-import { createSlice, createSelector } from '@reduxjs/toolkit';
+import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../reducer';
 
 const COMMON_SLICE = 'COMMON' as const;
@@ -9,6 +9,7 @@ interface CommonState {
     isOpen: boolean;
     content: any;
   };
+  searchValue: string;
 }
 
 const initialState: CommonState = {
@@ -17,6 +18,7 @@ const initialState: CommonState = {
     isOpen: false,
     content: null,
   },
+  searchValue: '',
 };
 
 const commonSlice = createSlice({
@@ -33,11 +35,15 @@ const commonSlice = createSlice({
       state.popup.content = null;
       document.querySelector('body')!.removeAttribute('style');
     },
+    setSearchValue: (state, { payload }: PayloadAction<string>) => {
+      state.searchValue = payload;
+    },
   },
 });
 
-export const { openPopup, closePopup } = commonSlice.actions;
+export const { openPopup, closePopup, setSearchValue } = commonSlice.actions;
 export const commonSelector = (state: RootState) => state.common;
 export const popupSelector = createSelector([commonSelector], (state) => state.popup);
+export const searchValueSelector = createSelector([commonSelector], (state) => state.searchValue);
 export const selectedInfoSelector = createSelector([commonSelector], (state) => state.selectedInfo);
 export default commonSlice;

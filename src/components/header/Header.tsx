@@ -28,10 +28,10 @@ const Header = () => {
             </Link>
           </li>
         </ul>
-        <button type='button' className='btn btn-create'>
+        <Link className='link-admin' to={ROUTE_PATH.ADMIN}>
           <i className='icon icon-admin'></i>
           <span className='blind'>Admin</span>
-        </button>
+        </Link>
       </nav>
     </header>
   );

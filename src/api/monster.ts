@@ -1,6 +1,5 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { ElementTypes } from '~/types/monster';
 import { BASE_URL } from './common';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const monsterApi = createApi({
   reducerPath: 'monsterApi',
@@ -9,10 +8,7 @@ export const monsterApi = createApi({
   }),
   endpoints: (builder) => ({
     getMonster: builder.query({
-      query: (page: number, star?: number, element?: ElementTypes) =>
-        `/?page=${page}${star ? `&natural_stars=${star}` : ''}${
-          element ? `&element=${element}` : ''
-        }`,
+      query: (name: string) => `/${name}`,
     }),
   }),
 });
