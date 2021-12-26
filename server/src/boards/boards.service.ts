@@ -2,6 +2,7 @@ import { PostAttackInfo } from './model/boards.model';
 import { Injectable } from '@nestjs/common';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { v1 as uuid } from 'uuid';
+import { findMonster } from '~/api/monster';
 
 @Injectable()
 export class BoardsService {

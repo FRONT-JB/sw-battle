@@ -3,11 +3,9 @@ import { findMonster } from '~/api/monster';
 
 @Injectable()
 export class MonstersService {
-  private monsters = [];
-
-  async findMonsters() {
-    const monster = await findMonster();
-    console.log(monster);
-    return this.monsters;
+  async findMonsters(name: string) {
+    const searchValue = decodeURI(name).toLowerCase();
+    const { data } = await findMonster(searchValue);
+    return data;
   }
 }
