@@ -1,17 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { ElementTypes } from '~/types/monster';
-
-const PROXY = process.env.PROXY;
-const BASE_URL = `${PROXY}/https://swarfarm.com/api/v2`;
+import { BASE_URL } from './common';
 
 export const monsterApi = createApi({
   reducerPath: 'monsterApi',
   baseQuery: fetchBaseQuery({
     baseUrl: `${BASE_URL}/monsters`,
-    prepareHeaders: (headers) => {
-      headers.set('Access-Control-Allow-Origin', '*');
-      return headers;
-    },
   }),
   endpoints: (builder) => ({
     getMonster: builder.query({
