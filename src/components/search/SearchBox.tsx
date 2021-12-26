@@ -14,7 +14,10 @@ const SearchBox = () => {
     skip: searchValue.trim() === '',
   });
 
-  const debounceSearch = debounce((searchValue) => dispatch(setSearchValue(searchValue)), 500);
+  const debounceSearch = debounce(
+    (searchValue) => dispatch(setSearchValue(searchValue)),
+    500,
+  );
 
   const handleSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -31,12 +34,13 @@ const SearchBox = () => {
     };
   }, []);
 
-  console.log(searchValue);
-  if (error) return <NotFound />;
-
   return (
     <div className='search-box'>
-      <InputBox id='search' onChange={handleSearchValue} placeHolder='몬스터 이름' />
+      <InputBox
+        id='search'
+        onChange={handleSearchValue}
+        placeHolder='몬스터 이름'
+      />
       {isFetching ? (
         <div className='search-box__loading'>
           <Loading />
