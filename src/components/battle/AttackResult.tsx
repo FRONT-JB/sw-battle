@@ -1,20 +1,28 @@
+import { useNavigate } from 'react-router-dom';
 import { useGetBoardListQuery } from '~/api/board';
+import { ROUTE_PATH } from '~/routes/path';
 import { handleReplaceURL } from '~/utils/image';
 import { handleTimeForToday } from '~/utils/time';
 import { Badge } from '../common';
 
 const AttackResult = () => {
+  const navigate = useNavigate();
   const { data: boards } = useGetBoardListQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
+
   const isNotEmptyBoard = !!boards?.length;
 
   return (
-    <ul className='attack-result'>
+    <>
       {isNotEmptyBoard && (
-        <>
-          {boards?.map(({ creator, content }) => (
-            <li key={creator.date} className='attack-result__item'>
+        <ul className='attack-result'>
+          {boards?.map(({ id, creator, content }) => (
+            <li
+              key={creator.date}
+              onClick={() => navigate(`defense/${id}`)}
+              className='attack-result__item'
+            >
               <div className='defense-info-monster'>
                 {content.defense.map(({ id, name, image_filename }) => (
                   <span className='img-box' key={`${name}-${id}`}>
@@ -40,10 +48,10 @@ const AttackResult = () => {
               </div>
             </li>
           ))}
-        </>
+        </ul>
       )}
-      {!isNotEmptyBoard && <div>No Result</div>}
-    </ul>
+      {!isNotEmptyBoard && <div className='content__not-found'>No result</div>}
+    </>
   );
 };
 

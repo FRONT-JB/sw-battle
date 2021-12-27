@@ -11,6 +11,10 @@ const MainRoutes = () => {
         <Route path={ROUTE_PATH.ROOT} element={<Main />}>
           <Route index element={<AttackContainer />} />
           <Route path={ROUTE_PATH.DEFENSE} element={<DefenseContainer />} />
+          <Route
+            path={ROUTE_PATH.DEFENSE_DETAIL}
+            element={<AdminContainer />}
+          />
           <Route path={ROUTE_PATH.ADMIN} element={<AdminContainer />} />
         </Route>
       </Routes>

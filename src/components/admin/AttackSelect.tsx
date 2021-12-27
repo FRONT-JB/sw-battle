@@ -18,7 +18,8 @@ const AttackSelect = () => {
   const selectedMonster = useSelector(selectedInfoSelector);
   const isNotEmpty = !!selectedMonster.length;
   const disabled = selectedMonster.length < 3;
-  const [create, { data }] = useCreateBoardMutation();
+  const [create] = useCreateBoardMutation();
+
   const handleCancel = () => {
     navigate(ROUTE_PATH.ROOT);
   };
