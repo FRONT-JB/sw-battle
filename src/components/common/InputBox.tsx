@@ -9,7 +9,14 @@ interface Props {
   placeHolder?: string;
 }
 
-const InboxBox = ({ label, id, name, onChange, autoComplete = 'off', placeHolder = '' }: Props) => {
+const InboxBox = ({
+  label,
+  id,
+  name,
+  onChange,
+  autoComplete = 'off',
+  placeHolder = '',
+}: Props) => {
   return (
     <span className='inpbox'>
       {label && (

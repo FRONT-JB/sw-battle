@@ -1,13 +1,11 @@
 import { AttackFilter, AttackResult } from '~/components/battle';
+import { ContentHeader } from '~/components/header';
 import { handleCurrentDate } from '~/utils/time';
 
 const AttackContainer = () => {
   return (
     <div className='container'>
-      <div className='content-header'>
-        <b className='content-header__title'>Attack Units</b>
-        <span className='content-header__date'>{handleCurrentDate()}</span>
-      </div>
+      <ContentHeader title='Attack Units' />
       <AttackFilter />
       <div className='content'>
         <ul className='attack-result'>

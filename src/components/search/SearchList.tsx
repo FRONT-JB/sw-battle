@@ -1,5 +1,5 @@
-import { BASE_IMAGE_URL } from '~/constants/monster';
 import { Monster } from '~/types/monster';
+import { handleReplaceURL } from '~/utils/image';
 
 interface Props {
   searchList: Monster[] | undefined;
@@ -17,7 +17,7 @@ const SearchList = ({ searchList, onSelect }: Props) => {
         >
           <div className='img-box'>
             <img
-              src={`${BASE_IMAGE_URL}/${monster.image_filename}`}
+              src={handleReplaceURL(monster.image_filename)}
               alt={`${monster.name} Thumbnail`}
             />
           </div>
