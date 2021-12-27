@@ -9,6 +9,7 @@ import cn from 'classnames';
 import { Monster } from '~/types/monster';
 import { useNavigate } from 'react-router-dom';
 import { ROUTE_PATH } from '~/routes/path';
+import { useEffect } from 'react';
 
 const AttackSelect = () => {
   const dispatch = useDispatch();
@@ -19,12 +20,17 @@ const AttackSelect = () => {
 
   const handleCancel = () => {
     navigate(ROUTE_PATH.ROOT);
-    dispatch(clearSearch());
   };
 
   const handleSelect = (monster: Monster) => {
     dispatch(setSelectMonster(monster));
   };
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearSearch());
+    };
+  }, []);
 
   if (!isNotEmpty) return null;
 
@@ -43,13 +49,17 @@ const AttackSelect = () => {
           </div>
         ))}
       </div>
-
       <div className='btn-set'>
         <button type='button' className='btn' onClick={handleCancel}>
           <i className='icon icon-cancel'></i>
           <span className='blind'>Cancel</span>
         </button>
-        <button type='button' className='btn' disabled={disabled}>
+        <button
+          type='button'
+          className='btn'
+          onClick={handleCancel}
+          disabled={disabled}
+        >
           <i
             className={cn('icon icon-save', {
               'icon-save--disabled': disabled,

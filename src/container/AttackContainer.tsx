@@ -6,7 +6,6 @@ const AttackContainer = () => {
   return (
     <div className='container'>
       <ContentHeader title='Attack Units' />
-      <AttackFilter />
       <div className='content'>
         <ul className='attack-result'>
           <AttackResult />
