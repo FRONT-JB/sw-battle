@@ -1,10 +1,11 @@
+import { Monster } from '~/types/monster';
 import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../reducer';
 
 const COMMON_SLICE = 'COMMON' as const;
 
 interface CommonState {
-  selectedInfo: [];
+  selectedInfo: Monster[];
   popup: {
     isOpen: boolean;
     content: any;
@@ -38,12 +39,34 @@ const commonSlice = createSlice({
     setSearchValue: (state, { payload }: PayloadAction<string>) => {
       state.searchValue = payload;
     },
+    setSelectMonster: (state, { payload }: PayloadAction<Monster>) => {
+      const isActiveMonster = state.selectedInfo.find(
+        (monster) => monster.id === payload.id,
+      );
+      if (isActiveMonster) {
+        state.selectedInfo = [...state.selectedInfo].filter(
+          (monster) => monster.id !== payload.id,
+        );
+      } else {
+        state.selectedInfo = [...state.selectedInfo, payload];
+      }
+    },
   },
 });
 
-export const { openPopup, closePopup, setSearchValue } = commonSlice.actions;
+export const { openPopup, closePopup, setSearchValue, setSelectMonster } =
+  commonSlice.actions;
 export const commonSelector = (state: RootState) => state.common;
-export const popupSelector = createSelector([commonSelector], (state) => state.popup);
-export const searchValueSelector = createSelector([commonSelector], (state) => state.searchValue);
-export const selectedInfoSelector = createSelector([commonSelector], (state) => state.selectedInfo);
+export const popupSelector = createSelector(
+  [commonSelector],
+  (state) => state.popup,
+);
+export const searchValueSelector = createSelector(
+  [commonSelector],
+  (state) => state.searchValue,
+);
+export const selectedInfoSelector = createSelector(
+  [commonSelector],
+  (state) => state.selectedInfo,
+);
 export default commonSlice;

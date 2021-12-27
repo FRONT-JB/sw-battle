@@ -1,15 +1,22 @@
 import { ChangeEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetMonsterQuery } from '~/api/monster';
-import { searchValueSelector, setSearchValue } from '~/store/slices/common';
+import {
+  searchValueSelector,
+  selectedInfoSelector,
+  setSearchValue,
+  setSelectMonster,
+} from '~/store/slices/common';
 import { Monster } from '~/types/monster';
-import { InputBox, Loading, NotFound } from '../common';
+import { Badge, InputBox, Loading, NotFound } from '../common';
 import SearchList from './SearchList';
 import { debounce } from 'lodash';
+import { BASE_IMAGE_URL } from '~/constants/monster';
 
 const SearchBox = () => {
   const dispatch = useDispatch();
   const searchValue = useSelector(searchValueSelector);
+  const selectedValue = useSelector(selectedInfoSelector);
   const { data, isFetching, error } = useGetMonsterQuery(searchValue, {
     skip: searchValue.trim() === '',
   });
@@ -25,7 +32,7 @@ const SearchBox = () => {
   };
 
   const handlePickMonster = (monster: Monster) => {
-    console.log(monster);
+    dispatch(setSelectMonster(monster));
   };
 
   useEffect(() => {
@@ -48,6 +55,13 @@ const SearchBox = () => {
       ) : (
         <SearchList searchList={data?.results} onSelect={handlePickMonster} />
       )}
+      {selectedValue?.map((monster) => (
+        <p>
+          <img src={`${BASE_IMAGE_URL}/${monster.image_filename}`} alt='' />
+          <Badge element={monster.element} />
+          {monster.name}
+        </p>
+      ))}
     </div>
   );
 };
