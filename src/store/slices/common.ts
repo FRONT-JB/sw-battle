@@ -43,12 +43,16 @@ const commonSlice = createSlice({
       const isActiveMonster = state.selectedInfo.find(
         (monster) => monster.id === payload.id,
       );
+
       if (isActiveMonster) {
         state.selectedInfo = [...state.selectedInfo].filter(
           (monster) => monster.id !== payload.id,
         );
       } else {
-        state.selectedInfo = [...state.selectedInfo, payload];
+        const isOverSelected = state.selectedInfo.length > 2;
+        state.selectedInfo = isOverSelected
+          ? state.selectedInfo
+          : [...state.selectedInfo, payload];
       }
     },
     clearSearch: (state) => {
