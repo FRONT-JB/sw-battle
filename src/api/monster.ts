@@ -14,4 +14,4 @@ export const monsterApi = createApi({
   }),
 });
 
-export const { useGetMonsterQuery } = monsterApi;
+export const { useGetMonsterQuery, useLazyGetMonsterQuery } = monsterApi;

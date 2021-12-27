@@ -51,11 +51,20 @@ const commonSlice = createSlice({
         state.selectedInfo = [...state.selectedInfo, payload];
       }
     },
+    clearSearch: (state) => {
+      state.searchValue = '';
+      state.selectedInfo = [];
+    },
   },
 });
 
-export const { openPopup, closePopup, setSearchValue, setSelectMonster } =
-  commonSlice.actions;
+export const {
+  openPopup,
+  closePopup,
+  setSearchValue,
+  setSelectMonster,
+  clearSearch,
+} = commonSlice.actions;
 export const commonSelector = (state: RootState) => state.common;
 export const popupSelector = createSelector(
   [commonSelector],
