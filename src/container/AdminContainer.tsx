@@ -1,11 +1,15 @@
-import { SelectBox } from '~/components/common';
+import { AttackSelect } from '~/components/admin';
+import { ContentHeader } from '~/components/header';
+import { SearchBox } from '~/components/search';
 
 const AdminContainer = () => {
   return (
     <div className='container'>
-      <SelectBox />
-      <SelectBox />
-      <SelectBox />
+      <ContentHeader title='Create Defense Units' />
+      <div className='content'>
+        <SearchBox />
+        <AttackSelect />
+      </div>
     </div>
   );
 };

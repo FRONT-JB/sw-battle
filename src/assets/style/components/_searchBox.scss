@@ -1,0 +1,23 @@
+.search-box {
+  &__loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    max-height: 100px;
+    height: 100%;
+  }
+  &__list {
+    margin-top: 10px;
+    max-height: 200px;
+    overflow-y: scroll;
+    &__item {
+      display: flex;
+      padding: 5px 10px;
+      cursor: pointer;
+      .img-box {
+        max-width: 48px;
+      }
+    }
+  }
+}

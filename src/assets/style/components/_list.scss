@@ -80,6 +80,29 @@
   }
 }
 
+.attack-select {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  &__list {
+    display: flex;
+    justify-content: space-evenly;
+    .img-box {
+      display: inline-block;
+      cursor: pointer;
+    }
+  }
+  .btn-set {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+
+    .btn:not(:first-child) {
+      margin-left: 20px;
+    }
+  }
+}
+
 .not-found {
   display: flex;
   justify-content: center;

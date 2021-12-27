@@ -1,14 +1,16 @@
-import { createSlice, createSelector } from '@reduxjs/toolkit';
+import { Monster } from '~/types/monster';
+import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../reducer';
 
 const COMMON_SLICE = 'COMMON' as const;
 
 interface CommonState {
-  selectedInfo: [];
+  selectedInfo: Monster[];
   popup: {
     isOpen: boolean;
     content: any;
   };
+  searchValue: string;
 }
 
 const initialState: CommonState = {
@@ -17,6 +19,7 @@ const initialState: CommonState = {
     isOpen: false,
     content: null,
   },
+  searchValue: '',
 };
 
 const commonSlice = createSlice({
@@ -33,11 +36,46 @@ const commonSlice = createSlice({
       state.popup.content = null;
       document.querySelector('body')!.removeAttribute('style');
     },
+    setSearchValue: (state, { payload }: PayloadAction<string>) => {
+      state.searchValue = payload;
+    },
+    setSelectMonster: (state, { payload }: PayloadAction<Monster>) => {
+      const isActiveMonster = state.selectedInfo.find(
+        (monster) => monster.id === payload.id,
+      );
+      if (isActiveMonster) {
+        state.selectedInfo = [...state.selectedInfo].filter(
+          (monster) => monster.id !== payload.id,
+        );
+      } else {
+        state.selectedInfo = [...state.selectedInfo, payload];
+      }
+    },
+    clearSearch: (state) => {
+      state.searchValue = '';
+      state.selectedInfo = [];
+    },
   },
 });
 
-export const { openPopup, closePopup } = commonSlice.actions;
+export const {
+  openPopup,
+  closePopup,
+  setSearchValue,
+  setSelectMonster,
+  clearSearch,
+} = commonSlice.actions;
 export const commonSelector = (state: RootState) => state.common;
-export const popupSelector = createSelector([commonSelector], (state) => state.popup);
-export const selectedInfoSelector = createSelector([commonSelector], (state) => state.selectedInfo);
+export const popupSelector = createSelector(
+  [commonSelector],
+  (state) => state.popup,
+);
+export const searchValueSelector = createSelector(
+  [commonSelector],
+  (state) => state.searchValue,
+);
+export const selectedInfoSelector = createSelector(
+  [commonSelector],
+  (state) => state.selectedInfo,
+);
 export default commonSlice;

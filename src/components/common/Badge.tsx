@@ -1,5 +1,5 @@
 interface Props {
-  element: 'Fire' | 'Water' | 'Wind' | 'Light' | 'Dark';
+  element: string;
 }
 
 const Badge = ({ element }: Props) => {
