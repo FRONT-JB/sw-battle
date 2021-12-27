@@ -38,6 +38,22 @@ i.icon {
     }
   }
 
+  &-save {
+    background-position: -8px -392px;
+    &--disabled {
+      @extend .icon, .icon-save;
+      background-image: url('../images/img_gnb_sp_disabled.png');
+    }
+  }
+
+  &-cancel {
+    background-position: -71px -392px;
+    &--disabled {
+      @extend .icon, .icon-cancel;
+      background-image: url('../images/img_gnb_sp_disabled.png');
+    }
+  }
+
   // RUNE ICONS
   &-rune {
     background: url('../images/img_rune_sp.png') no-repeat;
