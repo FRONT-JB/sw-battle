@@ -58,24 +58,22 @@ const DetailContainer = () => {
         </div>
         {isLoading && <Loading isFullSize={true} />}
         {comments && comments?.length > 0 && !isLoading && (
-          <>
-            <ul className='comment-list'>
-              {comments?.map(({ id, boardId, comment }) => (
-                <li key={`comment-${id}`} className='comment-list__item'>
-                  {comment.map(({ name, id, image_filename }) => (
-                    <span key={`${name}-${id}`} className='img-box'>
-                      <img
-                        src={handleReplaceURL(image_filename)}
-                        alt={`${name} Thumbnail`}
-                      />
-                    </span>
-                  ))}
-                </li>
-              ))}
-            </ul>
-            <Search onRefresh={handleCommentRefetch} />
-          </>
+          <ul className='comment-list'>
+            {comments?.map(({ id, boardId, comment }) => (
+              <li key={`comment-${id}`} className='comment-list__item'>
+                {comment.map(({ name, id, image_filename }) => (
+                  <span key={`${name}-${id}`} className='img-box'>
+                    <img
+                      src={handleReplaceURL(image_filename)}
+                      alt={`${name} Thumbnail`}
+                    />
+                  </span>
+                ))}
+              </li>
+            ))}
+          </ul>
         )}
+        <Search onRefresh={handleCommentRefetch} />
       </div>
     </div>
   );
