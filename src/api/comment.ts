@@ -10,6 +10,7 @@ export const commentApi = createApi({
   endpoints: (builder) => ({
     getCommentByBoardId: builder.query<Comment[], number | undefined>({
       query: (id: number) => `/board/${id}`,
+      keepUnusedDataFor: 3,
     }),
     createComment: builder.mutation<Comment, Partial<Comment>>({
       query: (comment) => ({
