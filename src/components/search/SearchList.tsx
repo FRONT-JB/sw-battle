@@ -1,5 +1,3 @@
-import { useSelector } from 'react-redux';
-import { selectedInfoSelector } from '~/store/slices/common';
 import { Monster } from '~/types/monster';
 import { handleReplaceURL } from '~/utils/image';
 
@@ -10,23 +8,22 @@ interface Props {
 
 const SearchList = ({ searchList, onSelect }: Props) => {
   return (
-    <div className='search-box__list'>
+    <ul className='search-box__list'>
       {searchList?.map((monster) => (
-        <div
+        <li
           key={monster.id}
           onClick={() => onSelect(monster)}
           className='search-box__list__item'
         >
-          <div className='img-box'>
+          <span className='img-box'>
             <img
               src={handleReplaceURL(monster.image_filename)}
               alt={`${monster.name} Thumbnail`}
             />
-          </div>
-          {monster.name}
-        </div>
+          </span>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 

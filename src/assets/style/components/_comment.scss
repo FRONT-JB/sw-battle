@@ -77,16 +77,6 @@
         @extend .comment-search__add-toggle;
         justify-content: space-between;
       }
-
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: -20px;
-        width: 100%;
-        height: 20px;
-        background: linear-gradient(to top, #191f2c, transparent);
-      }
     }
     @include mixin.Mobile {
       display: none;
