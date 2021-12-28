@@ -1,0 +1,40 @@
+@use '../utils/mixins' as mixin;
+
+.attack-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 6px;
+  margin-top: 16px;
+
+  &__select {
+    display: flex;
+    flex: 1;
+    height: 30px;
+    .select-box {
+      flex: 1;
+      &:not(:first-child) {
+        margin-left: 6px;
+      }
+    }
+  }
+  &__btn-reset {
+    margin-left: 10px;
+  }
+
+  @include mixin.Mobile {
+    &__select {
+      flex-direction: column;
+      height: auto;
+
+      .select-box {
+        flex: 0;
+        height: 30px;
+        &:not(:first-child) {
+          margin-left: 0;
+          margin-top: 6px;
+        }
+      }
+    }
+  }
+}
