@@ -1,30 +1,38 @@
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { useGetBoardListQuery } from '~/api/board';
 import { ROUTE_PATH } from '~/routes/path';
+import { setDetailInfo } from '~/store/slices/common';
+import { Board } from '~/types/board';
 import { handleReplaceURL } from '~/utils/image';
 import { handleTimeForToday } from '~/utils/time';
 import { Badge } from '../common';
 
 const AttackResult = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { data: boards } = useGetBoardListQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
-
   const isNotEmptyBoard = !!boards?.length;
+
+  const handleDetail = (detail: Board) => {
+    dispatch(setDetailInfo(detail));
+    navigate(ROUTE_PATH.DETAIL);
+  };
 
   return (
     <>
       {isNotEmptyBoard && (
         <ul className='attack-result'>
-          {boards?.map(({ id, creator, content }) => (
+          {boards?.map((monster) => (
             <li
-              key={creator.date}
-              onClick={() => navigate(`defense/${id}`)}
+              key={monster.creator.date}
+              onClick={() => handleDetail(monster)}
               className='attack-result__item'
             >
               <div className='defense-info-monster'>
-                {content.defense.map(({ id, name, image_filename }) => (
+                {monster.content.defense.map(({ id, name, image_filename }) => (
                   <span className='img-box' key={`${name}-${id}`}>
                     <img
                       src={handleReplaceURL(image_filename)}
@@ -35,13 +43,13 @@ const AttackResult = () => {
               </div>
               <div className='defense-info-creator'>
                 <span className='defense-info-creator__date'>
-                  {handleTimeForToday(creator.date)}
+                  {handleTimeForToday(monster.creator.date)}
                 </span>
                 <span className='defense-info-creator__user-id'>
-                  {creator.userName}
+                  {monster.creator.userName}
                 </span>
                 <div className='defense-info-creator__elements'>
-                  {content.defense.map(({ id, name, element }) => (
+                  {monster.content.defense.map(({ id, name, element }) => (
                     <Badge key={`${name}-${id}`} element={element} />
                   ))}
                 </div>

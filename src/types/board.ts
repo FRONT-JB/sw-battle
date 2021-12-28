@@ -2,6 +2,7 @@ import { Monster } from './monster';
 
 export interface Board {
   id: number;
+  keyword: string[];
   creator: CreatorInfo;
   content: PostContent;
 }

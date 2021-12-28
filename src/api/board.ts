@@ -15,7 +15,7 @@ export const boardApi = createApi({
       },
     }),
 
-    createBoard: builder.mutation<Board, Omit<Board, 'id'>>({
+    createBoard: builder.mutation<Board, Partial<Board>>({
       query: (board) => ({
         url: '',
         method: 'POST',

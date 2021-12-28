@@ -3,13 +3,21 @@
 .attack-result {
   &__item {
     display: flex;
-    padding: 10px 0px;
-    transition: padding 0.3s ease;
     cursor: pointer;
 
-    &:hover {
-      padding: 10px;
-      background: #101421;
+    &.detail {
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #414141;
+    }
+
+    &:not(.detail) {
+      padding: 10px 0px;
+      transition: padding, background, 0.3s ease;
+      &:hover {
+        padding: 10px;
+        background: #101421;
+      }
     }
 
     &:not(:first-child) {
@@ -37,6 +45,9 @@
 
         @include mixin.Mobile {
           max-width: 100%;
+          .img-box img {
+            width: 100%;
+          }
         }
       }
 
@@ -71,6 +82,13 @@
           .badge:not(:first-child) {
             margin-left: 4px;
           }
+        }
+
+        &__keyword {
+          display: block;
+          margin-top: 10px;
+          font-size: 12px;
+          line-height: 1.25;
         }
         @include mixin.Mobile {
           display: none;

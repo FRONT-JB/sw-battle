@@ -22,10 +22,10 @@ i.icon {
     }
   }
 
-  &-admin {
+  &-create {
     background-position: -196px -453px;
     &--disabled {
-      @extend .icon, .icon-admin;
+      @extend .icon, .icon-create;
       background-image: url('../images/img_gnb_sp_disabled.png');
     }
   }

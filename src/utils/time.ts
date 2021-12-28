@@ -1,7 +1,10 @@
-export const handleTimeForToday = (date: number) => {
+export const handleTimeForToday = (date: number | undefined) => {
+  if (!date) return;
   const today = new Date();
   const postDate = new Date(date);
-  const betweenDate = Math.floor((today.getTime() - postDate.getTime()) / 1000 / 60);
+  const betweenDate = Math.floor(
+    (today.getTime() - postDate.getTime()) / 1000 / 60,
+  );
   const betweenTimeHour = Math.floor(betweenDate / 60);
   const betweenTimeDay = Math.floor(betweenDate / 60 / 24);
   const betweenTimeYear = Math.floor(betweenTimeDay / 365);

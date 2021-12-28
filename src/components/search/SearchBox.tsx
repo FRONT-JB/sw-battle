@@ -6,6 +6,7 @@ import { Monster } from '~/types/monster';
 import { InputBox, Loading } from '../common';
 import SearchList from './SearchList';
 import { debounce } from 'lodash';
+import { handleMonsterPayload } from '~/utils/monster';
 
 const SearchBox = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const SearchBox = () => {
 
   const debounceSearch = debounce(
     (searchValue) => searchMonster(searchValue),
-    500,
+    800,
   );
 
   const handleSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -22,30 +23,7 @@ const SearchBox = () => {
   };
 
   const handlePickMonster = (monster: Monster) => {
-    const {
-      id,
-      url,
-      bestiary_slug,
-      com2us_id,
-      family_id,
-      name,
-      image_filename,
-      element,
-      archetype,
-      natural_stars,
-    } = monster;
-    const payload = {
-      id,
-      url,
-      bestiary_slug,
-      com2us_id,
-      family_id,
-      name,
-      image_filename,
-      element,
-      archetype,
-      natural_stars,
-    };
+    const payload = handleMonsterPayload(monster);
     dispatch(setSelectMonster(payload));
   };
 

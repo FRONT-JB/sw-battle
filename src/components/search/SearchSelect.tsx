@@ -12,7 +12,7 @@ import { ROUTE_PATH } from '~/routes/path';
 import { useEffect } from 'react';
 import { useCreateBoardMutation } from '~/api/board';
 
-const AttackSelect = () => {
+const SearchSelect = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const selectedMonster = useSelector(selectedInfoSelector);
@@ -38,11 +38,8 @@ const AttackSelect = () => {
         defense: selectedMonster,
       },
     };
-
     try {
-      await create(createParams).then(() =>
-        navigate(ROUTE_PATH.ROOT, { replace: true }),
-      );
+      await create(createParams).then(() => navigate(ROUTE_PATH.ROOT));
     } catch (error) {
       console.log(error);
     }
@@ -66,7 +63,10 @@ const AttackSelect = () => {
             className='attack-select__list'
           >
             <div className='img-box'>
-              <img src={handleReplaceURL(monster.image_filename)} alt='' />
+              <img
+                src={handleReplaceURL(monster.image_filename)}
+                alt={`${monster.name} Thumbnail`}
+              />
             </div>
           </div>
         ))}
@@ -94,4 +94,4 @@ const AttackSelect = () => {
   );
 };
 
-export default AttackSelect;
+export default SearchSelect;
