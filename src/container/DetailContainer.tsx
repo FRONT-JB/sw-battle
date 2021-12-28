@@ -1,6 +1,9 @@
-import { Fragment, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetCommentByBoardIdQuery } from '~/api/comment';
+import {
+  useDeleteCommentMutation,
+  useGetCommentByBoardIdQuery,
+} from '~/api/comment';
 import { Badge, Loading } from '~/components/common';
 import { Search } from '~/components/detail';
 import { ContentHeader } from '~/components/header';
@@ -14,8 +17,9 @@ const DetailContainer = () => {
   const {
     data: comments,
     refetch,
-    isLoading,
+    isFetching,
   } = useGetCommentByBoardIdQuery(detailData?.id);
+  const [deleteComment] = useDeleteCommentMutation();
 
   useEffect(() => {
     return () => {
@@ -25,6 +29,14 @@ const DetailContainer = () => {
 
   const handleCommentRefetch = () => {
     refetch();
+  };
+
+  const handleDeleteComment = async (commentId: number) => {
+    try {
+      await deleteComment(commentId).then(refetch);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -56,23 +68,40 @@ const DetailContainer = () => {
             </div>
           </div>
         </div>
-        {isLoading && <Loading isFullSize={true} />}
-        {comments && comments?.length > 0 && !isLoading && (
-          <ul className='comment-list'>
-            {comments?.map(({ id, boardId, comment }) => (
-              <li key={`comment-${id}`} className='comment-list__item'>
-                {comment.map(({ name, id, image_filename }) => (
-                  <span key={`${name}-${id}`} className='img-box'>
-                    <img
-                      src={handleReplaceURL(image_filename)}
-                      alt={`${name} Thumbnail`}
-                    />
-                  </span>
+        {isFetching ? (
+          <Loading isFullSize={true} />
+        ) : (
+          <>
+            {comments && comments?.length > 0 ? (
+              <ul className='comment-list'>
+                {comments?.map(({ id, comment }) => (
+                  <li key={`comment-${id}`} className='comment-list__item'>
+                    {comment.map(({ name, id, image_filename }) => (
+                      <span key={`${name}-${id}`} className='img-box'>
+                        <img
+                          src={handleReplaceURL(image_filename)}
+                          alt={`${name} Thumbnail`}
+                        />
+                      </span>
+                    ))}
+                    <div className='comment-list__item__hover'>
+                      <button
+                        type='button'
+                        onClick={() => id && handleDeleteComment(id)}
+                      >
+                        <i className='icon icon-delete'></i>
+                        <span className='blind'>Delete</span>
+                      </button>
+                    </div>
+                  </li>
                 ))}
-              </li>
-            ))}
-          </ul>
+              </ul>
+            ) : (
+              <div className='comment-no-result'>No Result</div>
+            )}
+          </>
         )}
+
         <Search onRefresh={handleCommentRefetch} />
       </div>
     </div>

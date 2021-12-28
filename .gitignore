@@ -2,6 +2,7 @@
 dist
 node_modules
 tsconfig.lint.json
+_redirects
 
 # yarn berry
 /.yarn/*

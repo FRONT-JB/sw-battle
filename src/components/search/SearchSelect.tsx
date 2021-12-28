@@ -62,12 +62,12 @@ const SearchSelect = () => {
             onClick={() => handleSelect(monster)}
             className='attack-select__list'
           >
-            <div className='img-box'>
+            <span className='img-box'>
               <img
                 src={handleReplaceURL(monster.image_filename)}
                 alt={`${monster.name} Thumbnail`}
               />
-            </div>
+            </span>
           </div>
         ))}
       </div>
