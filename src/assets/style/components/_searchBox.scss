@@ -7,15 +7,21 @@
     height: 200px;
   }
   &__list {
+    display: flex;
+    flex-wrap: wrap;
     margin-top: 10px;
-    max-height: 230px;
+    max-height: 205px;
     overflow-y: scroll;
     &__item {
       display: flex;
-      padding: 5px 10px;
+      justify-content: center;
+      width: calc(100% / 6);
+      padding: 5px;
       cursor: pointer;
       .img-box {
-        max-width: 48px;
+        display: inline-block;
+        overflow: hidden;
+        border-radius: 10px;
       }
     }
   }
