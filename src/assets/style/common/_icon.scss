@@ -6,6 +6,18 @@ i.icon {
   width: 52px;
   height: 54px;
 
+  &-delete {
+    background: url('../images/icon_delete.svg') no-repeat center;
+    width: 30px;
+    height: 30px;
+  }
+
+  &-reset {
+    background: url('../images/icon_refresh.svg') no-repeat center;
+    width: 30px;
+    height: 30px;
+  }
+
   &-battle {
     background-position: -8px -5px;
     &--disabled {

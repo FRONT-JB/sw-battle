@@ -18,8 +18,17 @@ export const commentApi = createApi({
         body: comment,
       }),
     }),
+    deleteComment: builder.mutation<void, number>({
+      query: (commentId) => ({
+        url: `/${commentId}`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 });
 
-export const { useGetCommentByBoardIdQuery, useCreateCommentMutation } =
-  commentApi;
+export const {
+  useGetCommentByBoardIdQuery,
+  useCreateCommentMutation,
+  useDeleteCommentMutation,
+} = commentApi;

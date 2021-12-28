@@ -11,9 +11,7 @@ import { Badge, Loading } from '../common';
 const AttackResult = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { data: boards, isLoading } = useGetBoardListQuery(undefined, {
-    refetchOnMountOrArgChange: true,
-  });
+  const { data: boards, isLoading } = useGetBoardListQuery();
   const isNotEmptyBoard = !!boards?.length;
 
   const handleDetail = (detail: Board) => {
@@ -60,7 +58,6 @@ const AttackResult = () => {
           ))}
         </ul>
       )}
-      {/* {!isNotEmptyBoard && <div className='content__not-found'>No result</div>} */}
     </>
   );
 };
