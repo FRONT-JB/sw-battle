@@ -1,5 +1,5 @@
 {
-  "name": "github-dashboard",
+  "name": "sw-battle",
   "packageManager": "yarn@3.1.1",
   "private": true,
   "scripts": {
