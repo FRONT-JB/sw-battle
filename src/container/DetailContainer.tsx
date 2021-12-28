@@ -101,7 +101,6 @@ const DetailContainer = () => {
             )}
           </>
         )}
-
         <Search onRefresh={handleCommentRefetch} />
       </div>
     </div>

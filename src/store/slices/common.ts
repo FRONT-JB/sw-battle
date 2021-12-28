@@ -67,6 +67,9 @@ const commonSlice = createSlice({
           : [...state.selectedInfo, payload];
       }
     },
+    clearSelectMonster: (state) => {
+      state.selectedInfo = [];
+    },
     setDetailInfo: (state, { payload }: PayloadAction<Board | undefined>) => {
       state.detailInfo = payload;
     },
@@ -109,6 +112,7 @@ export const {
   openPopup,
   closePopup,
   setSelectMonster,
+  clearSelectMonster,
   setDetailInfo,
   setFilterList,
   setSelectFilter,

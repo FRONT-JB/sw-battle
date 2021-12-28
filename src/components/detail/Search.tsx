@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BASE_IMAGE_URL } from '~/constants/monster';
 import {
+  clearSelectMonster,
   detailInfoSelector,
   selectedInfoSelector,
   setSelectMonster,
@@ -25,6 +26,7 @@ const Search = ({ onRefresh }: Props) => {
 
   const handleActive = () => {
     setComment(!comment);
+    dispatch(clearSelectMonster());
   };
 
   const handleSelect = (monster: Monster) => {
