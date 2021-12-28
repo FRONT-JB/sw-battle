@@ -1932,15 +1932,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/redux-persist@npm:^4.3.1":
-  version: 4.3.1
-  resolution: "@types/redux-persist@npm:4.3.1"
-  dependencies:
-    redux-persist: "*"
-  checksum: 0b4518fd8a38ddf4538c7f7141323ea81f8b5918df1ce2ba35c609b71b0766a23c8d4ab1bcfb5021b8b3546f2365670b33ff5de870f40f72c65e8c45a47ef1b1
-  languageName: node
-  linkType: hard
-
 "@types/redux@npm:^3.6.0":
   version: 3.6.31
   resolution: "@types/redux@npm:3.6.31"
@@ -4626,7 +4617,6 @@ __metadata:
     "@types/react-router": ^5.1.17
     "@types/react-router-dom": ^5.3.2
     "@types/redux": ^3.6.0
-    "@types/redux-persist": ^4.3.1
     "@types/sass": ^1
     "@types/webpack-dev-server": ^4
     "@yarnpkg/pnpify": ^3.1.1-rc.6

@@ -1,14 +1,25 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BASE_IMAGE_URL } from '~/constants/monster';
-import { selectedInfoSelector, setSelectMonster } from '~/store/slices/common';
+import {
+  detailInfoSelector,
+  selectedInfoSelector,
+  setSelectMonster,
+} from '~/store/slices/common';
 import { Monster } from '~/types/monster';
 import { SearchBox } from '../search';
 import cn from 'classnames';
+import { useCreateCommentMutation } from '~/api/comment';
 
-const Search = () => {
+interface Props {
+  onRefresh: () => void;
+}
+
+const Search = ({ onRefresh }: Props) => {
   const dispatch = useDispatch();
   const selectedMonster = useSelector(selectedInfoSelector);
+  const detailData = useSelector(detailInfoSelector);
+  const [create] = useCreateCommentMutation();
   const [comment, setComment] = useState(false);
   const disabled = selectedMonster.length < 3;
 
@@ -18,6 +29,21 @@ const Search = () => {
 
   const handleSelect = (monster: Monster) => {
     dispatch(setSelectMonster(monster));
+  };
+
+  const handleCreate = async () => {
+    const commentParams = {
+      boardId: detailData?.id,
+      comment: selectedMonster,
+    };
+    try {
+      await create(commentParams).then(() => {
+        onRefresh();
+        setComment(false);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -63,7 +89,7 @@ const Search = () => {
             <button
               type='button'
               className='btn'
-              onClick={() => console.log('save')}
+              onClick={handleCreate}
               disabled={disabled}
             >
               <i

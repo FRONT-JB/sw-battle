@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useGetCommentByBoardIdQuery } from '~/api/comment';
 import { Badge } from '~/components/common';
 import { Search } from '~/components/detail';
 import { ContentHeader } from '~/components/header';
@@ -10,12 +11,19 @@ import { handleTimeForToday } from '~/utils/time';
 const DetailContainer = () => {
   const dispatch = useDispatch();
   const detailData = useSelector(detailInfoSelector);
+  const { data: comments, refetch } = useGetCommentByBoardIdQuery(
+    detailData?.id,
+  );
 
   useEffect(() => {
     return () => {
       dispatch(clearSearch());
     };
   }, []);
+
+  const handleCommentRefetch = () => {
+    refetch();
+  };
 
   return (
     <div className='container'>
@@ -46,8 +54,23 @@ const DetailContainer = () => {
             </div>
           </div>
         </div>
-        <ul className='comment-list'></ul>
-        <Search />
+        {comments && comments?.length > 0 && (
+          <ul className='comment-list'>
+            {comments?.map(({ id, boardId, comment }) => (
+              <li key={`comment-${id}`} className='comment-list__item'>
+                {comment.map(({ name, id, image_filename }) => (
+                  <span key={`${name}-${id}`} className='img-box'>
+                    <img
+                      src={handleReplaceURL(image_filename)}
+                      alt={`${name} Thumbnail`}
+                    />
+                  </span>
+                ))}
+              </li>
+            ))}
+          </ul>
+        )}
+        <Search onRefresh={handleCommentRefetch} />
       </div>
     </div>
   );
