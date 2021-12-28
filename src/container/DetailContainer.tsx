@@ -1,7 +1,7 @@
 import { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetCommentByBoardIdQuery } from '~/api/comment';
-import { Badge } from '~/components/common';
+import { Badge, Loading } from '~/components/common';
 import { Search } from '~/components/detail';
 import { ContentHeader } from '~/components/header';
 import { clearSearch, detailInfoSelector } from '~/store/slices/common';
@@ -11,9 +11,11 @@ import { handleTimeForToday } from '~/utils/time';
 const DetailContainer = () => {
   const dispatch = useDispatch();
   const detailData = useSelector(detailInfoSelector);
-  const { data: comments, refetch } = useGetCommentByBoardIdQuery(
-    detailData?.id,
-  );
+  const {
+    data: comments,
+    refetch,
+    isLoading,
+  } = useGetCommentByBoardIdQuery(detailData?.id);
 
   useEffect(() => {
     return () => {
@@ -54,23 +56,26 @@ const DetailContainer = () => {
             </div>
           </div>
         </div>
-        {comments && comments?.length > 0 && (
-          <ul className='comment-list'>
-            {comments?.map(({ id, boardId, comment }) => (
-              <li key={`comment-${id}`} className='comment-list__item'>
-                {comment.map(({ name, id, image_filename }) => (
-                  <span key={`${name}-${id}`} className='img-box'>
-                    <img
-                      src={handleReplaceURL(image_filename)}
-                      alt={`${name} Thumbnail`}
-                    />
-                  </span>
-                ))}
-              </li>
-            ))}
-          </ul>
+        {isLoading && <Loading isFullSize={true} />}
+        {comments && comments?.length > 0 && !isLoading && (
+          <>
+            <ul className='comment-list'>
+              {comments?.map(({ id, boardId, comment }) => (
+                <li key={`comment-${id}`} className='comment-list__item'>
+                  {comment.map(({ name, id, image_filename }) => (
+                    <span key={`${name}-${id}`} className='img-box'>
+                      <img
+                        src={handleReplaceURL(image_filename)}
+                        alt={`${name} Thumbnail`}
+                      />
+                    </span>
+                  ))}
+                </li>
+              ))}
+            </ul>
+            <Search onRefresh={handleCommentRefetch} />
+          </>
         )}
-        <Search onRefresh={handleCommentRefetch} />
       </div>
     </div>
   );

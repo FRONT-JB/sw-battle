@@ -6,12 +6,12 @@ import { setDetailInfo } from '~/store/slices/common';
 import { Board } from '~/types/board';
 import { handleReplaceURL } from '~/utils/image';
 import { handleTimeForToday } from '~/utils/time';
-import { Badge } from '../common';
+import { Badge, Loading } from '../common';
 
 const AttackResult = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { data: boards } = useGetBoardListQuery(undefined, {
+  const { data: boards, isLoading } = useGetBoardListQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
   const isNotEmptyBoard = !!boards?.length;
@@ -20,6 +20,8 @@ const AttackResult = () => {
     dispatch(setDetailInfo(detail));
     navigate(ROUTE_PATH.DETAIL);
   };
+
+  if (isLoading) return <Loading isFullSize={true} />;
 
   return (
     <>
@@ -58,7 +60,7 @@ const AttackResult = () => {
           ))}
         </ul>
       )}
-      {!isNotEmptyBoard && <div className='content__not-found'>No result</div>}
+      {/* {!isNotEmptyBoard && <div className='content__not-found'>No result</div>} */}
     </>
   );
 };
