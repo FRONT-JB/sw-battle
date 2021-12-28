@@ -29,8 +29,8 @@ const Header = () => {
           </li>
         </ul>
         <Link className='link-admin' to={ROUTE_PATH.ADMIN}>
-          <i className='icon icon-admin'></i>
-          <span className='blind'>Admin</span>
+          <i className='icon icon-create'></i>
+          <span className='blind'>Create</span>
         </Link>
       </nav>
     </header>

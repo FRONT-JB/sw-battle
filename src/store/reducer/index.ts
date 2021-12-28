@@ -1,9 +1,16 @@
+import { commentApi } from './../../api/comment';
 import { combineReducers } from 'redux';
+import { boardApi } from '~/api/board';
 import { monsterApi } from '~/api/monster';
 import commonSlice from '../slices/common';
 
 const rootReducer = combineReducers({
+  // API REDUCER
   [monsterApi.reducerPath]: monsterApi.reducer,
+  [boardApi.reducerPath]: boardApi.reducer,
+  [commentApi.reducerPath]: commentApi.reducer,
+
+  // SLICE REDUCER
   common: commonSlice.reducer,
 });
 

@@ -7,8 +7,10 @@ interface Props {
 const Modal = ({ children }: Props) => {
   return (
     <div className='modal'>
-      <p>Modal</p>
-      {children}
+      <div className='modal__wrapper'>
+        <p>Modal</p>
+        {children}
+      </div>
     </div>
   );
 };

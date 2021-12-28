@@ -84,6 +84,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-router", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:6.0.2"],
             ["react-router-dom", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:6.0.2"],
             ["redux", "npm:4.1.2"],
+            ["redux-persist", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:6.0.0"],
             ["sass", "npm:1.43.5"],
             ["sass-loader", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:12.3.0"],
             ["typescript", "patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=493e53"],
@@ -6462,6 +6463,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-router", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:6.0.2"],
             ["react-router-dom", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:6.0.2"],
             ["redux", "npm:4.1.2"],
+            ["redux-persist", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:6.0.0"],
             ["sass", "npm:1.43.5"],
             ["sass-loader", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:12.3.0"],
             ["typescript", "patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=493e53"],
@@ -10075,6 +10077,32 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["redux", "npm:4.1.2"],
             ["@babel/runtime", "npm:7.16.5"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["redux-persist", [
+        ["npm:6.0.0", {
+          "packageLocation": "./.yarn/cache/redux-persist-npm-6.0.0-56dad69feb-edaf10dbf1.zip/node_modules/redux-persist/",
+          "packageDependencies": [
+            ["redux-persist", "npm:6.0.0"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:6.0.0", {
+          "packageLocation": "./.yarn/__virtual__/redux-persist-virtual-2b771f11b7/0/cache/redux-persist-npm-6.0.0-56dad69feb-edaf10dbf1.zip/node_modules/redux-persist/",
+          "packageDependencies": [
+            ["@types/react", "npm:17.0.37"],
+            ["@types/redux", "npm:3.6.31"],
+            ["react", "npm:17.0.2"],
+            ["redux", "npm:4.1.2"],
+            ["redux-persist", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:6.0.0"]
+          ],
+          "packagePeers": [
+            "@types/react",
+            "@types/redux",
+            "react",
+            "redux"
           ],
           "linkType": "HARD",
         }]

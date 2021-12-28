@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+import { selectedInfoSelector } from '~/store/slices/common';
 import { Monster } from '~/types/monster';
 import { handleReplaceURL } from '~/utils/image';
 

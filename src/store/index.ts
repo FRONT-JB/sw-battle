@@ -1,14 +1,32 @@
+import { commentApi } from './../api/comment';
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
+import persistReducer from 'redux-persist/es/persistReducer';
+import sessionStorage from 'redux-persist/es/storage/session';
+import { boardApi } from '~/api/board';
 import { monsterApi } from '~/api/monster';
 import rootReducer from './reducer';
 
-const combineApiMiddleWare = [monsterApi.middleware];
+const persistConfig = {
+  key: 'root',
+  storage: sessionStorage,
+  whitelist: ['common'],
+};
+
+const enhancedReducer = persistReducer(persistConfig, rootReducer);
+
+const combineApiMiddleWare = [
+  monsterApi.middleware,
+  boardApi.middleware,
+  commentApi.middleware,
+];
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: enhancedReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false }).concat(combineApiMiddleWare),
+    getDefaultMiddleware({ serializableCheck: false }).concat(
+      combineApiMiddleWare,
+    ),
   devTools: true,
 });
 

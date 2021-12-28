@@ -1,25 +1,26 @@
 import { Monster } from '~/types/monster';
 import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../reducer';
+import { Board } from '~/types/board';
 
 const COMMON_SLICE = 'COMMON' as const;
 
 interface CommonState {
-  selectedInfo: Monster[];
   popup: {
     isOpen: boolean;
     content: any;
   };
-  searchValue: string;
+  selectedInfo: Monster[];
+  detailInfo: Board | undefined;
 }
 
 const initialState: CommonState = {
-  selectedInfo: [],
   popup: {
     isOpen: false,
     content: null,
   },
-  searchValue: '',
+  selectedInfo: [],
+  detailInfo: undefined,
 };
 
 const commonSlice = createSlice({
@@ -36,24 +37,28 @@ const commonSlice = createSlice({
       state.popup.content = null;
       document.querySelector('body')!.removeAttribute('style');
     },
-    setSearchValue: (state, { payload }: PayloadAction<string>) => {
-      state.searchValue = payload;
-    },
     setSelectMonster: (state, { payload }: PayloadAction<Monster>) => {
       const isActiveMonster = state.selectedInfo.find(
         (monster) => monster.id === payload.id,
       );
+
       if (isActiveMonster) {
         state.selectedInfo = [...state.selectedInfo].filter(
           (monster) => monster.id !== payload.id,
         );
       } else {
-        state.selectedInfo = [...state.selectedInfo, payload];
+        const isOverSelected = state.selectedInfo.length > 2;
+        state.selectedInfo = isOverSelected
+          ? state.selectedInfo
+          : [...state.selectedInfo, payload];
       }
     },
+    setDetailInfo: (state, { payload }: PayloadAction<Board | undefined>) => {
+      state.detailInfo = payload;
+    },
     clearSearch: (state) => {
-      state.searchValue = '';
       state.selectedInfo = [];
+      state.detailInfo = undefined;
     },
   },
 });
@@ -61,8 +66,8 @@ const commonSlice = createSlice({
 export const {
   openPopup,
   closePopup,
-  setSearchValue,
   setSelectMonster,
+  setDetailInfo,
   clearSearch,
 } = commonSlice.actions;
 export const commonSelector = (state: RootState) => state.common;
@@ -70,9 +75,9 @@ export const popupSelector = createSelector(
   [commonSelector],
   (state) => state.popup,
 );
-export const searchValueSelector = createSelector(
+export const detailInfoSelector = createSelector(
   [commonSelector],
-  (state) => state.searchValue,
+  (state) => state.detailInfo,
 );
 export const selectedInfoSelector = createSelector(
   [commonSelector],

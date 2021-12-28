@@ -10,13 +10,15 @@ import { Monster } from '~/types/monster';
 import { useNavigate } from 'react-router-dom';
 import { ROUTE_PATH } from '~/routes/path';
 import { useEffect } from 'react';
+import { useCreateBoardMutation } from '~/api/board';
 
-const AttackSelect = () => {
+const SearchSelect = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const selectedMonster = useSelector(selectedInfoSelector);
   const isNotEmpty = !!selectedMonster.length;
   const disabled = selectedMonster.length < 3;
+  const [create] = useCreateBoardMutation();
 
   const handleCancel = () => {
     navigate(ROUTE_PATH.ROOT);
@@ -24,6 +26,23 @@ const AttackSelect = () => {
 
   const handleSelect = (monster: Monster) => {
     dispatch(setSelectMonster(monster));
+  };
+
+  const handleCreate = async () => {
+    const createParams = {
+      creator: {
+        date: new Date().getTime(),
+        userName: '쿠와앙',
+      },
+      content: {
+        defense: selectedMonster,
+      },
+    };
+    try {
+      await create(createParams).then(() => navigate(ROUTE_PATH.ROOT));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -44,7 +63,10 @@ const AttackSelect = () => {
             className='attack-select__list'
           >
             <div className='img-box'>
-              <img src={handleReplaceURL(monster.image_filename)} alt='' />
+              <img
+                src={handleReplaceURL(monster.image_filename)}
+                alt={`${monster.name} Thumbnail`}
+              />
             </div>
           </div>
         ))}
@@ -57,7 +79,7 @@ const AttackSelect = () => {
         <button
           type='button'
           className='btn'
-          onClick={handleCancel}
+          onClick={handleCreate}
           disabled={disabled}
         >
           <i
@@ -72,4 +94,4 @@ const AttackSelect = () => {
   );
 };
 
-export default AttackSelect;
+export default SearchSelect;

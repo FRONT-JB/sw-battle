@@ -1,6 +1,6 @@
-import { AttackSelect } from '~/components/admin';
 import { ContentHeader } from '~/components/header';
 import { SearchBox } from '~/components/search';
+import SearchSelect from '~/components/search/SearchSelect';
 
 const AdminContainer = () => {
   return (
@@ -8,7 +8,7 @@ const AdminContainer = () => {
       <ContentHeader title='Create Defense Units' />
       <div className='content'>
         <SearchBox />
-        <AttackSelect />
+        <SearchSelect />
       </div>
     </div>
   );

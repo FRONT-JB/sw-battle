@@ -1,7 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ROUTE_PATH } from './path';
 import { Main } from '~/pages';
-import { AdminContainer, AttackContainer, DefenseContainer } from '~/container';
+import {
+  AdminContainer,
+  AttackContainer,
+  DefenseContainer,
+  DetailContainer,
+} from '~/container';
 import ModalContainer from '~/container/ModalContainer';
 
 const MainRoutes = () => {
@@ -12,6 +17,7 @@ const MainRoutes = () => {
           <Route index element={<AttackContainer />} />
           <Route path={ROUTE_PATH.DEFENSE} element={<DefenseContainer />} />
           <Route path={ROUTE_PATH.ADMIN} element={<AdminContainer />} />
+          <Route path={ROUTE_PATH.DETAIL} element={<DetailContainer />} />
         </Route>
       </Routes>
       <ModalContainer />

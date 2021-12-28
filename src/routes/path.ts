@@ -1,5 +1,6 @@
 export const ROUTE_PATH = {
   ROOT: '/',
-  DEFENSE: 'defense',
   ADMIN: 'admin',
+  DEFENSE: 'defense',
+  DETAIL: 'detail',
 } as const;
