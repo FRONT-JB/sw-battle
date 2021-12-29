@@ -37,6 +37,8 @@ const SelectBox = ({
       />
       <datalist id={id}>
         {filterList?.map((list, index) => {
+          const isActive = selectedFilter?.includes(list);
+          if (isActive) return;
           return (
             <option key={`${list}-${index}`} value={list}>
               {list}
