@@ -28,7 +28,9 @@ const DetailContainer = () => {
 
   const handleDeleteComment = async (commentId: number) => {
     try {
-      await deleteComment(commentId).then(refetch);
+      if (window.confirm('Do you want to delete it?')) {
+        await deleteComment(commentId).then(refetch);
+      }
     } catch (error) {
       console.log(error);
     }

@@ -32,7 +32,9 @@ const AttackResult = () => {
   ) => {
     e.stopPropagation();
     try {
-      await deleteBoard(boardId).then(refetch);
+      if (window.confirm('Do you want to delete it?')) {
+        await deleteBoard(boardId).then(refetch);
+      }
     } catch (error) {}
   };
   if (isLoading || isFetching) return <Loading isFullSize={true} />;
