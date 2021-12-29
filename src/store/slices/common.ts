@@ -6,9 +6,9 @@ import { Board } from '~/types/board';
 const COMMON_SLICE = 'COMMON' as const;
 
 export interface FilterState {
-  selectOne: string;
-  selectTwo: string;
-  selectThree: string;
+  selectOne: string | undefined;
+  selectTwo: string | undefined;
+  selectThree: string | undefined;
 }
 
 interface CommonState {
@@ -18,7 +18,7 @@ interface CommonState {
   };
   selectedInfo: Monster[];
   filterList: string[];
-  selectedFilterList: FilterState;
+  selectedFilterList: FilterState | {};
   detailInfo: Board | undefined;
 }
 
@@ -30,9 +30,9 @@ const initialState: CommonState = {
   selectedInfo: [],
   filterList: [],
   selectedFilterList: {
-    selectOne: '',
-    selectTwo: '',
-    selectThree: '',
+    selectOne: undefined,
+    selectTwo: undefined,
+    selectThree: undefined,
   },
   detailInfo: undefined,
 };
@@ -86,19 +86,16 @@ const commonSlice = createSlice({
       }>,
     ) => {
       const { filterName, filterValue } = payload;
+      const isNotEmptyPayload = !!filterValue;
       state.selectedFilterList = Object.assign(state.selectedFilterList, {
-        [filterName]: filterValue,
+        [filterName]: isNotEmptyPayload ? filterValue : undefined,
       });
     },
     setResetFilter: (state) => {
       const selectedFilterList = Object.values(state.selectedFilterList);
       const isActiveFilter = selectedFilterList.some(Boolean);
       if (isActiveFilter) {
-        state.selectedFilterList = {
-          selectOne: '',
-          selectTwo: '',
-          selectThree: '',
-        };
+        state.selectedFilterList = {};
       }
     },
     clearSearch: (state) => {
