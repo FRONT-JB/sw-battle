@@ -3,6 +3,8 @@
 .attack-result {
   &__item {
     display: flex;
+    overflow: hidden;
+    position: relative;
     cursor: pointer;
 
     &.detail {
@@ -12,12 +14,7 @@
     }
 
     &:not(.detail) {
-      padding: 10px 0px;
-      transition: padding, background, 0.3s ease;
-      &:hover {
-        padding: 10px;
-        background: #101421;
-      }
+      padding: 10px 0;
     }
 
     &:not(:first-child) {
@@ -27,7 +24,7 @@
     .defense-info {
       &-monster {
         display: flex;
-        max-width: 280px;
+        max-width: 240px;
         width: 100%;
 
         .img-box {
@@ -37,7 +34,9 @@
           border-radius: 10px;
           width: 33%;
           vertical-align: top;
-
+          > img {
+            width: 100%;
+          }
           &:not(:first-child) {
             margin-left: 10px;
           }
@@ -56,8 +55,7 @@
         flex-direction: column;
         justify-content: center;
         flex: 1;
-        padding: 5px;
-        margin-left: 10px;
+        margin: 0 8px 0 16px;
         &__date,
         &__user-id {
           @include mixin.ellipsis(1, 1.25);
@@ -93,6 +91,43 @@
         @include mixin.Mobile {
           display: none;
         }
+      }
+    }
+
+    .btn-remove {
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease 0.2s;
+      transform: translateX(100%);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      right: -5px;
+      top: 0;
+      width: 10px;
+      height: 100%;
+      background: linear-gradient(to left, #121824, transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease 0.2s;
+    }
+
+    &:hover {
+      .btn-remove {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-8px);
+      }
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    @include mixin.Mobile {
+      .btn-remove,
+      &::before {
+        display: none;
       }
     }
   }

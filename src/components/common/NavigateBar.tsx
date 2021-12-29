@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NAVIGATE_PATH } from '~/constants/navigate';
 

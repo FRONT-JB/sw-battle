@@ -1,12 +1,19 @@
+import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import { ROUTE_PATH } from '~/routes/path';
+import { RoutePathTypes, ROUTE_PATH } from '~/routes/path';
 
-const NotFound = () => {
+interface Props {
+  icon?: ReactNode;
+  pathName: RoutePathTypes;
+  label?: string;
+}
+
+const NotFound = ({ icon, pathName, label = '' }: Props) => {
   return (
     <div className='not-found'>
-      <Link className='not-found__message' to={ROUTE_PATH.ROOT}>
-        <i className='icon icon-home'></i>
-        Not Found
+      <Link className='not-found__message' to={pathName}>
+        {icon}
+        {label}
       </Link>
     </div>
   );
