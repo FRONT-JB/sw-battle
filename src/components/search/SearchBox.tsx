@@ -19,7 +19,8 @@ const SearchBox = () => {
 
   const handleSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    debounceSearch(value);
+    const isNullValue = value.trim().length > 0;
+    isNullValue && debounceSearch(value);
   };
 
   const handlePickMonster = (monster: Monster) => {
