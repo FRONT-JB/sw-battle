@@ -101,7 +101,7 @@
       transform: translateX(100%);
     }
 
-    &::before {
+    &:not(.detail)::before {
       content: '';
       position: absolute;
       right: -5px;
