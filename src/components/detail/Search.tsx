@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BASE_IMAGE_URL } from '~/constants/monster';
 import {
@@ -11,6 +11,7 @@ import { Monster } from '~/types/monster';
 import { SearchBox } from '../search';
 import cn from 'classnames';
 import { useCreateCommentMutation } from '~/api/comment';
+import useOutside from '~/hooks/useOutside';
 
 interface Props {
   onRefresh: () => void;
@@ -22,7 +23,10 @@ const Search = ({ onRefresh }: Props) => {
   const detailData = useSelector(detailInfoSelector);
   const [create] = useCreateCommentMutation();
   const [comment, setComment] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
   const disabled = selectedMonster.length < 3;
+
+  useOutside(searchRef, () => setComment(false));
 
   const handleActive = () => {
     setComment(!comment);
@@ -49,7 +53,7 @@ const Search = ({ onRefresh }: Props) => {
   };
 
   return (
-    <div className='comment-search'>
+    <div className='comment-search' ref={searchRef}>
       {comment && (
         <div className='comment-search__selected-monster'>
           {selectedMonster?.length > 0 && (
