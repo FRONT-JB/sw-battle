@@ -5,6 +5,7 @@ import {
   useGetCommentByBoardIdQuery,
 } from '~/api/comment';
 import { Badge, Loading } from '~/components/common';
+import NavigateBar from '~/components/common/NavigateBar';
 import { Search } from '~/components/detail';
 import { ContentHeader } from '~/components/header';
 import { clearSearch, detailInfoSelector } from '~/store/slices/common';
@@ -21,12 +22,6 @@ const DetailContainer = () => {
   } = useGetCommentByBoardIdQuery(detailData?.id);
   const [deleteComment] = useDeleteCommentMutation();
 
-  useEffect(() => {
-    return () => {
-      dispatch(clearSearch());
-    };
-  }, []);
-
   const handleCommentRefetch = () => {
     refetch();
   };
@@ -39,8 +34,15 @@ const DetailContainer = () => {
     }
   };
 
+  useEffect(() => {
+    return () => {
+      dispatch(clearSearch());
+    };
+  }, []);
+
   return (
     <div className='container'>
+      <NavigateBar />
       <ContentHeader title='Defense Detail' />
       <div className='content'>
         <div className='attack-result__item detail'>

@@ -29,6 +29,10 @@ const AttackFilter = () => {
     dispatch(setResetFilter());
   };
 
+  const handleSearch = () => {
+    console.log('search filter');
+  };
+
   return (
     <div className='attack-filter'>
       <div className='attack-filter__select'>
@@ -44,14 +48,16 @@ const AttackFilter = () => {
         ))}
       </div>
 
-      <button
-        type='button'
-        className='btn attack-filter__btn-reset'
-        onClick={handleReset}
-      >
-        <i className='icon icon-reset'></i>
-        <span className='blind'>Reset</span>
-      </button>
+      <div className='attack-filter__btn-set'>
+        <button type='button' className='btn btn-search' onClick={handleSearch}>
+          <i className='icon icon-search'></i>
+          <span className='blind'>Search</span>
+        </button>
+        <button type='button' className='btn btn-reset' onClick={handleReset}>
+          <i className='icon icon-reset'></i>
+          <span className='blind'>Reset</span>
+        </button>
+      </div>
     </div>
   );
 };
