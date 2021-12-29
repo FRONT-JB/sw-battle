@@ -91,7 +91,7 @@ const DetailContainer = () => {
                         type='button'
                         onClick={() => id && handleDeleteComment(id)}
                       >
-                        <i className='icon icon-delete'></i>
+                        <i className='icon icon-remove'></i>
                         <span className='blind'>Delete</span>
                       </button>
                     </div>

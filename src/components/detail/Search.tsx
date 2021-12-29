@@ -22,14 +22,14 @@ const Search = ({ onRefresh }: Props) => {
   const selectedMonster = useSelector(selectedInfoSelector);
   const detailData = useSelector(detailInfoSelector);
   const [create] = useCreateCommentMutation();
-  const [comment, setComment] = useState(false);
+  const [extend, setExtend] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const disabled = selectedMonster.length < 3;
 
-  useOutside(searchRef, () => setComment(false));
+  useOutside(searchRef, () => setExtend(false));
 
   const handleActive = () => {
-    setComment(!comment);
+    setExtend((prev) => !prev);
     dispatch(clearSelectMonster());
   };
 
@@ -45,7 +45,7 @@ const Search = ({ onRefresh }: Props) => {
     try {
       await create(commentParams).then(() => {
         onRefresh();
-        setComment(false);
+        setExtend(false);
       });
     } catch (error) {
       console.log(error);
@@ -54,7 +54,7 @@ const Search = ({ onRefresh }: Props) => {
 
   return (
     <div className='comment-search' ref={searchRef}>
-      {comment && (
+      {extend && (
         <div className='comment-search__selected-monster'>
           {selectedMonster?.length > 0 && (
             <div className='comment-search__selected-monster__list'>
@@ -78,10 +78,10 @@ const Search = ({ onRefresh }: Props) => {
 
       <div
         className={cn('comment-search__add-toggle', {
-          'comment-search__add-toggle--extend': comment,
+          'comment-search__add-toggle--extend': extend,
         })}
       >
-        {!comment ? (
+        {!extend ? (
           <button type='button' className='btn-create' onClick={handleActive}>
             <i className='icon icon-create'></i>
             <span className='blind'>Add Comment</span>

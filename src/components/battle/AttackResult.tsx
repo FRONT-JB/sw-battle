@@ -1,17 +1,24 @@
+import { MouseEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { useGetBoardListQuery } from '~/api/board';
+import { useDeleteBoardMutation, useGetBoardListQuery } from '~/api/board';
 import { ROUTE_PATH } from '~/routes/path';
 import { setDetailInfo } from '~/store/slices/common';
 import { Board } from '~/types/board';
-import { handleReplaceURL } from '~/utils/image';
+import { handleIcon, handleReplaceURL } from '~/utils/image';
 import { handleTimeForToday } from '~/utils/time';
-import { Badge, Loading } from '../common';
+import { Badge, Loading, NotFound } from '../common';
 
 const AttackResult = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { data: boards, isLoading } = useGetBoardListQuery();
+  const {
+    data: boards,
+    isLoading,
+    refetch,
+    isFetching,
+  } = useGetBoardListQuery();
+  const [deleteBoard] = useDeleteBoardMutation();
   const isNotEmptyBoard = !!boards?.length;
 
   const handleDetail = (detail: Board) => {
@@ -19,20 +26,29 @@ const AttackResult = () => {
     navigate(ROUTE_PATH.DETAIL);
   };
 
-  if (isLoading) return <Loading isFullSize={true} />;
+  const handleDelete = async (
+    e: MouseEvent<HTMLButtonElement>,
+    boardId: number,
+  ) => {
+    e.stopPropagation();
+    try {
+      await deleteBoard(boardId).then(refetch);
+    } catch (error) {}
+  };
+  if (isLoading || isFetching) return <Loading isFullSize={true} />;
 
   return (
     <>
       {isNotEmptyBoard && (
         <ul className='attack-result'>
-          {boards?.map((monster) => (
+          {boards?.map((board) => (
             <li
-              key={monster.creator.date}
-              onClick={() => handleDetail(monster)}
+              key={board.creator.date}
+              onClick={() => handleDetail(board)}
               className='attack-result__item'
             >
               <div className='defense-info-monster'>
-                {monster.content.defense.map(({ id, name, image_filename }) => (
+                {board.content.defense.map(({ id, name, image_filename }) => (
                   <span className='img-box' key={`${name}-${id}`}>
                     <img
                       src={handleReplaceURL(image_filename)}
@@ -43,20 +59,35 @@ const AttackResult = () => {
               </div>
               <div className='defense-info-creator'>
                 <span className='defense-info-creator__date'>
-                  {handleTimeForToday(monster.creator.date)}
+                  {handleTimeForToday(board.creator.date)}
                 </span>
                 <span className='defense-info-creator__user-id'>
-                  {monster.creator.userName}
+                  {board.creator.userName}
                 </span>
                 <div className='defense-info-creator__elements'>
-                  {monster.content.defense.map(({ id, name, element }) => (
+                  {board.content.defense.map(({ id, name, element }) => (
                     <Badge key={`${name}-${id}`} element={element} />
                   ))}
                 </div>
               </div>
+              <button
+                type='button'
+                className='btn-remove'
+                onClick={(e) => handleDelete(e, board.id)}
+              >
+                <i className='icon icon-remove'></i>
+                <span className='blind'>Remove Board</span>
+              </button>
             </li>
           ))}
         </ul>
+      )}
+      {!isNotEmptyBoard && (
+        <NotFound
+          icon={handleIcon('create')}
+          pathName={ROUTE_PATH.ADMIN}
+          label='No Result'
+        />
       )}
     </>
   );
