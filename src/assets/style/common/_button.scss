@@ -1,5 +1,17 @@
 .btn {
   display: inline-block;
   vertical-align: top;
+  height: 100%;
   font-size: 0;
+  color: rgba(255, 255, 255, 0.8);
+  &-prev {
+    padding-left: 24px;
+    background: transparent url('../images/icon_arrow-left.svg') no-repeat -1px 50%;
+    background-size: 20px;
+  }
+  &__label {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 1;
+  }
 }
