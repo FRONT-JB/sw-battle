@@ -6,16 +6,33 @@ i.icon {
   width: 52px;
   height: 54px;
 
-  &-delete {
-    background: url('../images/icon_delete.svg') no-repeat center;
+  &-prev,
+  &-search,
+  &-delete,
+  &-reset {
     width: 30px;
     height: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+  }
+
+  &-prev {
+    background-image: url('../images/icon_arrow-left.svg');
+    width: 20px;
+    height: 20px;
+  }
+
+  &-search {
+    background-image: url('../images/icon_search.svg');
+  }
+
+  &-delete {
+    background-image: url('../images/icon_delete.svg');
   }
 
   &-reset {
-    background: url('../images/icon_refresh.svg') no-repeat center;
-    width: 30px;
-    height: 30px;
+    background-image: url('../images/icon_refresh.svg');
   }
 
   &-battle {

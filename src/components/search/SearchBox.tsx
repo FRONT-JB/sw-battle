@@ -10,7 +10,7 @@ import { handleMonsterPayload } from '~/utils/monster';
 
 const SearchBox = () => {
   const dispatch = useDispatch();
-  const [searchMonster, { data, isFetching, error }] = useLazyGetMonsterQuery();
+  const [searchMonster, { data, isFetching }] = useLazyGetMonsterQuery();
 
   const debounceSearch = debounce(
     (searchValue) => searchMonster(searchValue),
@@ -19,7 +19,8 @@ const SearchBox = () => {
 
   const handleSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    debounceSearch(value);
+    const isNullValue = value.trim().length > 0;
+    isNullValue && debounceSearch(value);
   };
 
   const handlePickMonster = (monster: Monster) => {
@@ -38,7 +39,7 @@ const SearchBox = () => {
         <div className='search-box__loading'>
           <Loading />
         </div>
-      ) : !error ? (
+      ) : data?.results?.length ? (
         <SearchList searchList={data?.results} onSelect={handlePickMonster} />
       ) : null}
     </div>
