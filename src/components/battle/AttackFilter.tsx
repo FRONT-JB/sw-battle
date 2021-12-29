@@ -17,7 +17,7 @@ const AttackFilter = () => {
   const debounceFilter = debounce(
     (filterName, filterValue) =>
       dispatch(setSelectFilter({ filterName, filterValue })),
-    800,
+    1000,
   );
 
   const handleFilter = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,10 +27,6 @@ const AttackFilter = () => {
 
   const handleReset = () => {
     dispatch(setResetFilter());
-  };
-
-  const handleSearch = () => {
-    console.log('search filter');
   };
 
   return (
@@ -49,10 +45,10 @@ const AttackFilter = () => {
       </div>
 
       <div className='attack-filter__btn-set'>
-        <button type='button' className='btn btn-search' onClick={handleSearch}>
+        {/* <button type='button' className='btn btn-search' onClick={handleSearch}>
           <i className='icon icon-search'></i>
           <span className='blind'>Search</span>
-        </button>
+        </button> */}
         <button type='button' className='btn btn-reset' onClick={handleReset}>
           <i className='icon icon-reset'></i>
           <span className='blind'>Reset</span>

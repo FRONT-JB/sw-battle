@@ -1,17 +1,21 @@
 import { BASE_URL } from './common';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Board } from '~/types/board';
-import { setFilterList } from '~/store/slices/common';
+import { FilterState, setFilterList } from '~/store/slices/common';
 
 export const boardApi = createApi({
   reducerPath: 'boardApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${BASE_URL}/boards`,
+    baseUrl: `${BASE_URL}`,
   }),
   endpoints: (builder) => ({
-    getBoardList: builder.query<Board[], void>({
-      query: () => '',
-      keepUnusedDataFor: 5,
+    getBoardList: builder.query<Board[], FilterState | {}>({
+      query: (params) => {
+        return {
+          url: '/boards',
+          params: params,
+        };
+      },
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         const { data } = await queryFulfilled;
         const keyword = data.map((list) => list.keyword).flat();
@@ -25,7 +29,7 @@ export const boardApi = createApi({
 
     createBoard: builder.mutation<Board, Partial<Board>>({
       query: (board) => ({
-        url: '',
+        url: '/boards',
         method: 'POST',
         body: board,
       }),
@@ -33,7 +37,7 @@ export const boardApi = createApi({
 
     deleteBoard: builder.mutation<void, number>({
       query: (boardId) => ({
-        url: `/${boardId}`,
+        url: `/boards/${boardId}`,
         method: 'DELETE',
       }),
     }),

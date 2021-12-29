@@ -1,6 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
-import { persistReducer } from 'redux-persist';
+import {
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
 import sessionStorage from 'redux-persist/es/storage/session';
 import { boardApi } from '~/api/board';
 import { commentApi } from '~/api/comment';
@@ -10,7 +18,7 @@ import rootReducer from './reducer';
 const persistConfig = {
   key: 'root',
   storage: sessionStorage,
-  whitelist: ['common'],
+  blacklist: ['common', 'boardApi', 'commentApi', 'monsterApi'],
 };
 
 const enhancedReducer = persistReducer(persistConfig, rootReducer);
@@ -24,9 +32,11 @@ const combineApiMiddleWare = [
 const store = configureStore({
   reducer: enhancedReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false }).concat(
-      combineApiMiddleWare,
-    ),
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(combineApiMiddleWare),
   devTools: true,
 });
 

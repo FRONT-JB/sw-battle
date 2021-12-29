@@ -1,9 +1,9 @@
-import { MouseEvent } from 'react';
-import { useDispatch } from 'react-redux';
+import { MouseEvent, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useDeleteBoardMutation, useGetBoardListQuery } from '~/api/board';
 import { ROUTE_PATH } from '~/routes/path';
-import { setDetailInfo } from '~/store/slices/common';
+import { filterListSelector, setDetailInfo } from '~/store/slices/common';
 import { Board } from '~/types/board';
 import { handleIcon, handleReplaceURL } from '~/utils/image';
 import { handleTimeForToday } from '~/utils/time';
@@ -12,12 +12,15 @@ import { Badge, Loading, NotFound } from '../common';
 const AttackResult = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { selectedFilter } = useSelector(filterListSelector);
   const {
     data: boards,
     isLoading,
     refetch,
     isFetching,
-  } = useGetBoardListQuery();
+  } = useGetBoardListQuery(selectedFilter, {
+    refetchOnMountOrArgChange: true,
+  });
   const [deleteBoard] = useDeleteBoardMutation();
   const isNotEmptyBoard = !!boards?.length;
 
@@ -37,8 +40,8 @@ const AttackResult = () => {
       }
     } catch (error) {}
   };
-  if (isLoading || isFetching) return <Loading isFullSize={true} />;
 
+  if (isLoading || isFetching) return <Loading isFullSize={true} />;
   return (
     <>
       {isNotEmptyBoard && (
