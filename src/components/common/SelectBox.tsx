@@ -33,6 +33,7 @@ const SelectBox = ({
         type='text'
         list={id}
         name={name}
+        autoComplete='off'
         onChange={onChange}
       />
       <datalist id={id}>

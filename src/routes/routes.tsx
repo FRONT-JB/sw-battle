@@ -6,6 +6,8 @@ import {
   AttackContainer,
   DefenseContainer,
   DetailContainer,
+  SigninContainer,
+  SignupContainer,
 } from '~/container';
 import ModalContainer from '~/container/ModalContainer';
 
@@ -13,6 +15,8 @@ const MainRoutes = () => {
   return (
     <Router>
       <Routes>
+        <Route path={ROUTE_PATH.SIGNIN} element={<SigninContainer />} />
+        <Route path={ROUTE_PATH.SIGNUP} element={<SignupContainer />} />
         <Route path={ROUTE_PATH.ROOT} element={<Main />}>
           <Route index element={<AttackContainer />} />
           <Route path={ROUTE_PATH.DEFENSE} element={<DefenseContainer />} />

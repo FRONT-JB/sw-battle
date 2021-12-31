@@ -1,9 +1,11 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, memo } from 'react';
 
 interface Props {
   label?: string;
   id: string;
   name?: string;
+  value?: string;
+  type?: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   autoComplete?: 'off' | 'on' | undefined;
   placeHolder?: string;
@@ -13,6 +15,8 @@ const InboxBox = ({
   label,
   id,
   name,
+  value,
+  type = 'text',
   onChange,
   autoComplete = 'off',
   placeHolder = '',
@@ -26,9 +30,10 @@ const InboxBox = ({
       )}
       <input
         className='inpbox__input'
-        type='text'
+        type={type}
         id={id}
         name={name}
+        value={value}
         onChange={onChange}
         autoComplete={autoComplete}
         placeholder={placeHolder}
@@ -37,4 +42,4 @@ const InboxBox = ({
   );
 };
 
-export default InboxBox;
+export default memo(InboxBox);

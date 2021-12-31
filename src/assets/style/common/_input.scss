@@ -5,13 +5,15 @@
     display: inline-block;
     margin-bottom: 6px;
     font-size: 14px;
+    line-height: 1;
     color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
     &::selection {
       background: transparent;
     }
   }
-  &__input[type='text'] {
+  &__input[type='text'],
+  &__input[type='password'] {
     display: block;
     padding: 5px 10px;
     border: 1px solid transparent;
@@ -19,7 +21,7 @@
     font-size: 14px;
     transition: all 0.5s ease;
     &:focus {
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.4);
     }
   }
 }

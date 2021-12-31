@@ -3,6 +3,7 @@
 
 .wrapper {
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   padding: 30px 20px 20px;
@@ -23,4 +24,11 @@
   border: 1px solid #414141;
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
+
+  &.form {
+    margin-top: 0;
+    border-radius: 20px;
+    align-items: center;
+    flex: 0;
+  }
 }
