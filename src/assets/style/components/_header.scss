@@ -46,7 +46,7 @@
   }
 
   @include mixin.Mobile {
-    .nav .link-admin {
+    .nav .utils .link-admin {
       display: none;
     }
   }
