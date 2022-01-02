@@ -5,9 +5,13 @@
   height: 100%;
   &__logo {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px 0;
+    .text {
+      font-size: 24px;
+    }
   }
 
   &__input {

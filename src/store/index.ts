@@ -1,3 +1,4 @@
+import { authApi } from './../api/auth';
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import {
@@ -18,7 +19,8 @@ import rootReducer from './reducer';
 const persistConfig = {
   key: 'root',
   storage: sessionStorage,
-  blacklist: ['common', 'boardApi', 'commentApi', 'monsterApi'],
+  whitelist: ['auth'],
+  blacklist: ['common', 'boardApi', 'commentApi', 'monsterApi', 'authApi'],
 };
 
 const enhancedReducer = persistReducer(persistConfig, rootReducer);
@@ -27,6 +29,7 @@ const combineApiMiddleWare = [
   monsterApi.middleware,
   boardApi.middleware,
   commentApi.middleware,
+  authApi.middleware,
 ];
 
 const store = configureStore({

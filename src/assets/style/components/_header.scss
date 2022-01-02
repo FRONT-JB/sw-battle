@@ -21,8 +21,15 @@
     justify-content: space-between;
     margin-top: 20px;
 
-    .link-admin {
-      display: block;
+    .utils {
+      display: flex;
+      .link-admin,
+      .link-logout {
+        display: block;
+      }
+      .btn-logout {
+        margin-left: 10px;
+      }
     }
   }
 
@@ -39,7 +46,7 @@
   }
 
   @include mixin.Mobile {
-    .nav .link-admin {
+    .nav .utils .link-admin {
       display: none;
     }
   }
