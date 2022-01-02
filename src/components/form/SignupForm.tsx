@@ -7,15 +7,19 @@ import { InputBox } from '../common';
 
 const SignupForm = () => {
   const navigate = useNavigate();
-  const [signUp, { isLoading, isError }] = useSignUpMutation();
+  const [signUp, { isSuccess, isError }] = useSignUpMutation();
   const [account, setAccount] = useState(signUpFormList);
   const [error, setError] = useState('');
+  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     if (isError) {
-      console.log('error');
+      setError('Account conflict. Please check your username.');
     }
-  }, [isError]);
+    if (isSuccess) {
+      navigate(ROUTE_PATH.ROOT);
+    }
+  }, [isError, isSuccess]);
 
   const handleAccount = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -29,6 +33,7 @@ const SignupForm = () => {
   }, []);
 
   const handleSubmit = async () => {
+    setDisabled(true);
     setError('');
     const isNotNullValue = account.map((input) => input.value).every(Boolean);
     const firstPassword = account.find(
@@ -45,12 +50,14 @@ const SignupForm = () => {
     switch (true) {
       case firstPassword !== confirmPassword:
         setError('The passwords are not the same.');
+        setDisabled(false);
         break;
       case isNotNullValue:
-        await signUp(signUpParams).then(() => navigate(ROUTE_PATH.SIGNIN));
+        await signUp(signUpParams);
         break;
       default:
         setError('Please check the name and password.');
+        setDisabled(false);
     }
   };
 
@@ -79,7 +86,7 @@ const SignupForm = () => {
             <button
               type='button'
               className='btn btn-signup'
-              disabled={isLoading}
+              disabled={disabled}
             >
               <span className='btn__label' onClick={handleSubmit}>
                 Submit
