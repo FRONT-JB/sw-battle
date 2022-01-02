@@ -22,7 +22,9 @@ const plugins = [
     favicon: path.resolve(IMAGE_PATH, 'favicon.ico'),
   }),
   new webpack.DefinePlugin({
-    'process.env.API_BASE_URL': JSON.stringify('https://sw-battle-server.herokuapp.com'),
+    'process.env.API_BASE_URL': JSON.stringify(
+      'https://sw-battle-server-sbk.herokuapp.com',
+    ),
     'process.env.BASE_IMAGE_URL': JSON.stringify(
       'https://swarfarm.com/static/herders/images/monsters',
     ),
