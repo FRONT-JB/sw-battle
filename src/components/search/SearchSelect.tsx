@@ -30,10 +30,6 @@ const SearchSelect = () => {
 
   const handleCreate = async () => {
     const createParams = {
-      creator: {
-        date: new Date().getTime(),
-        userName: '쿠와앙',
-      },
       content: {
         defense: selectedMonster,
       },

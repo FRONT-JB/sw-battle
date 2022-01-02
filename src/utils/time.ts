@@ -1,4 +1,4 @@
-export const handleTimeForToday = (date: number | undefined) => {
+export const handleTimeForToday = (date: string) => {
   if (!date) return;
   const today = new Date();
   const postDate = new Date(date);

@@ -60,10 +60,10 @@ const DetailContainer = () => {
           </div>
           <div className='defense-info-creator'>
             <span className='defense-info-creator__date'>
-              {handleTimeForToday(detailData?.creator.date)}
+              {handleTimeForToday(detailData?.created_at || '')}
             </span>
             <span className='defense-info-creator__user-id'>
-              {detailData?.creator.userName}
+              {detailData?.user?.username}
             </span>
             <div className='defense-info-creator__elements'>
               {detailData?.content.defense.map(({ id, name, element }) => (
