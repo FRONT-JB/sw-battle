@@ -1,8 +1,20 @@
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { ROUTE_PATH } from '~/routes/path';
+import { setLogout } from '~/store/slices/auth';
 import { LogoIcons } from '../common';
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    if (window.confirm('Do you want to log out?')) {
+      dispatch(setLogout());
+      navigate(ROUTE_PATH.SIGNIN, { replace: true });
+    }
+  };
+
   return (
     <header className='header'>
       <div className='header__top'>
@@ -28,10 +40,16 @@ const Header = () => {
             </Link>
           </li>
         </ul>
-        <Link className='link-admin' to={ROUTE_PATH.ADMIN}>
-          <i className='icon icon-create'></i>
-          <span className='blind'>Create</span>
-        </Link>
+        <div className='utils'>
+          <Link className='link-admin' to={ROUTE_PATH.ADMIN}>
+            <i className='icon icon-create'></i>
+            <span className='blind'>Create</span>
+          </Link>
+          <button className='btn-logout' onClick={handleLogout}>
+            <i className='icon icon-logout'></i>
+            <span className='blind'>Logout</span>
+          </button>
+        </div>
       </nav>
     </header>
   );

@@ -3,15 +3,16 @@ import { Monster } from './monster';
 export interface Board {
   id: number;
   keyword: string[];
-  creator: CreatorInfo;
   content: PostContent;
+  user: User;
+  created_at: string;
 }
 
-export interface CreatorInfo {
-  date: number;
-  userName: string;
+export interface User {
+  id: number;
+  username: string;
+  role: string;
 }
-
 export interface PostContent {
   defense: Monster[];
 }

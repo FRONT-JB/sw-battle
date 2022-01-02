@@ -1,4 +1,4 @@
-import { MouseEvent, useEffect } from 'react';
+import { MouseEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useDeleteBoardMutation, useGetBoardListQuery } from '~/api/board';
@@ -48,7 +48,7 @@ const AttackResult = () => {
         <ul className='attack-result'>
           {boards?.map((board) => (
             <li
-              key={board.creator.date}
+              key={board.created_at}
               onClick={() => handleDetail(board)}
               className='attack-result__item'
             >
@@ -64,10 +64,10 @@ const AttackResult = () => {
               </div>
               <div className='defense-info-creator'>
                 <span className='defense-info-creator__date'>
-                  {handleTimeForToday(board.creator.date)}
+                  {handleTimeForToday(board.created_at)}
                 </span>
                 <span className='defense-info-creator__user-id'>
-                  {board.creator.userName}
+                  {board.user.username}
                 </span>
                 <div className='defense-info-creator__elements'>
                   {board.content.defense.map(({ id, name, element }) => (

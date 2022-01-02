@@ -71,6 +71,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:737f828d1a3f2945ba19527bda60baeb71b500c05818f5ddd8b772a5815b1751f31657b21bed6a8647cf2b6481578378147c558848feb78b5982ed281edde627#npm:4.0.0"],
             ["eslint-plugin-react", "virtual:737f828d1a3f2945ba19527bda60baeb71b500c05818f5ddd8b772a5815b1751f31657b21bed6a8647cf2b6481578378147c558848feb78b5982ed281edde627#npm:7.27.1"],
             ["html-webpack-plugin", "virtual:737f828d1a3f2945ba19527bda60baeb71b500c05818f5ddd8b772a5815b1751f31657b21bed6a8647cf2b6481578378147c558848feb78b5982ed281edde627#npm:5.5.0"],
+            ["jwt-decode", "npm:3.1.2"],
             ["lodash", "npm:4.17.21"],
             ["mini-css-extract-plugin", "virtual:737f828d1a3f2945ba19527bda60baeb71b500c05818f5ddd8b772a5815b1751f31657b21bed6a8647cf2b6481578378147c558848feb78b5982ed281edde627#npm:2.4.5"],
             ["postcss", "npm:8.4.4"],
@@ -7516,6 +7517,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["jwt-decode", [
+        ["npm:3.1.2", {
+          "packageLocation": "./.yarn/cache/jwt-decode-npm-3.1.2-bf3ab26591-20a4b072d4.zip/node_modules/jwt-decode/",
+          "packageDependencies": [
+            ["jwt-decode", "npm:3.1.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["keyv", [
         ["npm:4.0.4", {
           "packageLocation": "./.yarn/cache/keyv-npm-4.0.4-0f0de13dc6-73f0f45e14.zip/node_modules/keyv/",
@@ -11008,6 +11018,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:737f828d1a3f2945ba19527bda60baeb71b500c05818f5ddd8b772a5815b1751f31657b21bed6a8647cf2b6481578378147c558848feb78b5982ed281edde627#npm:4.0.0"],
             ["eslint-plugin-react", "virtual:737f828d1a3f2945ba19527bda60baeb71b500c05818f5ddd8b772a5815b1751f31657b21bed6a8647cf2b6481578378147c558848feb78b5982ed281edde627#npm:7.27.1"],
             ["html-webpack-plugin", "virtual:737f828d1a3f2945ba19527bda60baeb71b500c05818f5ddd8b772a5815b1751f31657b21bed6a8647cf2b6481578378147c558848feb78b5982ed281edde627#npm:5.5.0"],
+            ["jwt-decode", "npm:3.1.2"],
             ["lodash", "npm:4.17.21"],
             ["mini-css-extract-plugin", "virtual:737f828d1a3f2945ba19527bda60baeb71b500c05818f5ddd8b772a5815b1751f31657b21bed6a8647cf2b6481578378147c558848feb78b5982ed281edde627#npm:2.4.5"],
             ["postcss", "npm:8.4.4"],
