@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTE_PATH } from '~/routes/path';
 import { useEffect } from 'react';
 import { useCreateBoardMutation } from '~/api/board';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 
 const SearchSelect = () => {
   const dispatch = useDispatch();
@@ -18,9 +19,19 @@ const SearchSelect = () => {
   const selectedMonster = useSelector(selectedInfoSelector);
   const isNotEmpty = !!selectedMonster.length;
   const disabled = selectedMonster.length < 3;
-  const [create] = useCreateBoardMutation();
+  const [create, { isSuccess, error: createError }] = useCreateBoardMutation();
 
-  const handleCancel = () => {
+  useEffect(() => {
+    const error = createError as FetchBaseQueryError;
+    if (error && error.status === 409) {
+      window.alert('These are duplicated Attack posts.');
+    }
+    if (isSuccess) {
+      handleNavigateHome();
+    }
+  }, [isSuccess, createError]);
+
+  const handleNavigateHome = () => {
     navigate(ROUTE_PATH.ROOT);
   };
 
@@ -35,7 +46,7 @@ const SearchSelect = () => {
       },
     };
     try {
-      await create(createParams).then(() => navigate(ROUTE_PATH.ROOT));
+      await create(createParams);
     } catch (error) {
       console.log(error);
     }
@@ -68,7 +79,7 @@ const SearchSelect = () => {
         ))}
       </div>
       <div className='btn-set'>
-        <button type='button' className='btn' onClick={handleCancel}>
+        <button type='button' className='btn' onClick={handleNavigateHome}>
           <i className='icon icon-cancel'></i>
           <span className='blind'>Cancel</span>
         </button>
