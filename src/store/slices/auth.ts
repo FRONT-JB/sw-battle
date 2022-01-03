@@ -1,13 +1,13 @@
 import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import authApi from '~/api/auth';
 import { RootState } from '../reducer';
-import jwt from 'jwt-decode';
+import jwtParser from 'jwt-decode';
 
 const AUTH_SLICE = 'AUTH' as const;
 
 export interface AuthUser {
   username: string;
-  role: 'admin' | 'user' | '';
+  role: 'admin' | 'user';
 }
 
 export interface AuthState {
@@ -32,8 +32,7 @@ const authSlice = createSlice({
     builder.addMatcher(
       authApi.endpoints.signIn.matchFulfilled,
       (state, { payload: { token } }) => {
-        const decodeJWT: { username: string; role: 'admin' | 'user' } =
-          jwt(token);
+        const decodeJWT: AuthUser = jwtParser(token);
         state.user = decodeJWT;
         state.token = token;
       },
