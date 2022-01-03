@@ -67,6 +67,7 @@ const Search = ({ onRefresh }: Props) => {
                   <img
                     src={`${BASE_IMAGE_URL}/${monster.image_filename}`}
                     alt={`${monster.name} Thumbnail`}
+                    title={monster.name}
                   />
                 </span>
               ))}

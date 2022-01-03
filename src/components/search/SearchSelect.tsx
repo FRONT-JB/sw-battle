@@ -73,6 +73,7 @@ const SearchSelect = () => {
               <img
                 src={handleReplaceURL(monster.image_filename)}
                 alt={`${monster.name} Thumbnail`}
+                title={monster.name}
               />
             </span>
           </div>
