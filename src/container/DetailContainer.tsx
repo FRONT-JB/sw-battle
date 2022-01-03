@@ -54,6 +54,7 @@ const DetailContainer = () => {
                 <img
                   src={handleReplaceURL(image_filename)}
                   alt={`${name} Thumbnail`}
+                  title={name}
                 />
               </span>
             ))}
