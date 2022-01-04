@@ -5,8 +5,8 @@ export const ROUTE_PATH = {
   ADMIN: 'admin',
   DEFENSE: 'defense',
   DETAIL: 'detail',
-  SIGNIN: '/signin',
-  SIGNUP: '/signup',
+  SIGNUP: 'signup',
+  PARAMS: ':id',
 } as const;
 
 export type RoutePathTypes = valueTypes<typeof ROUTE_PATH>;

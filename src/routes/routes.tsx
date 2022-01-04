@@ -1,6 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
 import { ROUTE_PATH } from './path';
-import { Main } from '~/pages';
+import { Auth, Main } from '~/pages';
 import {
   AdminContainer,
   AttackContainer,
@@ -10,23 +15,35 @@ import {
   SignupContainer,
 } from '~/container';
 import ModalContainer from '~/container/ModalContainer';
+import { useSelector } from 'react-redux';
+import { authSelector } from '~/store/slices/auth';
 
-const MainRoutes = () => {
+const AppRoutes = () => {
+  const { token } = useSelector(authSelector);
   return (
     <Router>
       <Routes>
-        <Route path={ROUTE_PATH.SIGNIN} element={<SigninContainer />} />
-        <Route path={ROUTE_PATH.SIGNUP} element={<SignupContainer />} />
-        <Route path={ROUTE_PATH.ROOT} element={<Main />}>
-          <Route index element={<AttackContainer />} />
-          <Route path={ROUTE_PATH.DEFENSE} element={<DefenseContainer />} />
-          <Route path={ROUTE_PATH.ADMIN} element={<AdminContainer />} />
-          <Route path={ROUTE_PATH.DETAIL} element={<DetailContainer />} />
-        </Route>
+        {token ? (
+          <Route path={ROUTE_PATH.ROOT} element={<Main />}>
+            <Route index element={<AttackContainer />} />
+            <Route path={ROUTE_PATH.DETAIL}>
+              <Route path={ROUTE_PATH.PARAMS} element={<DetailContainer />} />
+            </Route>
+            <Route path={ROUTE_PATH.DEFENSE} element={<DefenseContainer />} />
+            <Route path={ROUTE_PATH.ADMIN} element={<AdminContainer />} />
+            <Route path='*' element={<Navigate to={ROUTE_PATH.ROOT} />} />
+          </Route>
+        ) : (
+          <Route path={ROUTE_PATH.ROOT} element={<Auth />}>
+            <Route index element={<SigninContainer />} />
+            <Route path={ROUTE_PATH.SIGNUP} element={<SignupContainer />} />
+            <Route path='*' element={<Navigate to={ROUTE_PATH.ROOT} />} />
+          </Route>
+        )}
       </Routes>
       <ModalContainer />
     </Router>
   );
 };
 
-export default MainRoutes;
+export default AppRoutes;

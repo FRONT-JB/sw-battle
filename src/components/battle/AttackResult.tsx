@@ -3,14 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useDeleteBoardMutation, useGetBoardListQuery } from '~/api/board';
 import { ROUTE_PATH } from '~/routes/path';
-import { filterListSelector, setDetailInfo } from '~/store/slices/common';
-import { Board } from '~/types/board';
+import { filterListSelector } from '~/store/slices/common';
 import { handleIcon, handleReplaceURL } from '~/utils/image';
 import { handleTimeForToday } from '~/utils/time';
 import { Badge, Loading, NotFound } from '../common';
 
 const AttackResult = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { selectedFilter } = useSelector(filterListSelector);
   const {
@@ -23,11 +21,6 @@ const AttackResult = () => {
   });
   const [deleteBoard] = useDeleteBoardMutation();
   const isNotEmptyBoard = !!boards?.length;
-
-  const handleDetail = (detail: Board) => {
-    dispatch(setDetailInfo(detail));
-    navigate(ROUTE_PATH.DETAIL);
-  };
 
   const handleDelete = async (
     e: MouseEvent<HTMLButtonElement>,
@@ -49,7 +42,7 @@ const AttackResult = () => {
           {boards?.map((board) => (
             <li
               key={board.created_at}
-              onClick={() => handleDetail(board)}
+              onClick={() => navigate(`${ROUTE_PATH.DETAIL}/${board.id}`)}
               className='attack-result__item'
             >
               <div className='defense-info-monster'>

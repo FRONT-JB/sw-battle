@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useParams, Navigate } from 'react-router-dom';
+import { useGetBoardByIdQuery } from '~/api/board';
 import {
   useDeleteCommentMutation,
   useGetCommentByBoardIdQuery,
@@ -8,18 +10,20 @@ import { Badge, Loading } from '~/components/common';
 import NavigateBar from '~/components/common/NavigateBar';
 import { Search } from '~/components/detail';
 import { ContentHeader } from '~/components/header';
-import { clearSearch, detailInfoSelector } from '~/store/slices/common';
+import { ROUTE_PATH } from '~/routes/path';
+import { clearSearch } from '~/store/slices/common';
 import { handleReplaceURL } from '~/utils/image';
 import { handleTimeForToday } from '~/utils/time';
 
 const DetailContainer = () => {
+  const { id: boardId } = useParams<string>();
   const dispatch = useDispatch();
-  const detailData = useSelector(detailInfoSelector);
+  const { data: detailData } = useGetBoardByIdQuery(boardId || '');
   const {
     data: comments,
     refetch,
     isFetching,
-  } = useGetCommentByBoardIdQuery(detailData?.id);
+  } = useGetCommentByBoardIdQuery(boardId || '');
   const [deleteComment] = useDeleteCommentMutation();
 
   const handleCommentRefetch = () => {
@@ -106,7 +110,7 @@ const DetailContainer = () => {
             )}
           </>
         )}
-        <Search onRefresh={handleCommentRefetch} />
+        <Search boardId={boardId!} onRefresh={handleCommentRefetch} />
       </div>
     </div>
   );

@@ -19,7 +19,6 @@ interface CommonState {
   selectedInfo: Monster[];
   filterList: string[];
   selectedFilterList: FilterState | {};
-  detailInfo: Board | undefined;
 }
 
 const initialState: CommonState = {
@@ -34,7 +33,6 @@ const initialState: CommonState = {
     selectTwo: undefined,
     selectThree: undefined,
   },
-  detailInfo: undefined,
 };
 
 const commonSlice = createSlice({
@@ -70,9 +68,6 @@ const commonSlice = createSlice({
     clearSelectMonster: (state) => {
       state.selectedInfo = [];
     },
-    setDetailInfo: (state, { payload }: PayloadAction<Board | undefined>) => {
-      state.detailInfo = payload;
-    },
     setFilterList: (state, { payload }: PayloadAction<string[]>) => {
       state.filterList = payload;
     },
@@ -100,7 +95,6 @@ const commonSlice = createSlice({
     },
     clearSearch: (state) => {
       state.selectedInfo = [];
-      state.detailInfo = undefined;
     },
   },
 });
@@ -110,7 +104,6 @@ export const {
   closePopup,
   setSelectMonster,
   clearSelectMonster,
-  setDetailInfo,
   setFilterList,
   setSelectFilter,
   setResetFilter,
@@ -120,10 +113,6 @@ export const commonSelector = (state: RootState) => state.common;
 export const popupSelector = createSelector(
   [commonSelector],
   (state) => state.popup,
-);
-export const detailInfoSelector = createSelector(
-  [commonSelector],
-  (state) => state.detailInfo,
 );
 export const selectedInfoSelector = createSelector(
   [commonSelector],
