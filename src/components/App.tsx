@@ -1,8 +1,8 @@
 import '~/assets/style/index.scss';
-import MainRoutes from '~/routes/routes';
+import AppRoutes from '~/routes/routes';
 
 const App = () => {
-  return <MainRoutes />;
+  return <AppRoutes />;
 };
 
 export default App;
