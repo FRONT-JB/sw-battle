@@ -48,6 +48,13 @@ const DetailContainer = () => {
 
   return (
     <div className='container'>
+      {isError && (
+        <NotFound
+          icon={handleIcon('home')}
+          pathName={ROUTE_PATH.ROOT}
+          label='Not Found'
+        />
+      )}
       {!isError && (
         <>
           <NavigateBar />
@@ -117,13 +124,6 @@ const DetailContainer = () => {
             <Search boardId={boardId!} onRefresh={handleCommentRefetch} />
           </div>
         </>
-      )}
-      {isError && (
-        <NotFound
-          icon={handleIcon('home')}
-          pathName={ROUTE_PATH.ROOT}
-          label='Not Found'
-        />
       )}
     </div>
   );
