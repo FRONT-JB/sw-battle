@@ -8,6 +8,7 @@ module.exports = merge(commonConfig, {
   output: {
     path: path.resolve(__dirname, '..', 'dist'),
     filename: 'js/[name].[contenthash].js',
+    publicPath: '/',
   },
   optimization: {
     removeEmptyChunks: false,
