@@ -11,7 +11,7 @@ const Header = () => {
   const handleLogout = () => {
     if (window.confirm('Do you want to log out?')) {
       dispatch(setLogout());
-      navigate(ROUTE_PATH.SIGNIN, { replace: true });
+      navigate(ROUTE_PATH.ROOT, { replace: true });
     }
   };
 
