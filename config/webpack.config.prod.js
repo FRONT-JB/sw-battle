@@ -10,6 +10,7 @@ module.exports = merge(commonConfig, {
     assetModuleFilename: 'images/[contenthash][ext][query]',
     filename: 'js/[name].[contenthash].js',
     chunkFilename: 'js/[name].[contenthash].chunk.js',
+    publicPath: '/',
   },
   optimization: {
     splitChunks: {
