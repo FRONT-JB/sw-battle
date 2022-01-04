@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BASE_IMAGE_URL } from '~/constants/monster';
 import {
   clearSelectMonster,
-  detailInfoSelector,
   selectedInfoSelector,
   setSelectMonster,
 } from '~/store/slices/common';
@@ -14,13 +13,13 @@ import { useCreateCommentMutation } from '~/api/comment';
 import useOutside from '~/hooks/useOutside';
 
 interface Props {
+  boardId: string;
   onRefresh: () => void;
 }
 
-const Search = ({ onRefresh }: Props) => {
+const Search = ({ boardId, onRefresh }: Props) => {
   const dispatch = useDispatch();
   const selectedMonster = useSelector(selectedInfoSelector);
-  const detailData = useSelector(detailInfoSelector);
   const [create] = useCreateCommentMutation();
   const [extend, setExtend] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
@@ -39,7 +38,7 @@ const Search = ({ onRefresh }: Props) => {
 
   const handleCreate = async () => {
     const commentParams = {
-      boardId: detailData?.id,
+      boardId: parseInt(boardId),
       comment: selectedMonster,
     };
     try {

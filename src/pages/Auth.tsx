@@ -1,13 +1,11 @@
 import { Outlet } from 'react-router-dom';
-import { Header } from '~/components/header';
 
-const Main = () => {
+const Auth = () => {
   return (
     <div className='wrapper'>
-      <Header />
       <Outlet />
     </div>
   );
 };
 
-export default Main;
+export default Auth;

@@ -35,6 +35,14 @@ export const boardApi = createApi({
       },
     }),
 
+    getBoardById: builder.query<Board, number>({
+      query: (boardId: number) => {
+        return {
+          url: `/boards/${boardId}`,
+        };
+      },
+    }),
+
     createBoard: builder.mutation<Board, Partial<Board>>({
       query: (board) => ({
         url: '/boards',
@@ -54,6 +62,7 @@ export const boardApi = createApi({
 
 export const {
   useGetBoardListQuery,
+  useGetBoardByIdQuery,
   useCreateBoardMutation,
   useDeleteBoardMutation,
 } = boardApi;
