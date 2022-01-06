@@ -1,7 +1,6 @@
 import { Monster } from '~/types/monster';
 import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../reducer';
-import { Board } from '~/types/board';
 
 const COMMON_SLICE = 'COMMON' as const;
 
