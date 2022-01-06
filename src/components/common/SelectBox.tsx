@@ -1,4 +1,4 @@
-import { ChangeEvent, memo, useEffect, useRef } from 'react';
+import { ChangeEvent, useEffect, useRef } from 'react';
 
 interface Props {
   id: string;
