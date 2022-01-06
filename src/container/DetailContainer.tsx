@@ -18,7 +18,9 @@ import { handleTimeForToday } from '~/utils/time';
 const DetailContainer = () => {
   const { id: boardId } = useParams<string>();
   const dispatch = useDispatch();
-  const { data: detailData, isError } = useGetBoardByIdQuery(boardId || '');
+  const { data: detailData, isError } = useGetBoardByIdQuery(
+    parseInt(boardId || ''),
+  );
   const {
     data: comments,
     refetch,

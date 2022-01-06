@@ -1,7 +1,7 @@
-import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import authApi from '~/api/auth';
+import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../reducer';
 import jwtParser from 'jwt-decode';
+import { authApi } from '~/api/auth';
 
 const AUTH_SLICE = 'AUTH' as const;
 
