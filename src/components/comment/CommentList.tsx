@@ -8,8 +8,8 @@ interface Props {
 const CommentList = ({ comments }: Props) => {
   return (
     <ul className='comment__list'>
-      {comments?.map((comment) => (
-        <li>{comment.name}</li>
+      {comments?.map((comment, index) => (
+        <li key={index}>{comment.name}</li>
       ))}
     </ul>
   );

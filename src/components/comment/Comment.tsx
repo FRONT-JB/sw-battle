@@ -14,7 +14,7 @@ const Comment = () => {
   const { data: commentList, isFetching } = useGetCommentByBoardIdQuery(
     boardId || '',
     {
-      skip: isRootPath,
+      skip: isRootPath || !boardId,
     },
   );
   const isNotNullComment = !!commentList?.length;
@@ -30,8 +30,8 @@ const Comment = () => {
       {isFetching && <Loading isFullSize={true} />}
       {!isRootPath && !isFetching && !isNotNullComment && (
         <NotFound
-          icon={handleIcon('home')}
-          pathName={ROUTE_PATH.ROOT}
+          icon={handleIcon('create')}
+          pathName={`/${ROUTE_PATH.CREATE}`}
           label='No Result'
         />
       )}

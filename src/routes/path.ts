@@ -8,5 +8,3 @@ export const ROUTE_PATH = {
   SIGNUP: 'signup',
   PARAMS: ':id',
 } as const;
-
-export type RoutePathTypes = valueTypes<typeof ROUTE_PATH>;
