@@ -1,0 +1,30 @@
+.defense {
+  padding: 2rem 0;
+  flex: 0 0 calc(50% - 2rem);
+  &-filter {
+    margin-top: 1rem;
+    &__title {
+      font-weight: 700;
+      font-size: 1.4rem;
+      cursor: default;
+      &::selection {
+        background: transparent;
+      }
+    }
+  }
+
+  &-list {
+    margin-top: 4rem;
+    max-height: calc(100% - 12rem);
+    overflow-y: auto;
+  }
+
+  &-list-card {
+    margin-right: 6px;
+    &__list {
+      &__link {
+        display: block;
+      }
+    }
+  }
+}

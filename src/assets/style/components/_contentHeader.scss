@@ -1,0 +1,22 @@
+@use '../utils/variables' as var;
+
+.content-header {
+  &__date,
+  &__title {
+    cursor: default;
+    &::selection {
+      background: transparent;
+    }
+  }
+  &__date {
+    display: inline-block;
+    font-size: 1.2rem;
+    color: var.$grey-lighten-1;
+  }
+  &__title {
+    display: block;
+    margin-top: 1rem;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+}
