@@ -37,6 +37,7 @@
           .dimm-layer {
             visibility: hidden;
             opacity: 0;
+            transition-delay: 0.5s;
           }
         }
         .dimm-layer {
