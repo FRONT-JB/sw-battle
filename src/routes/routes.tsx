@@ -7,16 +7,15 @@ import {
 import { ROUTE_PATH } from './path';
 import { Auth, Main } from '~/pages';
 import {
-  AdminContainer,
-  AttackContainer,
-  DefenseContainer,
-  DetailContainer,
+  DashboardContainer,
   SigninContainer,
   SignupContainer,
 } from '~/container';
 import ModalContainer from '~/container/ModalContainer';
 import { useSelector } from 'react-redux';
 import { authSelector } from '~/store/slices/auth';
+import { Comment } from '~/components/comment';
+import { Create } from '~/components/create';
 
 const AppRoutes = () => {
   const { token } = useSelector(authSelector);
@@ -25,12 +24,13 @@ const AppRoutes = () => {
       <Routes>
         {token ? (
           <Route path={ROUTE_PATH.ROOT} element={<Main />}>
-            <Route index element={<AttackContainer />} />
-            <Route path={ROUTE_PATH.DETAIL}>
-              <Route path={ROUTE_PATH.PARAMS} element={<DetailContainer />} />
+            <Route path={ROUTE_PATH.ROOT} element={<DashboardContainer />}>
+              <Route index element={<Comment />} />
+              <Route path={ROUTE_PATH.CREATE} element={<Create />} />
+              <Route path={ROUTE_PATH.DETAIL}>
+                <Route path={ROUTE_PATH.PARAMS} element={<Comment />} />
+              </Route>
             </Route>
-            <Route path={ROUTE_PATH.DEFENSE} element={<DefenseContainer />} />
-            <Route path={ROUTE_PATH.ADMIN} element={<AdminContainer />} />
             <Route path='*' element={<Navigate to={ROUTE_PATH.ROOT} />} />
           </Route>
         ) : (
