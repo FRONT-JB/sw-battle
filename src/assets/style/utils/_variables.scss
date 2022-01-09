@@ -1,0 +1,41 @@
+// BASE
+$shades: (
+  'black': #191919,
+  'white': #fff,
+);
+
+$black: map-get($shades, 'black');
+$white: map-get($shades, 'white');
+
+// GREY
+$grey: (
+  'base': #73717e,
+  'lighten-1': #818294,
+  'darken-1': #35333e,
+  'darken-2': #232031,
+  'darken-3': #1f1d2b,
+);
+
+$grey-base: map-get($grey, 'base');
+$grey-lighten-1: map-get($grey, 'lighten-1');
+$grey-darken-1: map-get($grey, 'darken-1');
+$grey-darken-2: map-get($grey, 'darken-2');
+$grey-darken-3: map-get($grey, 'darken-3');
+
+// ORANGE
+$orange: (
+  'base': #e6692f,
+  'darken-1': #be6933,
+);
+
+$orange-base: map-get($orange, 'base');
+$orange-darken-1: map-get($orange, 'darken-1');
+
+// PINK
+$pink: (
+  'base': #df628a,
+  'darken-1': #c996b7,
+);
+
+$pink-base: map-get($pink, 'base');
+$pink-darken-1: map-get($pink, 'darken-1');

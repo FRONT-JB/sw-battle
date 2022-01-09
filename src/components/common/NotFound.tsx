@@ -1,10 +1,9 @@
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import { RoutePathTypes } from '~/routes/path';
 
 interface Props {
   icon?: ReactNode;
-  pathName: RoutePathTypes;
+  pathName: string;
   label?: string;
 }
 

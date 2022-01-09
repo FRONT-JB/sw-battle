@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom';
-import { Header } from '~/components/header';
+import { Sidebar } from '~/components/sidebar';
 
 const Main = () => {
   return (
     <div className='wrapper'>
-      <Header />
+      <Sidebar />
       <Outlet />
     </div>
   );

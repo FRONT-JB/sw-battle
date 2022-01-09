@@ -52,7 +52,7 @@ i.icon {
   }
 
   &-create {
-    background-position: -196px -453px;
+    background-position: -200px -453px;
     &--disabled {
       @extend .icon, .icon-create;
       background-image: url('../images/img_gnb_sp_disabled.png');
