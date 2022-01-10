@@ -27,7 +27,7 @@ export const boardApi = createApi({
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         const { data } = await queryFulfilled;
         const keyword = data.map((list) => list.keyword).flat();
-        const flatKeyword = Array.from(new Set(keyword));
+        const flatKeyword = Array.from(new Set(keyword)).sort();
         dispatch(setFilterList(flatKeyword));
       },
       transformResponse: (res: Board[]) => {
