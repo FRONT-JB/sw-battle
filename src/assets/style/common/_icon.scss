@@ -91,6 +91,13 @@ i.icon {
     background-position: -7px -454px;
   }
 
+  &-filter {
+    vertical-align: top;
+    width: 14px;
+    height: 14px;
+    background: url('../images/icon_filter-dark.svg') no-repeat center / 14px;
+  }
+
   // RUNE ICONS
   &-rune {
     background: url('../images/img_rune_sp.png') no-repeat;
