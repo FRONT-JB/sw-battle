@@ -12,6 +12,11 @@
 
 ![Selected](https://user-images.githubusercontent.com/85790271/148683252-c2701fea-ece4-42e2-8eef-36b417d6df12.png)
 
+## Defense Detail
+
+![Detail](https://user-images.githubusercontent.com/85790271/148947521-6c2c41a3-85d8-4dd4-856c-69636422544d.png)
+
+
 ---
 
 ### Two deps Router (Outlet)
