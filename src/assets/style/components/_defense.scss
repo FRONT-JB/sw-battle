@@ -14,7 +14,35 @@
       }
     }
   }
+  &-filter {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
 
+    &__title {
+      display: inline-block;
+      position: relative;
+      line-height: 1;
+    }
+
+    &__list {
+      display: none;
+      flex-wrap: wrap;
+      z-index: 100;
+      position: absolute;
+      left: 0;
+      top: calc(100% + 10px);
+      padding-bottom: 5px;
+      background: var.$grey-darken-3;
+      .filter-badge {
+        flex: 0 0 calc((100% - 3rem) / 5);
+        margin: 5px 0 0 5px;
+      }
+      &.extends {
+        display: flex;
+      }
+    }
+  }
   &-list {
     margin-top: 4rem;
     max-height: calc(100% - 12rem);
