@@ -35,8 +35,8 @@ export const boardApi = createApi({
       },
     }),
 
-    getBoardById: builder.query<Board, number>({
-      query: (boardId: number) => {
+    getBoardById: builder.query<Board, string | undefined>({
+      query: (boardId: string) => {
         return {
           url: `/boards/${boardId}`,
         };
