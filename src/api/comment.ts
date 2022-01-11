@@ -8,7 +8,7 @@ export const commentApi = createApi({
     baseUrl: `${BASE_URL}/comment`,
   }),
   endpoints: (builder) => ({
-    getCommentByBoardId: builder.query<Comment[], string>({
+    getCommentByBoardId: builder.query<Comment[], string | undefined>({
       query: (id: string) => `/board/${id}`,
       keepUnusedDataFor: 3,
     }),
