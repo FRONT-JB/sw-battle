@@ -23,7 +23,7 @@
     overflow-y: auto;
   }
   &__list__item {
-    width: calc((100% - 1rem) / 2);
+    width: calc(100% / 2);
     display: inline-block;
     padding: 5px;
     .img-box {
