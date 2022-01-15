@@ -38,48 +38,65 @@
 
     로그인 화면
 
-![SignIn](./images/SignIn.png)
+<p align="center">
+  <img src="./images/SignIn.png" alt="SignIn" />
+</p>
 
 ---
 
     회원가입 화면
 
-![SignUp](./images/SignUp.png)
+<p align="center">
+  <img src="./images/SignUp.png" alt="SignUp" />
+</p>
 
 ---
 
     메인 화면
 
-![Main](./images/Main.png)
+<p align="center">
+  <img src="./images/Main.png" alt="Main" />
+</p>
 
     게시글 디테일 ( Comment 없는 경우 )
 
-![PostDetail](./images/PostDetail.png)
+<p align="center">
+  <img src="./images/PostDetail.png" alt="Post Detail" />
+</p>
 
     게시글 디테일 ( Comment 있는 경우 )
 
-![PostDetail-Comment](./images/PostDetail-Comment.png)
+<p align="center">
+  <img src="./images/PostDetail-Comment.png" alt="PostDetail Comment" />
+</p>
 
 ---
 
     게시글 추가
 
-![CreatePost](./images/CreatePost.png)
+<p align="center">
+  <img src="./images/CreatePost.png" alt="Create Post" />
+</p>
 
     몬스터 검색 및 선택
 
-![CreatePost-Search](./images/CreatePost-Search.png)
+<p align="center">
+  <img src="./images/CreatePost-Search.png" alt="CreatePost Search" />
+</p>
 
 ---
 
     댓글 기능 ( 방어덱 공격시 사용할 덱 추가 )
 
-![PostDetail](./images/PostDetail.png)
+<p align="center">
+  <img src="./images/PostDetail.png" alt="Post Detail" />
+</p>
 
     몬스터 검색 및 선택
 
-![Comment-Search](./images/CreateComment-Search.png)
-
-![Comment-Search-Select](./images/CreateComment-Select.png)
+<p align="center">
+  <img src="./images/CreateComment-Search.png" alt="Comment Search" />
+  <img src="./images/CreateComment-Select.png" alt="Comment Search Select" />
+</p>
 
 ---
