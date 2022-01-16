@@ -1,17 +1,22 @@
 import { memo } from 'react';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { useParams } from 'react-router';
-import { useGetBoardByIdQuery } from '~/api/board';
-import { useGetCommentByBoardIdQuery } from '~/api/comment';
+import { useDeleteBoardMutation, useGetBoardByIdQuery } from '~/api/board';
+import {
+  useCreateCommentMutation,
+  useGetCommentByBoardIdQuery,
+} from '~/api/comment';
 import { ROUTE_PATH } from '~/routes/path';
 import { handleIcon } from '~/utils/image';
 import { Loading, NotFound } from '../common';
+import CommentCreate from './CommentCreate';
 import CommentHeader from './CommentHeader';
 import CommentList from './CommentList';
 
 const Comment = () => {
   const { pathname } = useLocation();
   const { id: boardId } = useParams();
+  const navigate = useNavigate();
   const isRootPath = pathname === ROUTE_PATH.ROOT;
   const skipQuery = { skip: isRootPath || !boardId };
   const { data: boardList, isFetching: boardFetching } = useGetBoardByIdQuery(
@@ -20,10 +25,17 @@ const Comment = () => {
   );
   const { data: commentList, isFetching: commentFetching } =
     useGetCommentByBoardIdQuery(boardId, skipQuery);
+  const [createComment] = useCreateCommentMutation();
+  const [deleteBoard] = useDeleteBoardMutation();
 
   const isFetching = boardFetching && commentFetching;
   const isNotNullComment =
     !!commentList?.length && !!boardList?.content?.defense.length;
+
+  const handleDeleteBoard = () => {
+    if (!boardId) return;
+    deleteBoard(boardId).then(() => navigate(ROUTE_PATH.ROOT));
+  };
 
   return (
     <div className='comment'>
@@ -46,11 +58,8 @@ const Comment = () => {
       {!isFetching && isNotNullComment && (
         <>
           <CommentHeader boardThumbnail={boardList?.content?.defense} />
-          <ul className='comment__list'>
-            {commentList.map(({ id, boardId, comment }) => (
-              <CommentList key={id} comments={comment} />
-            ))}
-          </ul>
+          <CommentList comments={commentList} />
+          <CommentCreate />
         </>
       )}
     </div>

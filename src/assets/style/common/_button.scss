@@ -42,9 +42,6 @@
 
 .btn-set {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  button {
-    flex: 1;
-  }
 }

@@ -1,0 +1,19 @@
+.search {
+  &-box {
+    height: 100%;
+  }
+  &-box__data {
+    margin-top: 1rem;
+    height: calc(100% - 12rem);
+    overflow-y: auto;
+    &__list {
+      display: inline-block;
+      margin: 5px;
+      width: calc((100% - 5rem) / 5);
+      cursor: pointer;
+      .imgbox:not(:first-child) {
+        margin-left: 5px;
+      }
+    }
+  }
+}

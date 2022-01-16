@@ -1,15 +1,11 @@
-import { ReactNode } from 'react';
+import classNames from 'classnames';
 
-interface Props {
-  children?: ReactNode;
-}
-
-const Modal = ({ children }: Props) => {
+const Modal = () => {
   return (
-    <div className='modal'>
+    <div className={classNames('modal')}>
+      <div className='modal__dimm' />
       <div className='modal__wrapper'>
         <p>Modal</p>
-        {children}
       </div>
     </div>
   );

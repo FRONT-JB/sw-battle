@@ -8,8 +8,8 @@ interface Props {
 const CommentHeader = ({ boardThumbnail }: Props) => {
   return (
     <div className='comment__header'>
-      {boardThumbnail?.map(({ image_filename, name }) => (
-        <span className='img-box'>
+      {boardThumbnail?.map(({ image_filename, name, com2us_id }) => (
+        <span key={com2us_id} className='img-box'>
           <img
             src={handleReplaceURL(image_filename)}
             alt={`${name} Thumbnail`}
