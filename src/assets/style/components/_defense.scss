@@ -1,4 +1,4 @@
-@use '../utils/variables' as var;
+@use '../utils/variables' as *;
 
 .defense {
   padding: 2rem 0;
@@ -33,7 +33,7 @@
       left: 0;
       top: calc(100% + 10px);
       padding-bottom: 5px;
-      background: var.$grey-darken-3;
+      background: $grey-darken-3;
       .filter-badge {
         flex: 0 0 calc((100% - 3rem) / 5);
         margin: 5px 0 0 5px;
@@ -103,7 +103,7 @@
       }
       .date {
         font-size: 1.2rem;
-        color: var.$grey-lighten-1;
+        color: $grey-lighten-1;
       }
       .user {
         display: block;
@@ -117,7 +117,7 @@
         &__desc {
           display: block;
           font-size: 1.2rem;
-          color: var.$grey-lighten-1;
+          color: $grey-lighten-1;
         }
         &__title {
           color: #eaeaea;

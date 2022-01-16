@@ -1,4 +1,4 @@
-@use '../utils/variables' as var;
+@use '../utils/variables' as *;
 
 .not-found {
   display: flex;
@@ -12,7 +12,7 @@
     padding-top: 6rem;
     text-align: center;
     font-size: 1.4rem;
-    color: var.$grey-lighten-1;
+    color: $grey-lighten-1;
 
     i.icon {
       position: absolute;

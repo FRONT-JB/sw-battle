@@ -1,32 +1,33 @@
-@use '../utils/variables' as var;
-@use '../utils/mixins' as mixin;
+@use '../utils/variables' as *;
 
 .sidebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
   max-width: 19rem;
   width: 100%;
-  padding: 2rem;
-  background: var.$grey-darken-3;
+  background: $grey-darken-3;
   border-top-left-radius: 3rem;
   border-bottom-left-radius: 3rem;
-  .logo-icons {
-    padding-left: 1.5rem;
-  }
-}
 
-.nav {
-  margin-top: 2.45rem;
-}
-
-.gnb {
-  display: flex;
-  flex-direction: column;
-  &__item {
-    &:not(:first-child) {
-      margin-top: 1rem;
+  &__nav {
+    .nav {
+      margin-top: 2.45rem;
     }
-    &__link {
-      display: block;
-      text-align: center;
+    .gnb {
+      display: flex;
+      flex-direction: column;
+      &__item {
+        &:not(:first-child) {
+          margin-top: 1rem;
+        }
+        &__link {
+          display: block;
+          text-align: center;
+        }
+      }
     }
   }
 }
