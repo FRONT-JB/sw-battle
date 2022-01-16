@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 const Auth = () => {
   return (
-    <div className='wrapper'>
+    <div className='wrapper auth'>
       <Outlet />
     </div>
   );

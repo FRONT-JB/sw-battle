@@ -1,5 +1,3 @@
-import { valueTypes } from '~/types';
-
 export const ROUTE_PATH = {
   ROOT: '/',
   ADMIN: 'admin',
