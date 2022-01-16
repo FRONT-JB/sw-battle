@@ -1,4 +1,4 @@
-@use '../utils/variables' as var;
+@use '../utils/variables' as *;
 
 .content-header {
   &__date,
@@ -11,7 +11,7 @@
   &__date {
     display: inline-block;
     font-size: 1.2rem;
-    color: var.$grey-lighten-1;
+    color: $grey-lighten-1;
   }
   &__title {
     display: block;
