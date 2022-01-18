@@ -93,7 +93,6 @@ const DefenseList = () => {
                   ))}
                 </div>
               </div>
-              <div className='dimm-layer' />
               <div className='hover-layer'>
                 <button type='button' onClick={(e) => handleDeletePost(e, id)}>
                   <i className='icon icon-remove'></i>
