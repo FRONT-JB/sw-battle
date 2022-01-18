@@ -1,3 +1,5 @@
+@use '../utils/variables' as var;
+
 .btn {
   display: inline-block;
   vertical-align: top;
@@ -30,13 +32,16 @@
       border-color: rgba(255, 255, 255, 0.4);
     }
   }
+
+  &-filter {
+    font-size: 1.2rem;
+    color: var.$orange-base;
+    letter-spacing: 0.5px;
+  }
 }
 
 .btn-set {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  button {
-    flex: 1;
-  }
 }

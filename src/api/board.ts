@@ -16,6 +16,7 @@ export const boardApi = createApi({
       return headers;
     },
   }),
+  tagTypes: ['board'],
   endpoints: (builder) => ({
     getBoardList: builder.query<Board[], FilterState | {}>({
       query: (params) => {
@@ -27,20 +28,22 @@ export const boardApi = createApi({
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         const { data } = await queryFulfilled;
         const keyword = data.map((list) => list.keyword).flat();
-        const flatKeyword = Array.from(new Set(keyword));
+        const flatKeyword = Array.from(new Set(keyword)).sort();
         dispatch(setFilterList(flatKeyword));
       },
       transformResponse: (res: Board[]) => {
         return [...res].sort((a, b) => b.id - a.id);
       },
+      providesTags: ['board'],
     }),
 
-    getBoardById: builder.query<Board, number>({
-      query: (boardId: number) => {
+    getBoardById: builder.query<Board, string | undefined>({
+      query: (boardId: string) => {
         return {
           url: `/boards/${boardId}`,
         };
       },
+      providesTags: ['board'],
     }),
 
     createBoard: builder.mutation<Board, Partial<Board>>({
@@ -49,13 +52,15 @@ export const boardApi = createApi({
         method: 'POST',
         body: board,
       }),
+      invalidatesTags: ['board'],
     }),
 
-    deleteBoard: builder.mutation<void, number>({
+    deleteBoard: builder.mutation<void, string>({
       query: (boardId) => ({
         url: `/boards/${boardId}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['board'],
     }),
   }),
 });

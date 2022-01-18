@@ -11,20 +11,12 @@ export interface FilterState {
 }
 
 interface CommonState {
-  popup: {
-    isOpen: boolean;
-    content: any;
-  };
   selectedInfo: Monster[];
   filterList: string[];
   selectedFilterList: FilterState | {};
 }
 
 const initialState: CommonState = {
-  popup: {
-    isOpen: false,
-    content: null,
-  },
   selectedInfo: [],
   filterList: [],
   selectedFilterList: {
@@ -38,16 +30,6 @@ const commonSlice = createSlice({
   name: COMMON_SLICE,
   initialState,
   reducers: {
-    openPopup: (state, payload) => {
-      state.popup.isOpen = true;
-      state.popup.content = payload;
-      document.querySelector('body')!.style.overflow = 'hidden';
-    },
-    closePopup: (state) => {
-      state.popup.isOpen = false;
-      state.popup.content = null;
-      document.querySelector('body')!.removeAttribute('style');
-    },
     setSelectMonster: (state, { payload }: PayloadAction<Monster>) => {
       const isActiveMonster = state.selectedInfo.find(
         (monster) => monster.id === payload.id,
@@ -99,8 +81,6 @@ const commonSlice = createSlice({
 });
 
 export const {
-  openPopup,
-  closePopup,
   setSelectMonster,
   clearSelectMonster,
   setFilterList,
@@ -109,18 +89,17 @@ export const {
   clearSearch,
 } = commonSlice.actions;
 export const commonSelector = (state: RootState) => state.common;
-export const popupSelector = createSelector(
-  [commonSelector],
-  (state) => state.popup,
-);
+
 export const selectedInfoSelector = createSelector(
   [commonSelector],
   (state) => state.selectedInfo,
 );
+
 export const filterListSelector = createSelector([commonSelector], (state) => {
   return {
     filterList: state.filterList,
     selectedFilter: state.selectedFilterList,
   };
 });
+
 export default commonSlice;
