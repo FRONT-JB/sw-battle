@@ -52,7 +52,7 @@ i.icon {
   }
 
   &-create {
-    background-position: -196px -453px;
+    background-position: -200px -453px;
     &--disabled {
       @extend .icon, .icon-create;
       background-image: url('../images/img_gnb_sp_disabled.png');
@@ -87,10 +87,16 @@ i.icon {
     background-position: -8px -324px;
   }
 
-  &-logout {
-    background-position: -7px -454px;
+  &-filter {
+    vertical-align: top;
+    width: 14px;
+    height: 14px;
+    background: url('../images/icon_filter-dark.svg') no-repeat center / 14px;
   }
 
+  &-logout {
+    background: url('../images/icon_log-out-dark.svg') no-repeat center;
+  }
   // RUNE ICONS
   &-rune {
     background: url('../images/img_rune_sp.png') no-repeat;

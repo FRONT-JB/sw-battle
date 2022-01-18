@@ -1,0 +1,33 @@
+@use '../utils/variables' as *;
+
+.sidebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  max-width: 19rem;
+  width: 100%;
+  background: $grey-darken-3;
+  border-top-left-radius: 3rem;
+  border-bottom-left-radius: 3rem;
+
+  &__nav {
+    .nav {
+      margin-top: 2.45rem;
+    }
+    .gnb {
+      display: flex;
+      flex-direction: column;
+      &__item {
+        &:not(:first-child) {
+          margin-top: 1rem;
+        }
+        &__link {
+          display: block;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

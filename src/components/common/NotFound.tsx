@@ -1,17 +1,17 @@
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import { RoutePathTypes } from '~/routes/path';
 
 interface Props {
   icon?: ReactNode;
-  pathName: RoutePathTypes;
+  pathName: string;
   label?: string;
+  state?: string;
 }
 
-const NotFound = ({ icon, pathName, label = '' }: Props) => {
+const NotFound = ({ icon, pathName, label = '', state = '' }: Props) => {
   return (
     <div className='not-found'>
-      <Link className='not-found__message' to={pathName}>
+      <Link className='not-found__message' to={pathName} state={state}>
         {icon}
         {label}
       </Link>

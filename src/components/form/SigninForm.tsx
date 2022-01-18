@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router';
 import { useSignInMutation } from '~/api/auth';
 import { signInFormList } from '~/constants/form';
 import { ROUTE_PATH } from '~/routes/path';
-import { InputBox, LogoIcons } from '../common';
+import { InputBox, Loading, LogoIcons } from '../common';
 
 const SigninForm = () => {
   const navigate = useNavigate();
-  const [signIn, { isSuccess, isError, data }] = useSignInMutation();
+  const [signIn, { isSuccess, isError, isLoading }] = useSignInMutation();
   const [error, setError] = useState('');
   const [disabled, setDisabled] = useState(false);
   const [account, setAccount] = useState(signInFormList);
@@ -70,49 +70,49 @@ const SigninForm = () => {
     }
   };
 
+  if (isLoading) return <Loading isFullSize={true} />;
+
   return (
-    <div className='wrapper'>
-      <div className='container form'>
-        <div className='form'>
-          <div className='form__logo'>
-            <LogoIcons />
-          </div>
-          <form>
-            <div className='form__input'>
-              {account.map(({ name, label, value, type }) => (
-                <InputBox
-                  key={name}
-                  id={name}
-                  name={name}
-                  value={value}
-                  label={label}
-                  type={type}
-                  onChange={handleAccount}
-                />
-              ))}
-            </div>
-            {error && <p className='form__error-message'>{error}</p>}
-            <div className='form__actions'>
-              <button
-                type='button'
-                className='btn btn-signin'
-                disabled={disabled}
-                onClick={handleSubmit}
-              >
-                <span className='btn__label'>Sign in</span>
-              </button>
-              <span className='line line-or'></span>
-              <button
-                type='button'
-                className='btn btn-signup'
-                disabled={disabled}
-                onClick={() => navigate(ROUTE_PATH.SIGNUP)}
-              >
-                <span className='btn__label'>Sign up</span>
-              </button>
-            </div>
-          </form>
+    <div className='container form'>
+      <div className='form'>
+        <div className='form__logo'>
+          <LogoIcons />
         </div>
+        <form>
+          <div className='form__input'>
+            {account.map(({ name, label, value, type }) => (
+              <InputBox
+                key={name}
+                id={name}
+                name={name}
+                value={value}
+                label={label}
+                type={type}
+                onChange={handleAccount}
+              />
+            ))}
+          </div>
+          {error && <p className='form__error-message'>{error}</p>}
+          <div className='form__actions'>
+            <button
+              type='button'
+              className='btn btn-signin'
+              disabled={disabled}
+              onClick={handleSubmit}
+            >
+              <span className='btn__label'>Sign in</span>
+            </button>
+            <span className='line line-or'></span>
+            <button
+              type='button'
+              className='btn btn-signup'
+              disabled={disabled}
+              onClick={() => navigate(ROUTE_PATH.SIGNUP)}
+            >
+              <span className='btn__label'>Sign up</span>
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

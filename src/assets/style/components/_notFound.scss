@@ -1,0 +1,24 @@
+@use '../utils/variables' as *;
+
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  &__message {
+    position: relative;
+    display: block;
+    padding-top: 6rem;
+    text-align: center;
+    font-size: 1.4rem;
+    color: $grey-lighten-1;
+
+    i.icon {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
