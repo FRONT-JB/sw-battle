@@ -38,11 +38,13 @@ const DefenseFilter = () => {
       )}
       <div
         ref={filterRef}
+        style={{ padding: '5px', fontSize: '12px' }}
         className={classNames('defense-filter__list', { extends: extend })}
       >
-        {filterList?.map((filter, index) => (
+        {/* {filterList?.map((filter, index) => (
           <FilterBadge key={index} title={filter} />
-        ))}
+        ))} */}
+        Please wait for us.
       </div>
     </div>
   );
