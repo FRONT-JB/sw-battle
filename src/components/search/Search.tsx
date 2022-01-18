@@ -1,5 +1,6 @@
 import { ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { useLazyGetMonsterQuery } from '~/api/monster';
 import { setSelectMonster } from '~/store/slices/common';
 import { Monster } from '~/types/monster';
@@ -11,6 +12,7 @@ import MonsterImage from '../common/MonsterImage';
 
 const Search = () => {
   const dispatch = useDispatch();
+  const { state: boardId } = useLocation();
   const [searchMonster, { data: searchData, isFetching }] =
     useLazyGetMonsterQuery();
 
@@ -32,6 +34,9 @@ const Search = () => {
 
   return (
     <div className='search-box'>
+      <b className='search-box__title'>
+        {boardId ? 'Create Comment' : 'Create Decks'}
+      </b>
       <InputBox
         id='search'
         label='Search Monster'
@@ -42,7 +47,7 @@ const Search = () => {
           <Loading />
         </div>
       )}
-      {searchData && (
+      {!isFetching && searchData && (
         <ul className='search-box__data'>
           {searchData?.results?.map((monster) => (
             <li
@@ -59,7 +64,7 @@ const Search = () => {
           ))}
         </ul>
       )}
-      <SearchSelect />
+      <SearchSelect onSelect={handlePickMonster} />
     </div>
   );
 };

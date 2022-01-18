@@ -1,15 +1,12 @@
-import { memo } from 'react';
-import { useLocation, useNavigate } from 'react-router';
-import { useParams } from 'react-router';
-import { useDeleteBoardMutation, useGetBoardByIdQuery } from '~/api/board';
+import { useLocation, useNavigate, useParams, Link } from 'react-router-dom';
+import { useGetBoardByIdQuery } from '~/api/board';
 import {
-  useCreateCommentMutation,
+  useDeleteCommentMutation,
   useGetCommentByBoardIdQuery,
 } from '~/api/comment';
 import { ROUTE_PATH } from '~/routes/path';
 import { handleIcon } from '~/utils/image';
 import { Loading, NotFound } from '../common';
-import CommentCreate from './CommentCreate';
 import CommentHeader from './CommentHeader';
 import CommentList from './CommentList';
 
@@ -23,18 +20,18 @@ const Comment = () => {
     boardId,
     skipQuery,
   );
-  const { data: commentList, isFetching: commentFetching } =
-    useGetCommentByBoardIdQuery(boardId, skipQuery);
-  const [createComment] = useCreateCommentMutation();
-  const [deleteBoard] = useDeleteBoardMutation();
-
+  const {
+    data: commentList,
+    isFetching: commentFetching,
+    refetch,
+  } = useGetCommentByBoardIdQuery(boardId, skipQuery);
+  const [deleteComment] = useDeleteCommentMutation();
   const isFetching = boardFetching && commentFetching;
   const isNotNullComment =
     !!commentList?.length && !!boardList?.content?.defense.length;
 
-  const handleDeleteBoard = () => {
-    if (!boardId) return;
-    deleteBoard(boardId).then(() => navigate(ROUTE_PATH.ROOT));
+  const handleDeleteComment = async (commentId: number) => {
+    await deleteComment(commentId).then(refetch);
   };
 
   return (
@@ -51,6 +48,7 @@ const Comment = () => {
         <NotFound
           icon={handleIcon('create')}
           pathName={`/${ROUTE_PATH.CREATE}`}
+          state={boardId}
           label='No Result'
         />
       )}
@@ -58,12 +56,17 @@ const Comment = () => {
       {!isFetching && isNotNullComment && (
         <>
           <CommentHeader boardThumbnail={boardList?.content?.defense} />
-          <CommentList comments={commentList} />
-          <CommentCreate />
+          <CommentList comments={commentList} onDelete={handleDeleteComment} />
+          <div className='btn-set'>
+            <Link to={`/${ROUTE_PATH.CREATE}`} state={boardId}>
+              <i className='icon icon-create'></i>
+              <span className='blind'>Create Comment</span>
+            </Link>
+          </div>
         </>
       )}
     </div>
   );
 };
 
-export default memo(Comment);
+export default Comment;

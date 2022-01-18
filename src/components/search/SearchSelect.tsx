@@ -1,38 +1,70 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { clearSearch, selectedInfoSelector } from '~/store/slices/common';
 import classNames from 'classnames';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ROUTE_PATH } from '~/routes/path';
 import { useEffect } from 'react';
 import { useCreateBoardMutation } from '~/api/board';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
+import { useCreateCommentMutation } from '~/api/comment';
+import MonsterImage from '../common/MonsterImage';
+import { Monster } from '~/types/monster';
 
-const SearchSelect = () => {
+interface Props {
+  onSelect: (monster: Monster) => void;
+}
+
+const SearchSelect = ({ onSelect }: Props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { state: boardId } = useLocation();
   const selectedMonster = useSelector(selectedInfoSelector);
-  const isNotEmpty = !!selectedMonster.length;
+  const isSelected = !!selectedMonster.length;
   const disabled = selectedMonster.length < 3;
-  const [create, { isSuccess, error: createError }] = useCreateBoardMutation();
+  const [createBoard, { isSuccess: boardSuccess, error: boardError }] =
+    useCreateBoardMutation();
+
+  const [createComment, { isSuccess: commentSuccess, error: commentError }] =
+    useCreateCommentMutation();
 
   useEffect(() => {
-    const error = createError as FetchBaseQueryError;
+    const error = boardError as FetchBaseQueryError;
     if (error && error.status === 409) {
       window.alert('These are duplicated Attack posts.');
     }
-    if (isSuccess) {
+    if (boardSuccess) {
       navigate(ROUTE_PATH.ROOT, { replace: true });
     }
-  }, [isSuccess, createError]);
+    if (commentSuccess) {
+      navigate(`/${ROUTE_PATH.DETAIL}/${boardId}`);
+    }
+  }, [boardSuccess, commentSuccess, boardError]);
 
-  const handleCreate = async () => {
-    const createParams = {
-      content: {
-        defense: selectedMonster,
-      },
-    };
+  const handleCreateParams = {
+    board: async () => {
+      const createParams = {
+        content: {
+          defense: selectedMonster,
+        },
+      };
+      await createBoard(createParams);
+    },
+
+    comment: async () => {
+      const createParams = {
+        boardId: +boardId,
+        comment: selectedMonster,
+      };
+      await createComment(createParams);
+    },
+  };
+
+  const handleSubmit = async () => {
+    const isCommentSubmit = boardId !== null;
     try {
-      await create(createParams);
+      isCommentSubmit
+        ? handleCreateParams['comment']()
+        : handleCreateParams['board']();
     } catch (error) {
       console.log(error);
     }
@@ -48,10 +80,27 @@ const SearchSelect = () => {
     };
   }, []);
 
-  if (!isNotEmpty) return null;
+  if (!isSelected) return null;
 
   return (
     <div className='search-select'>
+      {isSelected && (
+        <div className='search-select__preview'>
+          {selectedMonster?.map((monster) => (
+            <div
+              className='search-select__preview__item'
+              onClick={() => onSelect(monster)}
+              key={monster.com2us_id}
+            >
+              <MonsterImage
+                monsterName={monster.name}
+                imageName={monster.image_filename}
+                alt={`${monster.name} Thumbnail`}
+              />
+            </div>
+          ))}
+        </div>
+      )}
       <div className='btn-set'>
         <button type='button' className='btn' onClick={handleClear}>
           <i className='icon icon-cancel'></i>
@@ -60,7 +109,7 @@ const SearchSelect = () => {
         <button
           type='button'
           className='btn'
-          onClick={handleCreate}
+          onClick={handleSubmit}
           disabled={disabled}
         >
           <i

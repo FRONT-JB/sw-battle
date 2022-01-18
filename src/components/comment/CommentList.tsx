@@ -3,9 +3,10 @@ import { handleReplaceURL } from '~/utils/image';
 
 interface Props {
   comments: Comment[];
+  onDelete: (commentId: number) => void;
 }
 
-const CommentList = ({ comments }: Props) => {
+const CommentList = ({ comments, onDelete }: Props) => {
   return (
     <ul className='comment__list'>
       {comments?.map(({ comment, id }) => (
@@ -19,6 +20,12 @@ const CommentList = ({ comments }: Props) => {
                 />
               </span>
             ))}
+          </div>
+          <div className='dimm-layer'>
+            <button type='button' onClick={() => id && onDelete(id)}>
+              <i className='icon icon-remove'></i>
+              <span className='blind'>Delete Comment</span>
+            </button>
           </div>
         </li>
       ))}
