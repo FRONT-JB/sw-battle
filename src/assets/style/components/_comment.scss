@@ -17,22 +17,37 @@
   &__list {
     width: 100%;
     margin-right: 6px;
-    height: calc(100% - 14rem);
+    height: calc(100% - 13.5rem);
     overflow-y: auto;
   }
 
   &__list__item {
-    width: calc(100% / 2);
     display: inline-block;
+    position: relative;
+    width: calc(100% / 2);
     padding: 5px;
     .img-box {
       width: calc((100% - 1.2rem) / 3);
     }
-  }
-
-  &__create {
-    width: 100%;
-    margin-top: 1rem;
-    text-align: center;
+    &:hover {
+      .dimm-layer {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+    .dimm-layer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, #232031, transparent);
+      transition: all 0.5s ease;
+    }
   }
 }

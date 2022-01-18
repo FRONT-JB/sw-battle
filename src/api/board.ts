@@ -16,6 +16,7 @@ export const boardApi = createApi({
       return headers;
     },
   }),
+  tagTypes: ['board'],
   endpoints: (builder) => ({
     getBoardList: builder.query<Board[], FilterState | {}>({
       query: (params) => {
@@ -33,6 +34,7 @@ export const boardApi = createApi({
       transformResponse: (res: Board[]) => {
         return [...res].sort((a, b) => b.id - a.id);
       },
+      providesTags: ['board'],
     }),
 
     getBoardById: builder.query<Board, string | undefined>({
@@ -41,6 +43,7 @@ export const boardApi = createApi({
           url: `/boards/${boardId}`,
         };
       },
+      providesTags: ['board'],
     }),
 
     createBoard: builder.mutation<Board, Partial<Board>>({
@@ -49,13 +52,15 @@ export const boardApi = createApi({
         method: 'POST',
         body: board,
       }),
+      invalidatesTags: ['board'],
     }),
 
-    deleteBoard: builder.mutation<void, number>({
+    deleteBoard: builder.mutation<void, string>({
       query: (boardId) => ({
         url: `/boards/${boardId}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['board'],
     }),
   }),
 });

@@ -1,7 +1,9 @@
+import { Search } from '../search';
+
 const Create = () => {
   return (
     <div className='create'>
-      <p>Create</p>
+      <Search />
     </div>
   );
 };
