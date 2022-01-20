@@ -9,11 +9,12 @@ const DefenseFilter = () => {
   const { filterList } = useSelector(filterListSelector);
   const [extend, setExtend] = useState(false);
   const filterRef = useRef<HTMLDivElement>(null);
-  useOutside(filterRef, () => setExtend(false));
 
   const handleExtends = () => {
     setExtend((prev) => !prev);
   };
+
+  useOutside(filterRef, () => setExtend(false));
 
   return (
     <div className='defense-filter'>

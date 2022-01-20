@@ -11,8 +11,8 @@ import SearchSelect from './SearchSelect';
 import MonsterImage from '../common/MonsterImage';
 
 const Search = () => {
-  const dispatch = useDispatch();
   const { state: boardId } = useLocation();
+  const dispatch = useDispatch();
   const [searchMonster, { data: searchData, isFetching }] =
     useLazyGetMonsterQuery();
 

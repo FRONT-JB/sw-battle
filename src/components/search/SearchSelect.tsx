@@ -19,13 +19,12 @@ const SearchSelect = ({ onSelect }: Props) => {
   const navigate = useNavigate();
   const { state: boardId } = useLocation();
   const selectedMonster = useSelector(selectedInfoSelector);
-  const isSelected = !!selectedMonster.length;
-  const disabled = selectedMonster.length < 3;
   const [createBoard, { isSuccess: boardSuccess, error: boardError }] =
     useCreateBoardMutation();
-
   const [createComment, { isSuccess: commentSuccess, error: commentError }] =
     useCreateCommentMutation();
+  const isSelected = !!selectedMonster.length;
+  const disabled = selectedMonster.length < 3;
 
   useEffect(() => {
     const error = boardError as FetchBaseQueryError;
