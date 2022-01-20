@@ -10,13 +10,13 @@ import { handleTimeForToday } from '~/utils/time';
 import { selectedInfoSelector } from '~/store/slices/common';
 
 const DefenseList = () => {
+  const navigate = useNavigate();
+  const { id: boardId } = useParams();
   const { data: boardList } = useGetBoardListQuery({});
   const [deletePost] = useDeleteBoardMutation();
-  const { id: boardId } = useParams();
-  const navigate = useNavigate();
+  const selectedMonster = useSelector(selectedInfoSelector);
   const listRef = useRef<HTMLDivElement>(null);
   const isNotNullList = !!boardList?.length;
-  const selectedMonster = useSelector(selectedInfoSelector);
 
   useEffect(() => {
     if (!boardId) {
