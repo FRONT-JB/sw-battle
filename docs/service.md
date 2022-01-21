@@ -18,7 +18,7 @@
 
     Nest.js
     TypeORM
-    ProgresDB
+    Postgres
 
 ---
 
