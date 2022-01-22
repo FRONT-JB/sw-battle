@@ -4,8 +4,15 @@
   padding: 2rem 0;
   flex: 0 0 calc(50% - 6px);
   &-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
     margin-top: 1rem;
     &__title {
+      display: inline-block;
+      position: relative;
+      line-height: 1;
       font-weight: 700;
       font-size: 1.4rem;
       cursor: default;
@@ -13,16 +20,13 @@
         background: transparent;
       }
     }
-  }
-  &-filter {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
 
-    &__title {
-      display: inline-block;
-      position: relative;
-      line-height: 1;
+    .utils {
+      display: flex;
+      align-items: center;
+      .btn-reset {
+        margin-left: 1rem;
+      }
     }
 
     &__list {
@@ -32,23 +36,81 @@
       position: absolute;
       left: 0;
       top: calc(100% + 1rem);
-      padding: 5px 0 10px;
+      padding: 5px;
       width: 100%;
       background: $grey-darken-3;
+      font-size: 1.2rem;
+      &.extends {
+        display: flex;
+      }
+      .inpbox {
+        margin: 0 5px;
+      }
+    }
+    &__list__selected {
+      display: flex;
+      position: relative;
+      padding: 5px 5px 0 5px;
+      width: 100%;
+      margin-bottom: 1rem;
+      .filter-badge {
+        min-width: 6.5rem;
+        &:not(:first-child) {
+          margin-left: 5px;
+        }
+      }
+      .utils {
+        position: absolute;
+        right: 5px;
+        top: calc(50% + 3px);
+        transform: translateY(-50%);
+
+        .btn:not(:first-child) {
+          margin-left: 4px;
+        }
+      }
+    }
+    &__list__badge {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 5px 0 10px;
+      width: 100%;
+      transition: height 0.5s ease;
       .filter-badge {
         flex: 0 0 calc((100% - 3rem) / 5);
         margin: 5px 0 0 5px;
+        &::selection {
+          background: transparent;
+        }
       }
-      &.extends {
-        display: flex;
+      .not-found {
+        display: block;
+        text-align: center;
+        line-height: 5rem;
+        flex: 1;
+        color: $grey-lighten-1;
+        cursor: default;
+        font-size: 1.2rem;
       }
     }
   }
 
   &-list {
-    margin-top: 4rem;
+    margin-top: 2rem;
     max-height: calc(100% - 12rem);
+    height: 100%;
     overflow-y: auto;
+    .not-found {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      color: $grey-lighten-1;
+      &__text {
+        font-size: 1.2rem;
+        cursor: default;
+      }
+    }
   }
 
   &-list-card {

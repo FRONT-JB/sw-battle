@@ -3,27 +3,16 @@ import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../reducer';
 
 const COMMON_SLICE = 'COMMON' as const;
-
-export interface FilterState {
-  selectOne: string | undefined;
-  selectTwo: string | undefined;
-  selectThree: string | undefined;
-}
-
 interface CommonState {
   selectedInfo: Monster[];
   filterList: string[];
-  selectedFilterList: FilterState | {};
+  selectedFilterList: string[];
 }
 
 const initialState: CommonState = {
   selectedInfo: [],
   filterList: [],
-  selectedFilterList: {
-    selectOne: undefined,
-    selectTwo: undefined,
-    selectThree: undefined,
-  },
+  selectedFilterList: [],
 };
 
 const commonSlice = createSlice({
@@ -52,27 +41,11 @@ const commonSlice = createSlice({
     setFilterList: (state, { payload }: PayloadAction<string[]>) => {
       state.filterList = payload;
     },
-    setSelectFilter: (
-      state,
-      {
-        payload,
-      }: PayloadAction<{
-        filterName: string;
-        filterValue: string;
-      }>,
-    ) => {
-      const { filterName, filterValue } = payload;
-      const isNotEmptyPayload = !!filterValue;
-      state.selectedFilterList = Object.assign(state.selectedFilterList, {
-        [filterName]: isNotEmptyPayload ? filterValue : undefined,
-      });
+    setSelectFilter: (state, { payload }: PayloadAction<string[]>) => {
+      state.selectedFilterList = payload;
     },
     setResetFilter: (state) => {
-      const selectedFilterList = Object.values(state.selectedFilterList);
-      const isActiveFilter = selectedFilterList.some(Boolean);
-      if (isActiveFilter) {
-        state.selectedFilterList = {};
-      }
+      state.selectedFilterList = [];
     },
     clearSearch: (state) => {
       state.selectedInfo = [];
@@ -92,14 +65,17 @@ export const commonSelector = (state: RootState) => state.common;
 
 export const selectedInfoSelector = createSelector(
   [commonSelector],
-  (state) => state.selectedInfo,
+  ({ selectedInfo }) => selectedInfo,
 );
 
-export const filterListSelector = createSelector([commonSelector], (state) => {
-  return {
-    filterList: state.filterList,
-    selectedFilter: state.selectedFilterList,
-  };
-});
+export const filterListSelector = createSelector(
+  [commonSelector],
+  ({ filterList, selectedFilterList }) => {
+    return {
+      filterList: filterList,
+      selectedFilter: selectedFilterList,
+    };
+  },
+);
 
 export default commonSlice;

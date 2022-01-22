@@ -1,22 +1,27 @@
 import { memo, MouseEvent, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import { throttle } from 'lodash';
 import { useDeleteBoardMutation, useGetBoardListQuery } from '~/api/board';
 import { ROUTE_PATH } from '~/routes/path';
 import MonsterImage from '../common/MonsterImage';
 import { handleTimeForToday } from '~/utils/time';
-import { selectedInfoSelector } from '~/store/slices/common';
+import {
+  filterListSelector,
+  selectedInfoSelector,
+} from '~/store/slices/common';
+import { Loading } from '../common';
 
 const DefenseList = () => {
-  const { data: boardList } = useGetBoardListQuery({});
-  const [deletePost] = useDeleteBoardMutation();
-  const { id: boardId } = useParams();
   const navigate = useNavigate();
+  const { id: boardId } = useParams();
+  const { selectedFilter } = useSelector(filterListSelector);
+  const selectedMonster = useSelector(selectedInfoSelector);
+  const { data: boardList, isFetching } = useGetBoardListQuery(selectedFilter);
+  const [deletePost] = useDeleteBoardMutation();
   const listRef = useRef<HTMLDivElement>(null);
   const isNotNullList = !!boardList?.length;
-  const selectedMonster = useSelector(selectedInfoSelector);
 
   useEffect(() => {
     if (!boardId) {
@@ -60,7 +65,12 @@ const DefenseList = () => {
 
   return (
     <div className='defense-list' ref={listRef}>
-      {!isNotNullList && <p style={{ height: '100%' }}>No Result</p>}
+      {isFetching && <Loading isFullSize={true} />}
+      {!isFetching && !isNotNullList && (
+        <div className='not-found'>
+          <span className='not-found__text'>Not Found</span>
+        </div>
+      )}
       {isNotNullList && (
         <ul className={classNames('defense-list-card')}>
           {boardList?.map(({ id, keyword, content, user, created_at }) => (
@@ -88,8 +98,10 @@ const DefenseList = () => {
                 <span className='date'>{handleTimeForToday(created_at)}</span>
                 <b className='user'>{user.username}</b>
                 <div className='keyword'>
-                  {keyword?.map((keyword) => (
-                    <span className='keyword__item'>{keyword}</span>
+                  {keyword?.map((keyword, index) => (
+                    <span key={index} className='keyword__item'>
+                      {keyword}
+                    </span>
                   ))}
                 </div>
               </div>

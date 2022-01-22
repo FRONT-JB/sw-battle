@@ -47,6 +47,6 @@ export const userSelector = createSelector(
 );
 export const tokenSelector = createSelector(
   [authSelector],
-  (state) => state.token,
+  ({ token }) => token,
 );
 export default authSlice;
