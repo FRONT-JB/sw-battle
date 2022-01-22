@@ -1,11 +1,13 @@
-@use '../utils/variables' as var;
+@use '../utils/variables' as *;
 
 .btn {
   display: inline-block;
   vertical-align: top;
   font-size: 0;
   color: rgba(255, 255, 255, 0.8);
-
+  &::selection {
+    background: transparent;
+  }
   &-prev {
     padding-left: 24px;
     background: transparent url('../images/icon_arrow-left.svg') no-repeat -1px 50%;
@@ -35,7 +37,7 @@
 
   &-filter {
     font-size: 1.2rem;
-    color: var.$orange-base;
+    color: $orange-base;
     letter-spacing: 0.5px;
   }
 }
