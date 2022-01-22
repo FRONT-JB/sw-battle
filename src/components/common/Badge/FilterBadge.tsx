@@ -1,9 +1,23 @@
+import classNames from 'classnames';
+import { memo } from 'react';
+
 interface Props {
   title: string;
+  onSelect: (filterLabel: string) => void;
+  isActive?: boolean;
 }
 
-const FilterBadge = ({ title }: Props) => {
-  return <span className='filter-badge'>{title}</span>;
+const FilterBadge = ({ title, isActive, onSelect }: Props) => {
+  return (
+    <span
+      className={classNames('filter-badge', {
+        'filter-badge--selected': isActive,
+      })}
+      onClick={() => onSelect(title)}
+    >
+      {title}
+    </span>
+  );
 };
 
-export default FilterBadge;
+export default memo(FilterBadge);

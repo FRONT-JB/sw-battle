@@ -1,7 +1,7 @@
 import { BASE_URL } from './common';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Board } from '~/types/board';
-import { FilterState, setFilterList } from '~/store/slices/common';
+import { setFilterList } from '~/store/slices/common';
 import { RootState } from '~/store/reducer';
 
 export const boardApi = createApi({
@@ -18,18 +18,19 @@ export const boardApi = createApi({
   }),
   tagTypes: ['board'],
   endpoints: (builder) => ({
-    getBoardList: builder.query<Board[], FilterState | {}>({
+    getBoardList: builder.query<Board[], string[]>({
       query: (params) => {
+        const searchParams = Object.assign({}, params);
         return {
           url: '/boards',
-          params: params,
+          params: searchParams,
         };
       },
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         const { data } = await queryFulfilled;
         const keyword = data.map((list) => list.keyword).flat();
         const flatKeyword = Array.from(new Set(keyword)).sort();
-        dispatch(setFilterList(flatKeyword));
+        data && dispatch(setFilterList(flatKeyword));
       },
       transformResponse: (res: Board[]) => {
         return [...res].sort((a, b) => b.id - a.id);
