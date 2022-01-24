@@ -20,12 +20,15 @@
       display: flex;
       flex-direction: column;
       &__item {
+        position: relative;
         &:not(:first-child) {
           margin-top: 1rem;
         }
-        &__link {
+        &__link,
+        &__button {
           display: block;
           text-align: center;
+          width: 100%;
         }
       }
     }

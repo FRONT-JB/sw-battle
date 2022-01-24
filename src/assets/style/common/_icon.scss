@@ -97,6 +97,11 @@ i.icon {
   &-logout {
     background: url('../images/icon_log-out-dark.svg') no-repeat center;
   }
+
+  &-admin {
+    background-position: -71px -452px;
+  }
+
   // RUNE ICONS
   &-rune {
     background: url('../images/img_rune_sp.png') no-repeat;
