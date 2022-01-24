@@ -41,10 +41,12 @@ const authSlice = createSlice({
 });
 export const { setLogout } = authSlice.actions;
 export const authSelector = (state: RootState) => state.auth;
-export const userSelector = createSelector(
+
+export const authUserSelector = createSelector(
   [authSelector],
-  ({ user }: AuthState) => user,
+  ({ user }) => user,
 );
+
 export const tokenSelector = createSelector(
   [authSelector],
   ({ token }) => token,
