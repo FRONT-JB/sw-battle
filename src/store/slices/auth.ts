@@ -6,8 +6,9 @@ import { authApi } from '~/api/auth';
 const AUTH_SLICE = 'AUTH' as const;
 
 export interface AuthUser {
+  id: number;
   username: string;
-  role: 'admin' | 'user';
+  role: 'Admin' | 'User' | 'Pending';
 }
 
 export interface AuthState {

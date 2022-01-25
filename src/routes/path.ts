@@ -4,5 +4,6 @@ export const ROUTE_PATH = {
   CREATE: 'create',
   DETAIL: 'detail',
   SIGNUP: 'signup',
+  PENDING: 'pending',
   PARAMS: ':id',
 } as const;

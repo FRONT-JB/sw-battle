@@ -1,0 +1,13 @@
+.pending {
+  &__title {
+    font-size: 1.6rem;
+    cursor: default;
+    &::selection {
+      background: transparent;
+    }
+  }
+
+  &__loading {
+    padding: 2.5rem 0;
+  }
+}

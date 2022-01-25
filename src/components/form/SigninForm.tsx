@@ -1,13 +1,16 @@
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useSignInMutation } from '~/api/auth';
 import { signInFormList } from '~/constants/form';
 import { ROUTE_PATH } from '~/routes/path';
+import { authUserSelector } from '~/store/slices/auth';
 import { InputBox, Loading, LogoIcons } from '../common';
 
 const SigninForm = () => {
   const navigate = useNavigate();
-  const [signIn, { isSuccess, isError, isLoading }] = useSignInMutation();
+  const authInfo = useSelector(authUserSelector);
+  const [signIn, { isError, isLoading }] = useSignInMutation();
   const [error, setError] = useState('');
   const [disabled, setDisabled] = useState(false);
   const [account, setAccount] = useState(signInFormList);
@@ -17,10 +20,10 @@ const SigninForm = () => {
       setError('Login failed. Please check your account.');
       setDisabled(false);
     }
-    if (isSuccess) {
-      navigate(ROUTE_PATH.ROOT, { replace: true });
+    if (authInfo && authInfo.role === 'Pending') {
+      navigate(ROUTE_PATH.PENDING);
     }
-  }, [isSuccess, isError, error]);
+  }, [isError, authInfo]);
 
   const handleAccount = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

@@ -35,18 +35,22 @@
 
   .list {
     display: flex;
-    align-items: flex-start;
+    align-content: flex-start;
     flex-wrap: wrap;
     width: 100%;
     max-height: calc(100% - 3rem);
+    height: 100%;
     overflow-y: scroll;
+    font-size: 0;
   }
 
   .list__item {
     display: flex;
+    position: relative;
     margin: 5px;
     padding: 1rem;
     width: calc((100% - 2rem) / 2);
+    height: 4rem;
     border: 1px solid $grey-lighten-1;
     border-radius: 1rem;
     cursor: pointer;

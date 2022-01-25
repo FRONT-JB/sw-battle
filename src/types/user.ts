@@ -3,3 +3,8 @@ export interface UserInfo {
   username: string;
   role: string;
 }
+
+export interface UserRoleTooltip {
+  id: string;
+  tooltip: string;
+}

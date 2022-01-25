@@ -7,17 +7,13 @@ export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
     baseUrl: `${BASE_URL}/auth`,
-    prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as RootState).auth.token;
-      if (token) {
-        headers.set('Authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
   }),
   tagTypes: ['auth'],
   endpoints: (builder) => ({
-    signIn: builder.mutation<any, { username: string; password: string }>({
+    signIn: builder.mutation<
+      { token: string; role: string },
+      { username: string; password: string }
+    >({
       query: ({ username, password }) => {
         return {
           url: '/signin',
@@ -35,19 +31,46 @@ export const authApi = createApi({
         };
       },
     }),
-    getUsers: builder.query<UserInfo[], void>({
-      query: () => '/users',
-      providesTags: ['auth'],
+    getUsers: builder.query<{ current: UserInfo[]; pending: UserInfo[] }, void>(
+      {
+        query: () => '/users',
+        transformResponse: (res: UserInfo[]) => {
+          const currentlyUsers = res
+            .filter((user) => user.role !== 'Pending')
+            .sort((a, b) =>
+              a.role.toLowerCase() < b.role.toLowerCase() ? -1 : 0,
+            );
+          const pendingUsers = res.filter((user) => user.role === 'Pending');
+          return { current: currentlyUsers, pending: pendingUsers };
+        },
+        providesTags: ['auth'],
+      },
+    ),
+    deleteUser: builder.mutation<void, number>({
+      query: (userId) => {
+        return {
+          url: `/user/${userId}`,
+          method: 'DELETE',
+        };
+      },
+      invalidatesTags: ['auth'],
     }),
     changeRole: builder.mutation<void, Partial<UserInfo>>({
       query: (changeInfo) => {
         return {
           url: '/role',
-          metod: 'PATCH',
+          method: 'PATCH',
           body: changeInfo,
         };
       },
       invalidatesTags: ['auth'],
+    }),
+    checkUserRole: builder.query<{ role: string }, number | undefined>({
+      query: (userId) => {
+        return {
+          url: `/role/${userId}`,
+        };
+      },
     }),
   }),
 });
@@ -57,4 +80,6 @@ export const {
   useGetUsersQuery,
   useSignInMutation,
   useChangeRoleMutation,
+  useDeleteUserMutation,
+  useCheckUserRoleQuery,
 } = authApi;

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ROUTE_PATH } from '~/routes/path';
@@ -5,8 +6,7 @@ import { authUserSelector } from '~/store/slices/auth';
 
 const Navigation = () => {
   const user = useSelector(authUserSelector);
-  const isAdmin = user?.role === 'admin';
-
+  const isAdmin = user?.role === 'Admin';
   return (
     <nav className='nav'>
       <ul className='gnb'>
@@ -36,4 +36,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default memo(Navigation);

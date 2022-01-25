@@ -1,57 +1,51 @@
-import classNames from 'classnames';
-import { useChangeRoleMutation, useGetUsersQuery } from '~/api/auth';
-import { UserInfo } from '~/types/user';
+import { useCallback } from 'react';
+import {
+  useChangeRoleMutation,
+  useDeleteUserMutation,
+  useGetUsersQuery,
+} from '~/api/auth';
+import UserList from './UserList';
 
 const User = () => {
   const { data: userList } = useGetUsersQuery();
   const [changeRole] = useChangeRoleMutation();
-  const isNotNullCurrently = !!userList?.length;
+  const [deleteUser] = useDeleteUserMutation();
+  const isNotNullCurrently = !!userList?.current?.length;
+  const isNotNullPending = !!userList?.pending?.length;
 
-  const handleChangeRole = async ({ id, username, role }: UserInfo) => {
-    const changeRoleType = role === 'admin' ? 'user' : 'admin';
-    const changeUserParams = {
-      id,
-      role: changeRoleType,
-    };
-
-    if (
-      window.confirm(`${username}\nCurrent: ${role}\nChange: ${changeRoleType}`)
-    ) {
-      await changeRole(changeUserParams);
+  const handleChangeRole = useCallback(async (id: number, role: string) => {
+    if (role === 'Delete' && window.confirm('Delete User?')) {
+      await deleteUser(id);
+      return;
     }
-  };
+    if (window.confirm(`Change role is ${role}?`)) {
+      await changeRole({ id, role });
+    }
+  }, []);
 
   return (
     <div className='users'>
       <div className='users__currently'>
-        <b className='title'>사용자 {`(${userList?.length})`}</b>
+        <b className='title'>사용자 {`(${userList?.current.length})`}</b>
         {!isNotNullCurrently && <div className='not-found'>No Result</div>}
         {isNotNullCurrently && (
           <ul className='list'>
-            <>
-              {userList?.map((user) => (
-                <li
-                  key={user.id}
-                  className='list__item'
-                  onClick={() => handleChangeRole(user)}
-                >
-                  <b className='user-name'>{user.username}</b>
-                  <span
-                    className={classNames('user-role', {
-                      admin: user.role === 'admin',
-                    })}
-                  >
-                    {user.role === 'admin' ? '관리자' : '사용자'}
-                  </span>
-                </li>
-              ))}
-            </>
+            {userList?.current?.map((user) => (
+              <UserList key={user.id} user={user} onClick={handleChangeRole} />
+            ))}
           </ul>
         )}
       </div>
       <div className='users__approve'>
-        <b className='title'>승인 대기중</b>
-        <div className='not-found'>No Result</div>
+        <b className='title'>승인 대기중 {`(${userList?.pending?.length})`}</b>
+        {!isNotNullPending && <div className='not-found'>No Result</div>}
+        {isNotNullPending && (
+          <ul className='list'>
+            {userList?.pending?.map((user) => (
+              <UserList key={user.id} user={user} onClick={handleChangeRole} />
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
