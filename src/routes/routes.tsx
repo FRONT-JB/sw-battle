@@ -6,10 +6,10 @@ import AuthRoute from './AuthRoute';
 import ModalContainer from '~/container/ModalContainer';
 
 const AppRoutes = () => {
-  const { token } = useSelector(authSelector);
+  const { token, user } = useSelector(authSelector);
   return (
     <Router>
-      {token ? <MainRoute /> : <AuthRoute />}
+      {token && user?.role !== 'Pending' ? <MainRoute /> : <AuthRoute />}
       <ModalContainer />
     </Router>
   );

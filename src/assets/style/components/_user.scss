@@ -1,0 +1,84 @@
+@use '../utils/variables' as *;
+
+.users {
+  display: flex;
+  width: 100%;
+  &__approve,
+  &__currently {
+    width: calc(50% - 1rem);
+    transition: width 0.5s ease;
+    .title {
+      display: inline-block;
+      height: 3rem;
+      line-height: 3rem;
+    }
+    &.active {
+      flex: 0;
+      width: 0;
+    }
+  }
+  &__approve {
+    margin-left: 1rem;
+    padding-left: 1rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .not-found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100% - 3rem);
+    cursor: default;
+    font-size: 1.2rem;
+    color: $grey-lighten-1;
+  }
+
+  .list {
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    max-height: calc(100% - 3rem);
+    height: 100%;
+    overflow-y: scroll;
+    font-size: 0;
+  }
+
+  .list__item {
+    display: flex;
+    position: relative;
+    margin: 5px;
+    padding: 1rem;
+    width: calc((100% - 2rem) / 2);
+    height: 4rem;
+    border: 1px solid $grey-lighten-1;
+    border-radius: 1rem;
+    cursor: pointer;
+    &::selection {
+      background: transparent;
+    }
+    .user-name,
+    .user-role {
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    .user-name {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 1.2rem;
+    }
+    .user-role {
+      display: block;
+      flex: 0 0 5rem;
+      margin-left: 1rem;
+      text-align: center;
+      font-size: 1.2rem;
+      color: $grey-lighten-1;
+      &.admin {
+        color: $orange-base;
+      }
+    }
+  }
+}

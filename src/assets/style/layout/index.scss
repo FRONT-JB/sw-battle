@@ -24,11 +24,17 @@
   border-top-right-radius: 3rem;
   border-bottom-right-radius: 3rem;
 
-  &.form {
+  &.form,
+  &.pending {
     justify-content: center;
     align-items: center;
     padding: 2rem 2rem 4rem 2rem;
     width: 100%;
     border-radius: 3rem;
+  }
+  &.pending {
+    flex-direction: column;
+    padding: 2rem 10rem;
+    height: 20rem;
   }
 }

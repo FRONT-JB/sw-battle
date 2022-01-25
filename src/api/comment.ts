@@ -1,11 +1,19 @@
 import { BASE_URL } from './common';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Comment } from '~/types/comment';
+import { RootState } from '~/store/reducer';
 
 export const commentApi = createApi({
   reducerPath: 'commentApi',
   baseQuery: fetchBaseQuery({
     baseUrl: `${BASE_URL}/comment`,
+    prepareHeaders: (headers, { getState }) => {
+      const token = (getState() as RootState).auth.token;
+      if (token) {
+        headers.set('Authorization', `Bearer ${token}`);
+      }
+      return headers;
+    },
   }),
   tagTypes: ['comment'],
   endpoints: (builder) => ({

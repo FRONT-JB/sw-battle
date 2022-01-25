@@ -1,0 +1,22 @@
+@use '../utils/variables' as *;
+
+.tooltip-box {
+  display: block;
+  z-index: 100;
+  position: absolute;
+  right: 0;
+  top: 50%;
+
+  &.role {
+    width: 8rem;
+    padding: 4px;
+    background: $grey-darken-3;
+    border-radius: 10px;
+  }
+
+  &__button {
+    width: 100%;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+}
