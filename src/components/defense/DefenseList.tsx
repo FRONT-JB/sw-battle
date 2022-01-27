@@ -12,16 +12,19 @@ import {
   selectedInfoSelector,
 } from '~/store/slices/common';
 import { Loading } from '../common';
+import { authUserSelector } from '~/store/slices/auth';
 
 const DefenseList = () => {
   const navigate = useNavigate();
   const { id: boardId } = useParams();
   const { selectedFilter } = useSelector(filterListSelector);
   const selectedMonster = useSelector(selectedInfoSelector);
+  const user = useSelector(authUserSelector);
   const { data: boardList, isFetching } = useGetBoardListQuery(selectedFilter);
   const [deletePost] = useDeleteBoardMutation();
   const listRef = useRef<HTMLDivElement>(null);
   const isNotNullList = !!boardList?.length;
+  const isAdmin = user?.role === 'Admin';
 
   useEffect(() => {
     if (!boardId) {
@@ -107,12 +110,17 @@ const DefenseList = () => {
                   ))}
                 </div>
               </div>
-              <div className='hover-layer'>
-                <button type='button' onClick={(e) => handleDeletePost(e, id)}>
-                  <i className='icon icon-remove'></i>
-                  <span className='blind'>Delete Board</span>
-                </button>
-              </div>
+              {isAdmin && (
+                <div className='hover-layer'>
+                  <button
+                    type='button'
+                    onClick={(e) => handleDeletePost(e, id)}
+                  >
+                    <i className='icon icon-remove'></i>
+                    <span className='blind'>Delete Board</span>
+                  </button>
+                </div>
+              )}
             </li>
           ))}
         </ul>

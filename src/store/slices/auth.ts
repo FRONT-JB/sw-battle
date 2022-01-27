@@ -45,7 +45,7 @@ export const authSelector = (state: RootState) => state.auth;
 
 export const authUserSelector = createSelector(
   [authSelector],
-  ({ user }) => user,
+  ({ user }: AuthState) => user,
 );
 
 export const tokenSelector = createSelector(
