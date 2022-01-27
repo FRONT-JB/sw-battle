@@ -2,11 +2,12 @@ import { Comment } from '~/types/comment';
 import { handleReplaceURL } from '~/utils/image';
 
 interface Props {
+  isAdmin: boolean;
   comments: Comment[];
   onDelete: (commentId: number) => void;
 }
 
-const CommentList = ({ comments, onDelete }: Props) => {
+const CommentList = ({ isAdmin, comments, onDelete }: Props) => {
   return (
     <ul className='comment__list'>
       {comments?.map(({ comment, id }) => (
@@ -21,12 +22,14 @@ const CommentList = ({ comments, onDelete }: Props) => {
               </span>
             ))}
           </div>
-          <div className='dimm-layer'>
-            <button type='button' onClick={() => id && onDelete(id)}>
-              <i className='icon icon-remove'></i>
-              <span className='blind'>Delete Comment</span>
-            </button>
-          </div>
+          {isAdmin && (
+            <div className='dimm-layer'>
+              <button type='button' onClick={() => id && onDelete(id)}>
+                <i className='icon icon-remove'></i>
+                <span className='blind'>Delete Comment</span>
+              </button>
+            </div>
+          )}
         </li>
       ))}
     </ul>
