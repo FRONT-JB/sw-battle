@@ -54,9 +54,11 @@ const DefenseList = () => {
     boardId: number,
   ) => {
     e.stopPropagation();
-    await deletePost(JSON.stringify(boardId)).then(() =>
-      navigate(`${ROUTE_PATH.ROOT}`),
-    );
+    if (window.confirm('Are you sure you want to delete this item?')) {
+      await deletePost(JSON.stringify(boardId)).then(() =>
+        navigate(`${ROUTE_PATH.ROOT}`),
+      );
+    }
   };
 
   const handleNavigate = (id: number) => {
