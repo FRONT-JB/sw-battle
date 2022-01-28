@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { authUserSelector, setLogout } from '~/store/slices/auth';
 import { ROUTE_PATH } from '~/routes/path';
