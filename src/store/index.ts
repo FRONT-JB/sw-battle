@@ -1,4 +1,3 @@
-import { authApi } from './../api/auth';
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import {
@@ -11,6 +10,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import sessionStorage from 'redux-persist/es/storage/session';
+import { authApi } from '~/api/auth';
 import { boardApi } from '~/api/board';
 import { commentApi } from '~/api/comment';
 import { monsterApi } from '~/api/monster';

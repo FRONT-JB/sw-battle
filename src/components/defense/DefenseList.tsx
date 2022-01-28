@@ -1,6 +1,6 @@
 import { memo, MouseEvent, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 import { throttle } from 'lodash';
 import { useDeleteBoardMutation, useGetBoardListQuery } from '~/api/board';

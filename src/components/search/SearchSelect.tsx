@@ -1,9 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { clearSearch, selectedInfoSelector } from '~/store/slices/common';
-import classNames from 'classnames';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { ROUTE_PATH } from '~/routes/path';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
+import classNames from 'classnames';
+import { clearSearch, selectedInfoSelector } from '~/store/slices/common';
+import { ROUTE_PATH } from '~/routes/path';
 import { useCreateBoardMutation } from '~/api/board';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 import { useCreateCommentMutation } from '~/api/comment';
