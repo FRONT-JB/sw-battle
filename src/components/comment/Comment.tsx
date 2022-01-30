@@ -5,6 +5,8 @@ import {
   useDeleteCommentMutation,
   useGetCommentByBoardIdQuery,
 } from '~/api/comment';
+import { TOASTIFY_ALERT } from '~/constants/toastify';
+import useToastify from '~/hooks/useToastify';
 import { ROUTE_PATH } from '~/routes/path';
 import { authUserSelector } from '~/store/slices/auth';
 import { handleIcon } from '~/utils/image';
@@ -32,10 +34,11 @@ const Comment = () => {
   const isNotNullComment =
     !!commentList?.length && !!boardList?.content?.defense.length;
   const isAdmin = user?.role === 'Admin';
-
+  const { setToast } = useToastify();
   const handleDeleteComment = async (commentId: number) => {
     if (window.confirm('Are you sure you want to delete this item?')) {
       await deleteComment(commentId).then(refetch);
+      setToast(TOASTIFY_ALERT.SUCCESS('Delete'));
     }
   };
 

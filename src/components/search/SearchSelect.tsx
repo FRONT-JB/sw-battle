@@ -9,6 +9,8 @@ import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 import { useCreateCommentMutation } from '~/api/comment';
 import MonsterImage from '../common/MonsterImage';
 import { Monster } from '~/types/monster';
+import useToastify from '~/hooks/useToastify';
+import { TOASTIFY_ALERT } from '~/constants/toastify';
 
 interface Props {
   onSelect: (monster: Monster) => void;
@@ -19,6 +21,7 @@ const SearchSelect = ({ onSelect }: Props) => {
   const navigate = useNavigate();
   const { state: boardId } = useLocation();
   const selectedMonster = useSelector(selectedInfoSelector);
+  const { setToast } = useToastify();
   const [createBoard, { isSuccess: boardSuccess, error: boardError }] =
     useCreateBoardMutation();
   const [createComment, { isSuccess: commentSuccess, error: commentError }] =
@@ -29,13 +32,15 @@ const SearchSelect = ({ onSelect }: Props) => {
   useEffect(() => {
     const error = boardError as FetchBaseQueryError;
     if (error && error.status === 409) {
-      window.alert('These are duplicated Attack posts.');
+      setToast('These are duplicated Attack posts.');
     }
     if (boardSuccess) {
       navigate(ROUTE_PATH.ROOT, { replace: true });
+      setToast(TOASTIFY_ALERT.SUCCESS('Create'));
     }
     if (commentSuccess) {
       navigate(`/${ROUTE_PATH.DETAIL}/${boardId}`);
+      setToast(TOASTIFY_ALERT.SUCCESS('Create'));
     }
   }, [boardSuccess, commentSuccess, boardError]);
 

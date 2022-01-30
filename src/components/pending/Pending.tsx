@@ -5,11 +5,14 @@ import { ROUTE_PATH } from '~/routes/path';
 import { useCheckUserRoleQuery } from '~/api/auth';
 import { Loading } from '../common';
 import { useEffect } from 'react';
+import useToastify from '~/hooks/useToastify';
+import { TOASTIFY_ALERT } from '~/constants/toastify';
 
 const Pending = () => {
   const user = useSelector(authUserSelector);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { setToast } = useToastify();
   const { data: userRole } = useCheckUserRoleQuery(user?.id, {
     pollingInterval: 5000,
   });
@@ -17,6 +20,7 @@ const Pending = () => {
   const handleRedirect = () => {
     dispatch(setLogout());
     navigate(ROUTE_PATH.ROOT);
+    setToast(TOASTIFY_ALERT.SUCCESS('Permission allowed'), 10000);
   };
 
   useEffect(() => {
