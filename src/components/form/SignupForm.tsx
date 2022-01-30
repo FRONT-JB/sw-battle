@@ -2,6 +2,8 @@ import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useSignUpMutation } from '~/api/auth';
 import { signUpFormList } from '~/constants/form';
+import { TOASTIFY_ALERT } from '~/constants/toastify';
+import useToastify from '~/hooks/useToastify';
 import { ROUTE_PATH } from '~/routes/path';
 import { InputBox, Loading } from '../common';
 
@@ -9,14 +11,15 @@ const SignupForm = () => {
   const navigate = useNavigate();
   const [signUp, { isSuccess, isError, isLoading }] = useSignUpMutation();
   const [account, setAccount] = useState(signUpFormList);
-  const [error, setError] = useState('');
   const [disabled, setDisabled] = useState(false);
+  const { setToast } = useToastify();
 
   useEffect(() => {
     if (isError) {
-      setError('Account conflict. Please check your username.');
+      setToast('Account conflict. Please check your username.', 3000);
     }
     if (isSuccess) {
+      setToast(TOASTIFY_ALERT.SUCCESS('SignUp'));
       navigate(ROUTE_PATH.ROOT);
     }
   }, [isError, isSuccess]);
@@ -34,7 +37,6 @@ const SignupForm = () => {
 
   const handleSubmit = async () => {
     setDisabled(true);
-    setError('');
     const isNotNullValue = account.map((input) => input.value).every(Boolean);
     const firstPassword = account.find(
       (input) => input.name === 'password',
@@ -49,14 +51,14 @@ const SignupForm = () => {
 
     switch (true) {
       case firstPassword !== confirmPassword:
-        setError('The passwords are not the same.');
+        setToast('The passwords are not the same.', 3000);
         setDisabled(false);
         break;
       case isNotNullValue:
         await signUp(signUpParams);
         break;
       default:
-        setError('Please check the name and password.');
+        setToast('Please check the name and password.', 3000);
         setDisabled(false);
     }
   };
@@ -83,7 +85,6 @@ const SignupForm = () => {
               />
             ))}
           </div>
-          {error && <p className='form__error-message'>{error}</p>}
           <div className='form__actions'>
             <button
               type='button'

@@ -1,8 +1,11 @@
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 import { useSignInMutation } from '~/api/auth';
 import { signInFormList } from '~/constants/form';
+import { TOASTIFY_ALERT } from '~/constants/toastify';
+import useToastify from '~/hooks/useToastify';
 import { ROUTE_PATH } from '~/routes/path';
 import { authUserSelector } from '~/store/slices/auth';
 import { InputBox, Loading, LogoIcons } from '../common';
@@ -11,13 +14,13 @@ const SigninForm = () => {
   const navigate = useNavigate();
   const authInfo = useSelector(authUserSelector);
   const [signIn, { isError, isLoading }] = useSignInMutation();
-  const [error, setError] = useState('');
   const [disabled, setDisabled] = useState(false);
   const [account, setAccount] = useState(signInFormList);
+  const { setToast } = useToastify();
 
   useEffect(() => {
     if (isError) {
-      setError('Login failed. Please check your account.');
+      setToast(TOASTIFY_ALERT.FAILED('Login'));
       setDisabled(false);
     }
     if (authInfo && authInfo.role === 'Pending') {
@@ -59,11 +62,11 @@ const SigninForm = () => {
 
     switch (true) {
       case isNullUserName:
-        setError('Check Your Name');
+        toast('Check Your Name');
         setDisabled(false);
         break;
       case isNullPassword:
-        setError('Check Your Password');
+        toast('Check Your Password');
         setDisabled(false);
         break;
       case isNotNullValue:
@@ -95,7 +98,6 @@ const SigninForm = () => {
               />
             ))}
           </div>
-          {error && <p className='form__error-message'>{error}</p>}
           <div className='form__actions'>
             <button
               type='button'

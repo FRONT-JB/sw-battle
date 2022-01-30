@@ -1,6 +1,6 @@
 import { memo, MouseEvent, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 import { throttle } from 'lodash';
 import { useDeleteBoardMutation, useGetBoardListQuery } from '~/api/board';
@@ -13,6 +13,8 @@ import {
 } from '~/store/slices/common';
 import { Loading } from '../common';
 import { authUserSelector } from '~/store/slices/auth';
+import useToastify from '~/hooks/useToastify';
+import { TOASTIFY_ALERT } from '~/constants/toastify';
 
 const DefenseList = () => {
   const navigate = useNavigate();
@@ -20,6 +22,7 @@ const DefenseList = () => {
   const { selectedFilter } = useSelector(filterListSelector);
   const selectedMonster = useSelector(selectedInfoSelector);
   const user = useSelector(authUserSelector);
+  const { setToast } = useToastify();
   const { data: boardList, isFetching } = useGetBoardListQuery(selectedFilter);
   const [deletePost] = useDeleteBoardMutation();
   const listRef = useRef<HTMLDivElement>(null);
@@ -58,9 +61,10 @@ const DefenseList = () => {
   ) => {
     e.stopPropagation();
     if (window.confirm('Are you sure you want to delete this item?')) {
-      await deletePost(JSON.stringify(boardId)).then(() =>
-        navigate(`${ROUTE_PATH.ROOT}`),
-      );
+      await deletePost(JSON.stringify(boardId)).then(() => {
+        navigate(`${ROUTE_PATH.ROOT}`);
+        setToast(TOASTIFY_ALERT.SUCCESS('Delete'));
+      });
     }
   };
 
