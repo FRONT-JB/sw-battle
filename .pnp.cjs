@@ -84,6 +84,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-refresh", "npm:0.11.0"],
             ["react-router", "virtual:737f828d1a3f2945ba19527bda60baeb71b500c05818f5ddd8b772a5815b1751f31657b21bed6a8647cf2b6481578378147c558848feb78b5982ed281edde627#npm:6.0.2"],
             ["react-router-dom", "virtual:737f828d1a3f2945ba19527bda60baeb71b500c05818f5ddd8b772a5815b1751f31657b21bed6a8647cf2b6481578378147c558848feb78b5982ed281edde627#npm:6.0.2"],
+            ["react-toastify", "virtual:737f828d1a3f2945ba19527bda60baeb71b500c05818f5ddd8b772a5815b1751f31657b21bed6a8647cf2b6481578378147c558848feb78b5982ed281edde627#npm:8.1.0"],
             ["redux", "npm:4.1.2"],
             ["redux-persist", "virtual:737f828d1a3f2945ba19527bda60baeb71b500c05818f5ddd8b772a5815b1751f31657b21bed6a8647cf2b6481578378147c558848feb78b5982ed281edde627#npm:6.0.0"],
             ["sass", "npm:1.43.5"],
@@ -4643,6 +4644,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["clone-response", "npm:1.0.2"],
             ["mimic-response", "npm:1.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["clsx", [
+        ["npm:1.1.1", {
+          "packageLocation": "./.yarn/cache/clsx-npm-1.1.1-362bec0598-ff05265032.zip/node_modules/clsx/",
+          "packageDependencies": [
+            ["clsx", "npm:1.1.1"]
           ],
           "linkType": "HARD",
         }]
@@ -9968,6 +9978,33 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["react-toastify", [
+        ["npm:8.1.0", {
+          "packageLocation": "./.yarn/cache/react-toastify-npm-8.1.0-2a38351740-9d7b18c747.zip/node_modules/react-toastify/",
+          "packageDependencies": [
+            ["react-toastify", "npm:8.1.0"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:737f828d1a3f2945ba19527bda60baeb71b500c05818f5ddd8b772a5815b1751f31657b21bed6a8647cf2b6481578378147c558848feb78b5982ed281edde627#npm:8.1.0", {
+          "packageLocation": "./.yarn/__virtual__/react-toastify-virtual-34521688f4/0/cache/react-toastify-npm-8.1.0-2a38351740-9d7b18c747.zip/node_modules/react-toastify/",
+          "packageDependencies": [
+            ["react-toastify", "virtual:737f828d1a3f2945ba19527bda60baeb71b500c05818f5ddd8b772a5815b1751f31657b21bed6a8647cf2b6481578378147c558848feb78b5982ed281edde627#npm:8.1.0"],
+            ["@types/react", "npm:17.0.37"],
+            ["@types/react-dom", "npm:17.0.11"],
+            ["clsx", "npm:1.1.1"],
+            ["react", "npm:17.0.2"],
+            ["react-dom", "virtual:737f828d1a3f2945ba19527bda60baeb71b500c05818f5ddd8b772a5815b1751f31657b21bed6a8647cf2b6481578378147c558848feb78b5982ed281edde627#npm:17.0.2"]
+          ],
+          "packagePeers": [
+            "@types/react-dom",
+            "@types/react",
+            "react-dom",
+            "react"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["readable-stream", [
         ["npm:2.3.7", {
           "packageLocation": "./.yarn/cache/readable-stream-npm-2.3.7-77b22a9818-e4920cf754.zip/node_modules/readable-stream/",
@@ -11031,6 +11068,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-refresh", "npm:0.11.0"],
             ["react-router", "virtual:737f828d1a3f2945ba19527bda60baeb71b500c05818f5ddd8b772a5815b1751f31657b21bed6a8647cf2b6481578378147c558848feb78b5982ed281edde627#npm:6.0.2"],
             ["react-router-dom", "virtual:737f828d1a3f2945ba19527bda60baeb71b500c05818f5ddd8b772a5815b1751f31657b21bed6a8647cf2b6481578378147c558848feb78b5982ed281edde627#npm:6.0.2"],
+            ["react-toastify", "virtual:737f828d1a3f2945ba19527bda60baeb71b500c05818f5ddd8b772a5815b1751f31657b21bed6a8647cf2b6481578378147c558848feb78b5982ed281edde627#npm:8.1.0"],
             ["redux", "npm:4.1.2"],
             ["redux-persist", "virtual:737f828d1a3f2945ba19527bda60baeb71b500c05818f5ddd8b772a5815b1751f31657b21bed6a8647cf2b6481578378147c558848feb78b5982ed281edde627#npm:6.0.0"],
             ["sass", "npm:1.43.5"],
