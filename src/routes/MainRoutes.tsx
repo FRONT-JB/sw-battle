@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { Admin } from '~/components/admin';
 import { Comment } from '~/components/comment';
 import { Create } from '~/components/create';
 import { User } from '~/components/user';
@@ -18,7 +19,7 @@ const MainRoute = () => {
           </Route>
         </Route>
         <Route path={ROUTE_PATH.ADMIN} element={<AdminContainer />}>
-          <Route index element={<User />} />
+          <Route index element={<Admin />} />
         </Route>
         <Route path='*' element={<Navigate to={ROUTE_PATH.ROOT} />} />
       </Route>
