@@ -27,67 +27,107 @@
 
 ### Screen
 
-    로그인 화면
+    회원가입 - 입력값 유효성 체크
 
 <p align="center">
-  <img src="./images/SignIn.png" alt="SignIn" />
+
+<img src="https://user-images.githubusercontent.com/85790271/152686917-62253a84-ea10-4626-ba57-aefc8825657b.gif" alt="회원가입 - 입력값 유효성 체크" />
+
+</p>
+    
+
+    회원가입 - 중복 사용자 체크
+    
+<p align="center">
+
+<img src="https://user-images.githubusercontent.com/85790271/152686949-60fec076-a3d0-4930-97c4-140769376998.gif" alt="회원가입 - 중복 사용자 체크" />
+    
+</p>
+
+    회원가입 - 성공
+    
+<p align="center">
+
+<img src="https://user-images.githubusercontent.com/85790271/152686960-c6e79b4c-37d9-425a-8b58-64a591ae3d8e.gif" alt="회원가입 - 성공" />
+    
+</p>
+
+    로그인 - 사용자의 권한을 확인한 후 가입대기 상태라면 관리자의 접근허용을 대기합니다
+    
+<p align="center">
+
+<img src="https://user-images.githubusercontent.com/85790271/152687454-69028b79-49e4-438f-9fb7-6525ec714f86.gif" alt="회원가입 - 대기" />
+
 </p>
 
 ---
 
-    회원가입 화면
-
+    사용자 관리 - 사용자의 권한을 변경하거나 계정을 삭제합니다
+    
 <p align="center">
-  <img src="./images/SignUp.png" alt="SignUp" />
+
+<img src="https://user-images.githubusercontent.com/85790271/152687684-06004ee5-6792-47c8-aedd-7524093b695f.gif" alt="사용자 관리 - 사용자의 권한을 변경하거나 계정을 삭제합니다" />
+    
+<img src="https://user-images.githubusercontent.com/85790271/152687717-3df64d1a-9dc5-42ac-ba90-6627b12f2e30.gif" alt="사용자 관리 - 사용자의 권한을 변경하거나 계정을 삭제합니다" />
+    
+<img src="https://user-images.githubusercontent.com/85790271/152687700-f0d19353-5866-48a2-ad25-c5779e9f3c9a.gif" alt="사용자 관리 - 사용자의 권한을 변경하거나 계정을 삭제합니다" />
+    
 </p>
 
 ---
 
-    메인 화면
+    상대방 방어덱 리스트 - 생성한 날짜, 생성한 사용자, 각 몬스터이름을 표기한 리스트 입니다
 
 <p align="center">
-  <img src="./images/Main.png" alt="Main" />
+
+<img src="https://user-images.githubusercontent.com/85790271/152687832-5d056f2a-8895-4287-b288-39c6b990acab.gif" alt="상대방 방어덱 리스트 ( 공유덱 리스트 )" />
+
 </p>
 
-    게시글 디테일 ( Comment 없는 경우 )
+
+    상대방 방어덱 리스트 필터 - 각 필터 키워드를 클릭해서 해당 키워드를 포함한 공유덱 리스트를 가져옵니다 ( 해당 키워드를 모두 포함한 리스트 )
 
 <p align="center">
-  <img src="./images/PostDetail.png" alt="Post Detail" />
+
+<img src="https://user-images.githubusercontent.com/85790271/152687989-a4f862d8-6959-4fb9-8fd7-8398b5421c5e.gif" alt="상대방 방어덱 리스트 필터 - 각 필터 키워드를 클릭해서 해당 키워드를 포함한 공유덱 리스트를 가져옵니다" />
+
 </p>
 
-    게시글 디테일 ( Comment 있는 경우 )
+
+    상대방 방어덱 리스트 필터 - 각 필터 키워드를 검색해서 해당 키워드를 포함한 공유덱 리스트를 가져옵니다 ( 해당 키워드를 모두 포함한 리스트 )
 
 <p align="center">
-  <img src="./images/PostDetail-Comment.png" alt="PostDetail Comment" />
+
+<img src="https://user-images.githubusercontent.com/85790271/152688023-81bdab28-1c15-4270-bf67-6cf801ff7945.gif" alt="상대방 방어덱 리스트 필터 - 각 필터 키워드를 검색해서 해당 키워드를 포함한 공유덱 리스트를 가져옵니다" />
+
+
+</p>
+
+
+
+    상대방 방어덱 생성
+
+<p align="center">
+
+<img src="https://user-images.githubusercontent.com/85790271/152687839-8fa7c1d2-37e7-40f5-8377-705a9d0f4a21.gif" alt="상대방 방어덱 생성" />
+
+</p>
+
+    상대방 방어덱 공격몬스터 생성
+
+<p align="center">
+
+<img src="https://user-images.githubusercontent.com/85790271/152688170-75fa8964-9ccd-4f6a-bc8d-cda489975c67.gif" alt="상대방 방어덱 공격몬스터 생성" />
+
+</p>
+
+    상대방 방어덱 공격몬스터 삭제
+
+<p align="center">
+
+<img src="https://user-images.githubusercontent.com/85790271/152688201-6467bdee-94b6-488f-be5c-2dbc80b8bc8f.gif" alt="상대방 방어덱 공격몬스터 생성" />
+
 </p>
 
 ---
 
-    게시글 추가
-
-<p align="center">
-  <img src="./images/CreatePost.png" alt="Create Post" />
-</p>
-
-    몬스터 검색 및 선택
-
-<p align="center">
-  <img src="./images/CreatePost-Search.png" alt="CreatePost Search" />
-</p>
-
----
-
-    댓글 기능 ( 방어덱 공격시 사용할 덱 추가 )
-
-<p align="center">
-  <img src="./images/PostDetail.png" alt="Post Detail" />
-</p>
-
-    몬스터 검색 및 선택
-
-<p align="center">
-  <img src="./images/CreateComment-Search.png" alt="Comment Search" />
-  <img src="./images/CreateComment-Select.png" alt="Comment Search Select" />
-</p>
-
----
