@@ -15,7 +15,9 @@ const useOutside = <T extends HTMLElement = HTMLElement>(
       }
       handler(e);
     };
+
     document.addEventListener(mouseEvent, listen);
+
     return () => {
       document.removeEventListener(mouseEvent, listen);
     };

@@ -1,6 +1,8 @@
-export const RoleTooltip = [
-  { id: 'admin', tooltip: 'Admin' },
-  { id: 'user', tooltip: 'User' },
-  { id: 'pending', tooltip: 'Pending' },
-  { id: 'delete', tooltip: 'Delete' },
+import { UserRoleTooltip } from '~/types/user';
+
+export const RoleTooltip: UserRoleTooltip[] = [
+  { id: 'admin', role: 'Admin' },
+  { id: 'user', role: 'User' },
+  { id: 'pending', role: 'Pending' },
+  { id: 'delete', role: 'Delete' },
 ];

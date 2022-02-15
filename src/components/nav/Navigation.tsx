@@ -7,6 +7,7 @@ import { authUserSelector } from '~/store/slices/auth';
 const Navigation = () => {
   const user = useSelector(authUserSelector);
   const isAdmin = user?.role === 'Admin';
+
   return (
     <nav className='nav'>
       <ul className='gnb'>
