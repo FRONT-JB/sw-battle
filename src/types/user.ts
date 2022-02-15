@@ -1,10 +1,12 @@
+export type UserRole = 'Admin' | 'User' | 'Pending' | 'Delete';
+
 export interface UserInfo {
   id: number;
   username: string;
-  role: string;
+  role: UserRole;
 }
 
 export interface UserRoleTooltip {
   id: string;
-  tooltip: string;
+  role: UserRole;
 }

@@ -4,6 +4,7 @@ import {
   useDeleteUserMutation,
   useGetUsersQuery,
 } from '~/api/auth';
+import { UserRole } from '~/types/user';
 import UserList from './UserList';
 
 const User = () => {
@@ -13,7 +14,7 @@ const User = () => {
   const isNotNullCurrently = !!userList?.current?.length;
   const isNotNullPending = !!userList?.pending?.length;
 
-  const handleChangeRole = useCallback(async (id: number, role: string) => {
+  const handleChangeRole = useCallback(async (id: number, role: UserRole) => {
     if (role === 'Delete' && window.confirm('Delete User?')) {
       await deleteUser(id);
       return;

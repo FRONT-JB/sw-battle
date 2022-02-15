@@ -22,6 +22,7 @@ const SearchSelect = ({ onSelect }: Props) => {
   const { state: boardId } = useLocation();
   const selectedMonster = useSelector(selectedInfoSelector);
   const { setToast } = useToastify();
+
   const [createBoard, { isSuccess: boardSuccess, error: boardError }] =
     useCreateBoardMutation();
   const [createComment, { isSuccess: commentSuccess, error: commentError }] =
@@ -53,10 +54,10 @@ const SearchSelect = ({ onSelect }: Props) => {
       };
       await createBoard(createParams);
     },
-
     comment: async () => {
+      const selectedBoardId = typeof boardId === 'string' ? +boardId : 0;
       const createParams = {
-        boardId: +boardId,
+        boardId: selectedBoardId,
         comment: selectedMonster,
       };
       await createComment(createParams);
@@ -70,7 +71,7 @@ const SearchSelect = ({ onSelect }: Props) => {
         ? handleCreateParams['comment']()
         : handleCreateParams['board']();
     } catch (error) {
-      console.log(error);
+      setToast(TOASTIFY_ALERT.FAILED('Create'));
     }
   };
 

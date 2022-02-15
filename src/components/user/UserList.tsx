@@ -2,21 +2,19 @@ import { memo, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { RoleTooltip } from '~/constants/tooltip';
 import useOutside from '~/hooks/useOutside';
-import { UserInfo } from '~/types/user';
+import { UserInfo, UserRole } from '~/types/user';
 import { handleCheckUserRole } from '~/utils/user';
 import { Tooltip } from '../tooltip';
 
 interface Props {
   user: UserInfo;
-  onClick: (id: number, role: string) => void;
+  onClick: (id: number, role: UserRole) => void;
 }
 
 const UserList = ({ user, onClick }: Props) => {
   const [tooltipOepn, setTooltipOpen] = useState(false);
   const userRef = useRef<HTMLLIElement>(null);
-  const RoleTooltips = RoleTooltip.filter(
-    (value) => value.tooltip !== user.role,
-  );
+  const RoleTooltips = RoleTooltip.filter((value) => value.role !== user.role);
 
   useOutside(userRef, () => setTooltipOpen(false));
 

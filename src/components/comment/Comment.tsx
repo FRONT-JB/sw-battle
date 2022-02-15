@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { useLocation, useNavigate, useParams, Link } from 'react-router-dom';
+import { useLocation, useParams, Link } from 'react-router-dom';
 import { useGetBoardByIdQuery } from '~/api/board';
 import {
   useDeleteCommentMutation,
@@ -18,23 +18,28 @@ const Comment = () => {
   const { pathname } = useLocation();
   const { id: boardId } = useParams();
   const user = useSelector(authUserSelector);
+  const { setToast } = useToastify();
   const isRootPath = pathname === ROUTE_PATH.ROOT;
   const skipQuery = { skip: isRootPath || !boardId };
+
   const { data: boardList, isFetching: boardFetching } = useGetBoardByIdQuery(
     boardId,
     skipQuery,
   );
+
   const {
     data: commentList,
     isFetching: commentFetching,
     refetch,
   } = useGetCommentByBoardIdQuery(boardId, skipQuery);
+
   const [deleteComment] = useDeleteCommentMutation();
+
   const isFetching = boardFetching && commentFetching;
   const isNotNullComment =
     !!commentList?.length && !!boardList?.content?.defense.length;
   const isAdmin = user?.role === 'Admin';
-  const { setToast } = useToastify();
+
   const handleDeleteComment = async (commentId: number) => {
     if (window.confirm('Are you sure you want to delete this item?')) {
       await deleteComment(commentId).then(refetch);
