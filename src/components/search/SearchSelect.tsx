@@ -22,18 +22,24 @@ const SearchSelect = ({ onSelect }: Props) => {
   const { state: boardId } = useLocation();
   const selectedMonster = useSelector(selectedInfoSelector);
   const { setToast } = useToastify();
-
-  const [createBoard, { isSuccess: boardSuccess, error: boardError }] =
-    useCreateBoardMutation();
-  const [createComment, { isSuccess: commentSuccess, error: commentError }] =
-    useCreateCommentMutation();
   const isSelected = !!selectedMonster.length;
   const disabled = selectedMonster.length < 3;
 
+  const [createBoard, { isSuccess: boardSuccess, error: boardError }] =
+    useCreateBoardMutation();
+
+  const [createComment, { isSuccess: commentSuccess, error: commentError }] =
+    useCreateCommentMutation();
+
   useEffect(() => {
-    const error = boardError as FetchBaseQueryError;
-    if (error && error.status === 409) {
-      setToast('These are duplicated Attack posts.');
+    const errorByBoard = boardError as FetchBaseQueryError;
+    const errorByComment = commentError as FetchBaseQueryError;
+
+    if (errorByBoard && errorByBoard.status === 409) {
+      setToast(TOASTIFY_ALERT.CONFLICT('Attack Post'));
+    }
+    if (errorByComment && errorByComment.status === 404) {
+      setToast(TOASTIFY_ALERT.FAILED('Create'));
     }
     if (boardSuccess) {
       navigate(ROUTE_PATH.ROOT, { replace: true });
@@ -43,7 +49,7 @@ const SearchSelect = ({ onSelect }: Props) => {
       navigate(`/${ROUTE_PATH.DETAIL}/${boardId}`);
       setToast(TOASTIFY_ALERT.SUCCESS('Create'));
     }
-  }, [boardSuccess, commentSuccess, boardError]);
+  }, [boardSuccess, commentSuccess, boardError, commentError]);
 
   const handleCreateParams = {
     board: async () => {
@@ -64,15 +70,11 @@ const SearchSelect = ({ onSelect }: Props) => {
     },
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     const isCommentSubmit = boardId !== null;
-    try {
-      isCommentSubmit
-        ? handleCreateParams['comment']()
-        : handleCreateParams['board']();
-    } catch (error) {
-      setToast(TOASTIFY_ALERT.FAILED('Create'));
-    }
+    isCommentSubmit
+      ? handleCreateParams['comment']()
+      : handleCreateParams['board']();
   };
 
   const handleClear = () => {
